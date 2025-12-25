@@ -1,0 +1,28 @@
+{
+  "appointments": [
+    {
+      "id": "bcf0",
+      "fullName": "Meet kacha",
+      "age": "22",
+      "contact": "9512588231",
+      "email": "meet12@gmail.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Rajkot",
+      "address": "punit nagar",
+      "department": "Neurosurgery"
+    },
+    {
+      "id": "3d5d",
+      "fullName": "Kitra Mercer",
+      "age": "23",
+      "contact": "1234568555",
+      "email": "xihedipub@mailinator.com",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Hubli",
+      "address": "Deserunt quibusdam p",
+      "department": "Dermatology"
+    }
+  ]
+}

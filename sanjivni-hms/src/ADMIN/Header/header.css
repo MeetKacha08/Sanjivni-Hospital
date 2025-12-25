@@ -1,0 +1,48 @@
+/* Navbar */
+.admin-navbar {
+  height: 70px;
+  background-color:white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+}
+
+.nav-left { display: flex; align-items: center; gap: 10px; }
+.logo-text { font-weight: bold; color: #2c3e50; }
+
+.search-box {
+  background: #f1f3f4;
+  padding: 8px 15px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  width: 350px;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  margin-left: 10px;
+  outline: none;
+  width: 100%;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2c3e50;
+}
+
+.logout-link {
+  margin-left: 15px;
+  color: #e74c3c;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+}
