@@ -5,12 +5,12 @@
   color: white;
   display: flex;
   flex-direction: column;
-  position: fixed;
-  height: 100vh;
+  position: sticky;
+  height: 89.9vh;
 }
 
 .sidebar-header {
-  /* padding: 7px; */
+  padding: 7px;
   text-align: center;
   background-color: #1a252f;
 }

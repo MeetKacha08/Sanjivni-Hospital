@@ -1,34 +1,6 @@
-.admin-container {
-  display: flex;
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  margin-left: 250px; /* Space for sidebar */
-  background-color: #f4f7f6;
-}
-
-
-/* Table Styling */
-.dashboard-body { padding: 30px; }
-
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
+.admin-dashboard {
+  background-color: #a52828;
+  padding: 20px;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  min-height: 200px;
 }
-
-.admin-table th, .admin-table td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-}
-
-.admin-table th { background-color: #f8f9fa; color: #777; }

@@ -1,5 +1,176 @@
 {
-  "appointments": [
+  "appointments": [],
+  "doctors": [
+    {
+      "id": "d1",
+      "name": "Dr. John Smith",
+      "department": "Cardiology",
+      "contact": "9876543210",
+      "email": "john.smith@gmail.com",
+      "loginId": "docjohn",
+      "password": "password123",
+      "availableDays": [
+        "Monday",
+        "Wednesday",
+        "Friday",
+        "Thursday"
+      ],
+      "availableHours": "10:00 AM - 4:00 PM",
+      "experience": "5 years",
+      "education": "MBBS, MD, Cardiology"
+    },
+    {
+      "id": "d2",
+      "name": "Dr. Sarah Williams",
+      "department": "Orthopedic",
+      "contact": "9898765432",
+      "email": "sarah.w@gmail.com",
+      "loginId": "docsarah",
+      "password": "password123",
+      "availableDays": [
+        "Tuesday",
+        "Thursday",
+        "Saturday"
+      ],
+      "availableHours": "09:00 AM - 02:00 PM",
+      "experience": "8 years",
+      "education": "MBBS, MS, Orthopedics"
+    },
+    {
+      "id": "d3",
+      "name": "Dr. Robert Brown",
+      "department": "Neurosurgery",
+      "contact": "9786543210",
+      "email": "robert.b@gmail.com",
+      "loginId": "docrobert",
+      "password": "password123",
+      "availableDays": [
+        "Monday",
+        "Tuesday",
+        "Thursday"
+      ],
+      "availableHours": "11:00 AM - 05:00 PM",
+      "experience": "15 years",
+      "education": "MBBS, M.Ch, Neurosurgery"
+    },
+    {
+      "id": "d4",
+      "name": "Dr. Emily Davis",
+      "department": "Pediatrics",
+      "contact": "9675432109",
+      "email": "emily.d@gmail.com",
+      "loginId": "docemily",
+      "password": "password123",
+      "availableDays": [
+        "Wednesday",
+        "Friday",
+        "Sunday"
+      ],
+      "availableHours": "10:00 AM - 03:00 PM",
+      "experience": "6 years",
+      "education": "MBBS, DCH, Pediatrics"
+    },
+    {
+      "id": "d5",
+      "name": "Dr. Michael Wilson",
+      "department": "Dermatology",
+      "contact": "9564321098",
+      "email": "michael.w@gmail.com",
+      "loginId": "docmichael",
+      "password": "password123",
+      "availableDays": [
+        "Monday",
+        "Wednesday",
+        "Saturday"
+      ],
+      "availableHours": "12:00 PM - 06:00 PM",
+      "experience": "12 years",
+      "education": "MBBS, MD, Dermatology"
+    },
+    {
+      "id": "d6",
+      "name": "Dr. Jessica Taylor",
+      "department": "Oncology",
+      "contact": "9453210987",
+      "email": "jessica.t@gmail.com",
+      "loginId": "docjessica",
+      "password": "password123",
+      "availableDays": [
+        "Tuesday",
+        "Thursday",
+        "Friday"
+      ],
+      "availableHours": "08:00 AM - 01:00 PM",
+      "experience": "9 years",
+      "education": "MBBS, MD, Oncology"
+    },
+    {
+      "id": "d7",
+      "name": "Dr. David Miller",
+      "department": "ENT",
+      "contact": "9342109876",
+      "email": "david.m@gmail.com",
+      "loginId": "docdavid",
+      "password": "password123",
+      "availableDays": [
+        "Monday",
+        "Wednesday",
+        "Friday"
+      ],
+      "availableHours": "03:00 PM - 08:00 PM",
+      "experience": "11 years",
+      "education": "MBBS, MS, ENT"
+    },
+    {
+      "id": "d8",
+      "name": "Dr. Linda Garcia",
+      "department": "Gastroenterology",
+      "contact": "9231098765",
+      "email": "linda.g@gmail.com",
+      "loginId": "doclinda",
+      "password": "password123",
+      "availableDays": [
+        "Wednesday",
+        "Thursday",
+        "Saturday"
+      ],
+      "availableHours": "10:00 AM - 04:00 PM",
+      "experience": "14 years",
+      "education": "MBBS, MD, Gastrology"
+    },
+    {
+      "id": "d9",
+      "name": "Dr. Kevin Moore",
+      "department": "Urology",
+      "contact": "9120987654",
+      "email": "kevin.m@gmail.com",
+      "loginId": "dockevin",
+      "password": "password123",
+      "availableDays": [
+        "Tuesday",
+        "Friday",
+        "Sunday"
+      ],
+      "availableHours": "09:00 AM - 03:00 PM",
+      "experience": "7 years",
+      "education": "MBBS, M.Ch, Urology"
+    }
+  ],
+  "patients": [
+    {
+      "id": "06f3",
+      "fullName": "Emery Hansen",
+      "age": "22",
+      "contact": "1234567890",
+      "email": "humetuc@mailinator.com",
+      "country": "India",
+      "state": "Maharashtra",
+      "city": "Pune",
+      "address": "Autem dolore ut offi",
+      "department": "Orthopedic",
+      "status": "Accepted",
+      "admittedAt": "30/12/2025, 10:04:34"
+    },
     {
       "id": "bcf0",
       "fullName": "Meet kacha",
@@ -10,19 +181,9 @@
       "state": "Gujarat",
       "city": "Rajkot",
       "address": "punit nagar",
-      "department": "Neurosurgery"
-    },
-    {
-      "id": "3d5d",
-      "fullName": "Kitra Mercer",
-      "age": "23",
-      "contact": "1234568555",
-      "email": "xihedipub@mailinator.com",
-      "country": "India",
-      "state": "Karnataka",
-      "city": "Hubli",
-      "address": "Deserunt quibusdam p",
-      "department": "Dermatology"
+      "department": "Neurosurgery",
+      "status": "Accepted",
+      "admittedDate": "30/12/2025"
     }
   ]
 }

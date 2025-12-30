@@ -24,7 +24,7 @@ const Home = () => {
           Our hospital provides 24/7 emergency services, specialized doctors, 
           and advanced laboratory facilities to ensure your health is in good hands.
         </p>
-        <button onClick={() => navigate('/book-appointment')} className="appointment-btn">Book an Appointment</button>
+        <button onClick={() => navigate('/book-user-appointment')} className="appointment-btn">Book an Appointment</button>
       </div>
     </div>
   );

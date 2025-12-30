@@ -1,15 +1,35 @@
-
-
-import AdminLayout from "../AdminLayout";
-
+import '../Dashboard/AdminDashboard.css';
 const AdminDashboard = () => {
 
+
   return (
-   <>
-    <div>
-      <AdminLayout/>
+  <>
+    <div className="admin-dashboard">
+      <p>Admin Dashboard</p>
     </div>
-   </>
+    <div className="admin-dashboard">
+      <p>Admin Dashboard</p>
+    </div>
+      <div className="admin-dashboard">
+      <p>Admin Dashboard</p>
+    </div>
+    <div className="admin-dashboard">
+      <p>Admin Dashboard</p>
+    </div>
+      <div className="admin-dashboard">
+      <p>Admin Dashboard</p>
+    </div>
+    <div className="admin-dashboard">
+      <p>Admin Dashboard</p>
+    </div>
+      <div className="admin-dashboard">
+      <p>Admin Dashboard</p>
+    </div>
+    <div className="admin-dashboard">
+      <p>Admin Dashboard</p>
+    </div>
+    </>
+
   );
 };
 
