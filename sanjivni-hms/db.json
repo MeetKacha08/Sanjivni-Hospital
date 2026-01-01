@@ -154,36 +154,106 @@
       "availableHours": "09:00 AM - 03:00 PM",
       "experience": "7 years",
       "education": "MBBS, M.Ch, Urology"
+    },
+    {
+      "id": "2b25",
+      "name": "Sebastian Mooney",
+      "department": "Et officia do quas n",
+      "contact": "Vel sint aliqua Mol",
+      "email": "zihola@mailinator.com",
+      "experience": "Ex blanditiis eius l",
+      "education": "Ut ut ut error natus",
+      "availableHours": "Quae aperiam proiden",
+      "loginId": "Eum optio ut maxime",
+      "password": "Pa$$w0rd!",
+      "availableDays": [
+        "Monday",
+        "Friday",
+        "Tuesday"
+      ]
     }
   ],
   "patients": [
     {
-      "id": "06f3",
-      "fullName": "Emery Hansen",
-      "age": "22",
-      "contact": "1234567890",
-      "email": "humetuc@mailinator.com",
+      "id": "e238",
+      "fullName": "Amela Larson",
+      "age": "33",
+      "contact": "39",
+      "email": "cuwag@mailinator.com",
+      "country": "India",
+      "state": "Maharashtra",
+      "city": "Mumbai",
+      "address": "Pariatur Accusamus ",
+      "department": "Orthopedic",
+      "admittedAt": "1977-11-23",
+      "admittedDate": "30/12/2025"
+    },
+    {
+      "id": "73d3",
+      "fullName": "Janna Eaton",
+      "age": "72",
+      "contact": "8",
+      "email": "rigike@mailinator.com",
+      "country": "India",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "address": "Fugiat anim digniss",
+      "department": "Cardiology",
+      "admittedAt": "1995-12-22",
+      "status": "Accepted",
+      "admittedDate": "31/12/2025"
+    },
+    {
+      "id": "d559",
+      "fullName": "Kelsie Oneal",
+      "age": "12",
+      "contact": "46",
+      "email": "cymus@mailinator.com",
       "country": "India",
       "state": "Maharashtra",
       "city": "Pune",
-      "address": "Autem dolore ut offi",
-      "department": "Orthopedic",
+      "address": "Consequatur perspici",
+      "department": "Cardiology",
+      "admittedAt": "2022-05-09",
       "status": "Accepted",
-      "admittedAt": "30/12/2025, 10:04:34"
+      "admittedDate": "31/12/2025"
     },
     {
-      "id": "bcf0",
-      "fullName": "Meet kacha",
-      "age": "22",
-      "contact": "9512588231",
-      "email": "meet12@gmail.com",
+      "id": "f00f",
+      "fullName": "Winter Whitley",
+      "age": "60",
+      "contact": "54",
+      "email": "nexagofo@mailinator.com",
       "country": "India",
       "state": "Gujarat",
-      "city": "Rajkot",
-      "address": "punit nagar",
-      "department": "Neurosurgery",
+      "city": "Ahmedabad",
+      "address": "Laudantium voluptas",
+      "department": "Oncology",
+      "admittedAt": "1975-07-17",
       "status": "Accepted",
-      "admittedDate": "30/12/2025"
+      "admittedDate": "31/12/2025"
     }
-  ]
+  ],
+  "labStaff": [
+    {
+      "id": "0401",
+      "fullName": "Sawyer Flowers",
+      "age": "34",
+      "contact": "Nostrum voluptatibus",
+      "email": "qisihoj@mailinator.com",
+      "education": "Dolore necessitatibu",
+      "experience": "Reiciendis nobis pro",
+      "loginId": "Provident animi qu",
+      "password": "Asperiores vel ea al"
+    }
+  ],
+  "reports": [
+    {
+      "id": "3cfc",
+      "reportName": "ECG",
+      "reportFees": "5000"
+    }
+  ],
+  "admitted": [],
+  "rooms":[]
 }

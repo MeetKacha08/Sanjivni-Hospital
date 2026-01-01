@@ -93,6 +93,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 // ================= Website =================
 import Home from './Website/Home/Home';
+import Register from './Website/RegisterByDoc.js/register';
 
 // ================= Admin =================
 import AdminLayout from './ADMIN/AdminLayout';
@@ -103,6 +104,7 @@ import Patients from './ADMIN/Patient/Patients';
 import Doctors from './ADMIN/Doctor/Doctors';
 import Laboratory from './ADMIN/Lab/Laboratory';
 import Admit from './ADMIN/Admit/Admit';
+import Room from './ADMIN/Room/room';
 import Billing from './ADMIN/Biling/Billing';
 
 // ================= Auth =================
@@ -132,6 +134,7 @@ function App() {
 
         {/* ================= Website Routes ================= */}
         <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
         {/* ================= User Appointment ================= */}
@@ -155,6 +158,7 @@ function App() {
           <Route path="doctors" element={<Doctors />} />
           <Route path="lab" element={<Laboratory />} />
           <Route path="admit" element={<Admit />} />
+          <Route path="room" element={<Room/>}/>
           <Route path="billing" element={<Billing />} />
         </Route>
 

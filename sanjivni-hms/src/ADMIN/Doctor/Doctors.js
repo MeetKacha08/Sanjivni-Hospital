@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaTimes, FaGraduationCap, FaStethoscope, FaClock, FaCalendarAlt, FaEnvelope, FaPhoneAlt, FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
+import { FaTimes, FaGraduationCap, FaStethoscope, FaClock, FaCalendarAlt, FaEnvelope, FaPhoneAlt, FaEdit, FaTrash, FaPlus, FaLock } from 'react-icons/fa';
 
 const Doctors = () => {
     const [doctors, setDoctors] = useState([]);
@@ -31,8 +31,6 @@ const Doctors = () => {
         }
     };
 
-    // --- GROUPING LOGIC ---
-    // This creates an object like { Cardiology: [doc1, doc2], Orthopedic: [doc3] }
     const categorizedDoctors = doctors.reduce((acc, doc) => {
         const dept = doc.department || "General";
         if (!acc[dept]) acc[dept] = [];
@@ -120,7 +118,6 @@ const Doctors = () => {
 
             <h2 style={{ textAlign: 'center', marginBottom: '30px' }}>Our Specialized Doctors</h2>
             
-            {/* --- CATEGORIZED DOCTORS SECTION --- */}
             {Object.keys(categorizedDoctors).map((category) => (
                 <div key={category} style={{ marginBottom: '40px' }}>
                     <h3 style={categoryHeaderStyle}>{category} Department</h3>
@@ -140,7 +137,6 @@ const Doctors = () => {
                 </div>
             ))}
 
-            {/* --- DETAILS MODAL --- */}
             {selectedDoctor && !showEditModal && (
                 <div style={modalOverlayStyle}>
                     <div style={modalContentStyle}>
@@ -167,13 +163,14 @@ const Doctors = () => {
                             <div style={infoBox}><h4><FaEnvelope /> Email</h4><p>{selectedDoctor.email}</p></div>
                             <div style={infoBox}><h4><FaPhoneAlt /> Contact</h4><p>{selectedDoctor.contact}</p></div>
                             <div style={infoBox}><h4><FaStethoscope /> Login ID</h4><p>{selectedDoctor.loginId}</p></div>
+                            {/* --- ADDED PASSWORD FIELD BELOW --- */}
+                            <div style={infoBox}><h4><FaLock /> Password</h4><p>{selectedDoctor.password}</p></div>
                         </div>
                         <button style={closeBtnStyle} onClick={() => setSelectedDoctor(null)}>Close Details</button>
                     </div>
                 </div>
             )}
 
-            {/* --- EDIT FORM MODAL --- */}
             {showEditModal && (
                 <div style={modalOverlayStyle}>
                     <div style={{...modalContentStyle, width: '600px'}}>
@@ -191,6 +188,7 @@ const Doctors = () => {
                                 <div style={inputGroup}><label>Education</label><input type="text" name="education" value={editFormData.education} onChange={(e) => handleFormChange(e)} style={inputStyle} /></div>
                                 <div style={inputGroup}><label>Available Hours</label><input type="text" name="availableHours" value={editFormData.availableHours} onChange={(e) => handleFormChange(e)} style={inputStyle} /></div>
                                 <div style={inputGroup}><label>Login ID</label><input type="text" name="loginId" value={editFormData.loginId} onChange={(e) => handleFormChange(e)} style={inputStyle} /></div>
+                                <div style={inputGroup}><label>Password</label><input type="text" name="password" value={editFormData.password} onChange={(e) => handleFormChange(e)} style={inputStyle} /></div>
                             </div>
                             <div style={{ margin: '15px 0' }}>
                                 <strong>Available Days:</strong><br />
@@ -206,7 +204,6 @@ const Doctors = () => {
                 </div>
             )}
 
-            {/* --- ADD DOCTOR MODAL --- */}
             {showAddModal && (
                 <div style={modalOverlayStyle}>
                     <div style={{...modalContentStyle, width: '600px'}}>

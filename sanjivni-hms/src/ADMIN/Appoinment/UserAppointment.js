@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Appointment = () => {
+const UserAppointment = () => {
   const navigate = useNavigate();
   
   // Data for State and Cities
@@ -94,4 +94,4 @@ const formStyle = { background: '#f4f4f4', padding: '20px', borderRadius: '8px' 
 const submitBtn = { flex: 1, padding: '10px', backgroundColor: '#28a745', color: 'white', border: 'none', cursor: 'pointer' };
 const clearBtn = { flex: 1, padding: '10px', backgroundColor: '#dc3545', color: 'white', border: 'none', cursor: 'pointer' };
 
-export default Appointment;
+export default UserAppointment;

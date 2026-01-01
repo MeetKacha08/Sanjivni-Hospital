@@ -6,6 +6,8 @@ import {
   FaFlask,
   FaBed,
   FaFileInvoiceDollar,
+  FaBroom,
+  FaDoorClosed,
 } from 'react-icons/fa';
 
 import { useNavigate } from 'react-router-dom';
@@ -34,6 +36,9 @@ const Sidebar = () => {
           </li>
           <li onClick={() => navigate('/admin/admit')}>
             <FaBed className="icon" /> Admit
+          </li>
+          <li onClick={() => navigate('/admin/room')}>
+            <FaDoorClosed className="icon" /> Rooms
           </li>
           <li onClick={() => navigate('/admin/billing')}>
             <FaFileInvoiceDollar className="icon" /> Billing
