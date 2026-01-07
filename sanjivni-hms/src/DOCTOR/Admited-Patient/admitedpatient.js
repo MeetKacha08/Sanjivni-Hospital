@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaUserAlt, FaBed, FaCalendarAlt, FaSignOutAlt, FaHashtag } from 'react-icons/fa';
 
-const Admit = () => {
+const Admitedpatient = () => {
     const [admittedPatients, setAdmittedPatients] = useState([]);
+    
+    // 1. Get Logged-in Doctor's Department from LocalStorage
+    const doctorDept = localStorage.getItem('loggedInDoctorDept');
 
     useEffect(() => {
         fetchAdmittedPatients();
@@ -11,7 +14,11 @@ const Admit = () => {
 
     const fetchAdmittedPatients = () => {
         axios.get('http://localhost:5000/admitted')
-            .then(res => setAdmittedPatients(res.data))
+            .then(res => {
+                // 2. 🔥 FILTER LOGIC: Only show patients whose department matches the doctor's department
+                const filtered = res.data.filter(p => p.department === doctorDept);
+                setAdmittedPatients(filtered);
+            })
             .catch(err => console.log(err));
     };
 
@@ -50,9 +57,12 @@ const Admit = () => {
 
     return (
         <div style={{ padding: '30px', backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
-            <h2 style={{ color: '#2c3e50', borderBottom: '2px solid #3182ce', paddingBottom: '10px', marginBottom: '30px' }}>
-                Currently Admitted Patients (Category Wise)
-            </h2>
+            <div style={{ marginBottom: '30px', borderBottom: '2px solid #3182ce', paddingBottom: '10px' }}>
+                <h2 style={{ color: '#2c3e50', margin: 0 }}>
+                    My Admitted Patients ({doctorDept})
+                </h2>
+                <p style={{ color: '#718096', margin: '5px 0 0 0' }}>Showing all patients currently admitted in your department.</p>
+            </div>
             
             {admittedPatients.length > 0 ? (
                 Object.keys(groupedAdmissions).map((category) => (
@@ -100,7 +110,7 @@ const Admit = () => {
                 ))
             ) : (
                 <div style={{ textAlign: 'center', padding: '50px', color: '#95a5a6' }}>
-                    <p>No patients are currently admitted.</p>
+                    <p>No patients from the <b>{doctorDept}</b> department are currently admitted.</p>
                 </div>
             )}
         </div>
@@ -165,4 +175,4 @@ const dischargeBtnStyle = {
     boxShadow: '0 2px 4px rgba(229, 62, 62, 0.3)'
 };
 
-export default Admit;
+export default Admitedpatient;
