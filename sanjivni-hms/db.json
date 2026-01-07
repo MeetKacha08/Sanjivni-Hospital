@@ -158,22 +158,6 @@
   ],
   "patients": [
     {
-      "id": "ef96",
-      "fullName": "Yael Park",
-      "age": "65",
-      "contact": "24",
-      "email": "lacejagi@mailinator.com",
-      "country": "India",
-      "state": "Rajasthan",
-      "city": "Jaipur",
-      "address": "Eius ut architecto e",
-      "department": "Neurosurgery",
-      "doctorName": "Dr. Robert Brown",
-      "admittedAt": "1987-07-09",
-      "status": "Accepted",
-      "admittedDate": "05/01/2026"
-    },
-    {
       "id": "080f",
       "fullName": "Igor Shelton",
       "age": "69",
@@ -333,6 +317,56 @@
       "admittedAt": "2024-12-10",
       "status": "Approved",
       "admittedDate": "06/01/2026"
+    },
+    {
+      "id": "1f8d",
+      "fullName": "Indira Barton",
+      "age": "40",
+      "contact": "9",
+      "email": "javi@mailinator.com",
+      "country": "India",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "address": "Odio quasi laudantiu",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2011-08-03",
+      "consultancyFees": 800,
+      "status": "Approved",
+      "admittedDate": "07/01/2026"
+    },
+    {
+      "id": "383d",
+      "fullName": "Jana Wise",
+      "age": "52",
+      "contact": "47",
+      "email": "wuxiwosel@mailinator.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Surat",
+      "address": "Nulla maxime accusam",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "1987-10-16",
+      "consultancyFees": 800,
+      "status": "Approved",
+      "admittedDate": "07/01/2026"
+    },
+    {
+      "id": "fd66",
+      "fullName": "Rose Kelley",
+      "age": "66",
+      "contact": "20",
+      "email": "bezahajix@mailinator.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "address": "Rerum porro qui eu v",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "1979-01-19",
+      "status": "Approved",
+      "admittedDate": "07/01/2026"
     }
   ],
   "labStaff": [
@@ -375,7 +409,65 @@
       "reportFees": "6000"
     }
   ],
-  "admitted": [],
+  "admitted": [
+    {
+      "id": "cee0",
+      "fullName": "Lucian Sloan",
+      "age": "4",
+      "contact": "15",
+      "email": "xyzy@mailinator.com",
+      "country": "India",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "address": "Ut sed dolor nisi na",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "admittedAt": "2004-03-14",
+      "status": "Approved",
+      "admittedDate": "06/01/2026",
+      "roomType": "ICU",
+      "admissionStatus": "Admitted",
+      "admissionTimestamp": "07/01/2026, 10:37:28"
+    },
+    {
+      "id": "e81e",
+      "fullName": "Yeo Fuller",
+      "age": "58",
+      "contact": "88",
+      "email": "wemutak@mailinator.com",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Mysore",
+      "address": "Tempora in unde volu",
+      "department": "Dermatology",
+      "doctorName": "Dr. Michael Wilson",
+      "admittedAt": "1987-11-23",
+      "status": "Accepted",
+      "admittedDate": "05/01/2026",
+      "roomType": "ICU",
+      "admissionStatus": "Admitted",
+      "admissionTimestamp": "07/01/2026, 10:38:12"
+    },
+    {
+      "id": "87a2",
+      "fullName": "Kamal Melton",
+      "age": "44",
+      "contact": "80",
+      "email": "doryna@mailinator.com",
+      "country": "India",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "address": "Temporibus nostrud m",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2024-12-10",
+      "status": "Approved",
+      "admittedDate": "06/01/2026",
+      "roomType": "ICU",
+      "admissionStatus": "Admitted",
+      "admissionTimestamp": "08/01/2026, 04:09:28"
+    }
+  ],
   "rooms": [],
   "bills": [
     {
@@ -570,6 +662,26 @@
       "totalAmount": 840,
       "billStatus": "Pending",
       "generatedAt": "06/01/2026, 12:08:11"
+    },
+    {
+      "id": "ef96",
+      "fullName": "Yael Park",
+      "age": "65",
+      "contact": "24",
+      "email": "lacejagi@mailinator.com",
+      "country": "India",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "address": "Eius ut architecto e",
+      "department": "Neurosurgery",
+      "doctorName": "Dr. Robert Brown",
+      "admittedAt": "1987-07-09",
+      "status": "Approved",
+      "admittedDate": "05/01/2026",
+      "consultancyFees": 800,
+      "totalAmount": 840,
+      "billStatus": "Pending",
+      "generatedAt": "08/01/2026, 02:34:04"
     }
   ],
   "prescriptions": [
@@ -632,7 +744,44 @@
       "diagnosis": " vhjkvvhk",
       "medicines": "hvhjvhv",
       "advice": "hvhkvkv"
+    },
+    {
+      "id": "3355",
+      "patientId": "c3e7",
+      "patientName": "Noelani Mckee",
+      "doctorName": "Dr. Sarah Williams",
+      "date": "07/01/2026, 09:53:39",
+      "diagnosis": "dvfdgfgfdgfd",
+      "medicines": "fhfdghfdhfd",
+      "advice": "fdhdfhfdh"
     }
   ],
-  "surgeryTypes": []
+  "surgery": [
+    {
+      "id": "11eb",
+      "patientId": "c3e7",
+      "patientName": "Noelani Mckee",
+      "patientAge": "19",
+      "patientDept": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "surgeryType": "Repair of Congenital Heart Defects",
+      "surgeryDate": "2026-01-29",
+      "surgeryTime": "05:20",
+      "bookedAt": "08/01/2026, 02:22:59",
+      "status": "Scheduled"
+    },
+    {
+      "id": "7735",
+      "patientId": "87a2",
+      "patientName": "Kamal Melton",
+      "patientAge": "44",
+      "patientDept": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "surgeryType": "Coronary Artery Bypass Grafting (CABG)",
+      "surgeryDate": "2026-01-29",
+      "surgeryTime": "14:20",
+      "bookedAt": "08/01/2026, 03:17:35",
+      "status": "Scheduled"
+    }
+  ]
 }

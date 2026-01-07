@@ -16,6 +16,8 @@ import Laboratory from './ADMIN/Lab/Laboratory';
 import Admit from './ADMIN/Admit/Admit';
 import Room from './ADMIN/Room/room';
 import Billing from './ADMIN/Biling/Billing';
+import Surgery from './ADMIN/Surgery/surgery';
+
 
 // ================= Doctor =================
 import DoctorLayout from './DOCTOR/DoctorLayout';
@@ -23,13 +25,17 @@ import DoctorDashboard from './DOCTOR/Doc-Dashboard/dashboard';
 import Pandingpatient from './DOCTOR/Panding-Patient/pandingpatient';
 import Mypatient from './DOCTOR/My-Patient/mypatient';
 import Admitedpatient from './DOCTOR/Admited-Patient/admitedpatient';
+import Surgerybooking from './DOCTOR/Surgery-Booking/surgerybooking';
+
+// ================= Laboratry =================
+import LabLayout from './LAB/LabDashboard';
+import LabDashboard from './LAB/LabDashboard';
 
 
 // ================= Auth =================
 import Login from './Login';
 
 // ================= Dashboards =================
-import LabDashboard from './LAB/LabDashboard';
 import BilingDashboard from './BILING/BilingDashboard';
 
 // ================= Protected Route =================
@@ -77,6 +83,7 @@ function App() {
           <Route path="admit" element={<Admit />} />
           <Route path="room" element={<Room />} />
           <Route path="billing" element={<Billing />} />
+          <Route path='surgery' element={<Surgery />} />
         </Route>
 
         {/* ================= Doctor Routes ================= */}
@@ -91,23 +98,28 @@ function App() {
           <Route index element={<Navigate to="doctordashboard" replace />} />
 
           <Route path='doctordashboard' element={<DoctorDashboard />} />
-          <Route path='pandingpatient' element={<Pandingpatient/>}/>
-          <Route path='mypatient' element={<Mypatient/>}/>
-          <Route path='admitedpatient' element={<Admitedpatient/>}/>
+          <Route path='pandingpatient' element={<Pandingpatient />} />
+          <Route path='mypatient' element={<Mypatient />} />
+          <Route path='admitedpatient' element={<Admitedpatient />} />
+          <Route path='surgerybooking' element={<Surgerybooking />} />
         </Route>
 
-        {/* ================= Other Dashboards ================= */}
-
+        {/* ================= Laboratry Routes ================= */}
 
         <Route
           path="/lab"
           element={
             <ProtectedRoute allowedRole="lab">
-              <LabDashboard />
+              <LabLayout />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<Navigate to="labdashboard" replace />} />
 
+          <Route path='labdashboard' element={<LabDashboard/>}/>
+        </Route>
+
+        {/* ================= Other Dashboards ================= */}
         <Route
           path="/billing"
           element={

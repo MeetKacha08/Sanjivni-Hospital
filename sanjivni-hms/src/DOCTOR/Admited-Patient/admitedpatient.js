@@ -4,8 +4,9 @@ import { FaUserAlt, FaBed, FaCalendarAlt, FaSignOutAlt, FaHashtag } from 'react-
 
 const Admitedpatient = () => {
     const [admittedPatients, setAdmittedPatients] = useState([]);
-    
-    // 1. Get Logged-in Doctor's Department from LocalStorage
+
+    // 🔥 1. Get Logged-in Doctor's Name from LocalStorage
+    const doctorName = localStorage.getItem('loggedInDoctorName');
     const doctorDept = localStorage.getItem('loggedInDoctorDept');
 
     useEffect(() => {
@@ -15,9 +16,11 @@ const Admitedpatient = () => {
     const fetchAdmittedPatients = () => {
         axios.get('http://localhost:5000/admitted')
             .then(res => {
-                // 2. 🔥 FILTER LOGIC: Only show patients whose department matches the doctor's department
-                const filtered = res.data.filter(p => p.department === doctorDept);
-                setAdmittedPatients(filtered);
+                // 🔥 2. FILTER LOGIC: Only show patients assigned to THIS specific doctor
+                const myAdmittedPatients = res.data.filter(patient => 
+                    patient.doctorName === doctorName
+                );
+                setAdmittedPatients(myAdmittedPatients);
             })
             .catch(err => console.log(err));
     };
@@ -57,12 +60,10 @@ const Admitedpatient = () => {
 
     return (
         <div style={{ padding: '30px', backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
-            <div style={{ marginBottom: '30px', borderBottom: '2px solid #3182ce', paddingBottom: '10px' }}>
-                <h2 style={{ color: '#2c3e50', margin: 0 }}>
-                    My Admitted Patients ({doctorDept})
-                </h2>
-                <p style={{ color: '#718096', margin: '5px 0 0 0' }}>Showing all patients currently admitted in your department.</p>
-            </div>
+            {/* Header updated to show the specific doctor's context */}
+            <h2 style={{ color: '#2c3e50', borderBottom: '2px solid #3182ce', paddingBottom: '10px', marginBottom: '30px' }}>
+                My Admitted Patients ({doctorName})
+            </h2>
             
             {admittedPatients.length > 0 ? (
                 Object.keys(groupedAdmissions).map((category) => (
@@ -110,69 +111,19 @@ const Admitedpatient = () => {
                 ))
             ) : (
                 <div style={{ textAlign: 'center', padding: '50px', color: '#95a5a6' }}>
-                    <p>No patients from the <b>{doctorDept}</b> department are currently admitted.</p>
+                    <p>No patients admitted under <b>Dr. {doctorName}</b>.</p>
                 </div>
             )}
         </div>
     );
 };
 
-// --- STYLES ---
-
-const categoryHeaderStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: '20px',
-    fontWeight: 'bold',
-    color: '#3182ce',
-    marginBottom: '15px',
-    backgroundColor: '#fff',
-    padding: '10px 20px',
-    borderRadius: '10px',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-};
-
-const countBadgeStyle = {
-    marginLeft: 'auto',
-    fontSize: '12px',
-    backgroundColor: '#3182ce',
-    color: '#fff',
-    padding: '4px 12px',
-    borderRadius: '20px'
-};
-
-const admitCard = {
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '12px',
-    boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
-    border: '1px solid #e2e8f0',
-    position: 'relative'
-};
-
-const roomBadge = {
-    backgroundColor: '#ebf8ff',
-    color: '#3182ce',
-    padding: '4px 12px',
-    borderRadius: '20px',
-    fontSize: '12px',
-    fontWeight: 'bold'
-};
-
+// --- STYLES (No changes made to styles) ---
+const categoryHeaderStyle = { display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: '#3182ce', marginBottom: '15px', backgroundColor: '#fff', padding: '10px 20px', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' };
+const countBadgeStyle = { marginLeft: 'auto', fontSize: '12px', backgroundColor: '#3182ce', color: '#fff', padding: '4px 12px', borderRadius: '20px' };
+const admitCard = { backgroundColor: '#fff', padding: '20px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0', position: 'relative' };
+const roomBadge = { backgroundColor: '#ebf8ff', color: '#3182ce', padding: '4px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold' };
 const cardText = { margin: '5px 0', color: '#4a5568', fontSize: '14px' };
-
-const dischargeBtnStyle = {
-    backgroundColor: '#e53e3e',
-    color: 'white',
-    border: 'none',
-    padding: '10px',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: 'background-color 0.2s',
-    boxShadow: '0 2px 4px rgba(229, 62, 62, 0.3)'
-};
+const dischargeBtnStyle = { backgroundColor: '#e53e3e', color: 'white', border: 'none', padding: '10px', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background-color 0.2s', boxShadow: '0 2px 4px rgba(229, 62, 62, 0.3)' };
 
 export default Admitedpatient;

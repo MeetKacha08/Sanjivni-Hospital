@@ -1,6 +1,7 @@
 // import React, { useEffect, useState } from 'react';
 // import axios from 'axios';
-// import { FaUserCircle, FaCalendarCheck, FaEnvelope, FaPhoneAlt, FaHospitalUser, FaSignOutAlt, FaPlus, FaTimes, FaBed, FaMoneyCheckAlt, FaUserMd } from 'react-icons/fa';
+// // Added FaHeartbeat for the new Surgery button
+// import { FaUserCircle, FaCalendarCheck, FaEnvelope, FaPhoneAlt, FaHospitalUser, FaSignOutAlt, FaPlus, FaTimes, FaBed, FaMoneyCheckAlt, FaUserMd, FaFilePrescription, FaFlask, FaHeartbeat } from 'react-icons/fa';
 
 // const Patients = () => {
 //     const [patients, setPatients] = useState([]);
@@ -56,10 +57,7 @@
 //             .catch(err => console.log("Error fetching doctors:", err));
 //     };
 
-//     // 🔥 LOGIC 1: Get ONLY unique departments available from the doctors list
 //     const availableDepartments = [...new Set(doctors.map(doc => doc.department))];
-
-//     // 🔥 LOGIC 2: Filter doctors based on selected Department
 //     const filteredDoctors = doctors.filter(doc => doc.department === formData.department);
 
 //     const handleAdmitClick = (patient) => {
@@ -112,7 +110,6 @@
 //     const handleInputChange = (e) => {
 //         const { name, value } = e.target;
 //         if (name === 'contact' && value.length > 10) return;
-        
 //         if (name === 'department') {
 //             setFormData({ ...formData, [name]: value, doctorName: '' });
 //         } else {
@@ -122,15 +119,16 @@
 
 //     const handleSubmit = async (e) => {
 //         e.preventDefault();
+//         const patientData = {
+//             ...formData,
+//             status: "Accepted", 
+//             admittedDate: new Date().toLocaleDateString('en-GB') 
+//         };
 //         try {
-//             await axios.post('http://localhost:5000/patients', formData);
-//             alert("Registered Successfully!");
+//             await axios.post('http://localhost:5000/patients', patientData);
+//             alert("Patient Registered!");
 //             setShowModal(false);
 //             fetchPatients();
-//             setFormData({
-//                 fullName: '', age: '', contact: '', email: '', country: 'India', state: '', city: '', address: '',
-//                 department: '', doctorName: '', admittedAt: new Date().toISOString().split('T')[0], consultancyFees: 800 
-//             });
 //         } catch (error) { console.error(error); }
 //     };
 
@@ -189,9 +187,20 @@
 //                                             {patient.admittedAt}
 //                                         </td>
 //                                         <td style={tdStyle}>
-//                                             <div style={{ display: 'flex', gap: '10px' }}>
-//                                                 <button onClick={() => handleAdmitClick(patient)} style={admitBtnStyle}>Admit</button>
-//                                                 <button onClick={() => handleDischarge(patient)} style={dischargeBtnStyle}>Discharge</button>
+//                                             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+//                                                 <button onClick={() => handleAdmitClick(patient)} style={admitBtnStyle} title="Admit Patient"><FaBed /></button>
+//                                                 <button onClick={() => handleDischarge(patient)} style={dischargeBtnStyle} title="Discharge Patient"><FaSignOutAlt /></button>
+//                                                 <button onClick={() => alert(`Prescription for ${patient.fullName}`)} style={prescBtnStyle} title="Prescription"><FaFilePrescription /></button>
+//                                                 <button onClick={() => alert(`Laboratory for ${patient.fullName}`)} style={labBtnStyle} title="Laboratory"><FaFlask /></button>
+                                                
+//                                                 {/* 🔥 NEW: Surgery Icon Button */}
+//                                                 <button 
+//                                                     onClick={() => alert(`Scheduling Surgery for ${patient.fullName}`)} 
+//                                                     style={surgeryBtnStyle} 
+//                                                     title="Surgery"
+//                                                 >
+//                                                     <FaHeartbeat />
+//                                                 </button>
 //                                             </div>
 //                                         </td>
 //                                     </tr>
@@ -202,7 +211,30 @@
 //                 </div>
 //             ))}
 
-//             {/* --- REGISTER PATIENT MODAL --- */}
+//             {/* Modals remain exactly the same as provided */}
+//             {showAdmitModal && selectedPatient && (
+//                 <div style={modalOverlay}>
+//                     <div style={modalContent}>
+//                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+//                             <h2 style={{ margin: 0, color: '#3182ce' }}><FaBed style={{marginRight: '10px'}}/> Admit Patient</h2>
+//                             <FaTimes style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => setShowAdmitModal(false)} />
+//                         </div>
+//                         <div style={admitDetailBox}>
+//                             <p><strong>Patient Name:</strong> {selectedPatient.fullName}</p>
+//                             <p><strong>Department:</strong> {selectedPatient.department}</p>
+//                         </div>
+//                         <div style={{marginBottom: '20px'}}>
+//                             <label style={{display: 'block', marginBottom: '8px', fontWeight: 'bold'}}>Select Room Type</label>
+//                             <select value={roomType} onChange={(e) => setRoomType(e.target.value)} style={inputStyle}>
+//                                 <option value="">-- Choose Room --</option>
+//                                 {roomTypes.map(type => <option key={type} value={type}>{type}</option>)}
+//                             </select>
+//                         </div>
+//                         <button onClick={processAdmission} style={{...submitFormBtnStyle, backgroundColor: '#3182ce'}}>Confirm Admission</button>
+//                     </div>
+//                 </div>
+//             )}
+
 //             {showModal && (
 //                 <div style={modalOverlay}>
 //                     <div style={modalContent}>
@@ -210,48 +242,29 @@
 //                             <h2 style={{ margin: 0, color: '#007bff' }}>Register New Patient</h2>
 //                             <FaTimes style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => setShowModal(false)} />
 //                         </div>
-
 //                         <form onSubmit={handleSubmit} style={formGrid}>
 //                             <input type="text" name="fullName" placeholder="Patient Full Name" value={formData.fullName} onChange={handleInputChange} required style={inputStyle} />
 //                             <input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleInputChange} required style={inputStyle} />
 //                             <input type="number" name="contact" placeholder="Contact Number" value={formData.contact} onChange={handleInputChange} required style={inputStyle} />
 //                             <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleInputChange} required style={inputStyle} />
-
 //                             <select name="state" value={formData.state} onChange={handleInputChange} required style={inputStyle}>
 //                                 <option value="">Select State</option>
 //                                 {Object.keys(indiaStates).map(state => <option key={state} value={state}>{state}</option>)}
 //                             </select>
-
 //                             <select name="city" value={formData.city} onChange={handleInputChange} required style={inputStyle} disabled={!formData.state}>
 //                                 <option value="">Select City</option>
 //                                 {formData.state && indiaStates[formData.state].map(city => <option key={city} value={city}>{city}</option>)}
 //                             </select>
-
-//                             {/* 🔥 UPDATED: Only shows departments that exist in the doctors array */}
 //                             <select name="department" value={formData.department} onChange={handleInputChange} required style={inputStyle}>
 //                                 <option value="">Select Department</option>
-//                                 {availableDepartments.map(dept => (
-//                                     <option key={dept} value={dept}>{dept}</option>
-//                                 ))}
+//                                 {availableDepartments.map(dept => <option key={dept} value={dept}>{dept}</option>)}
 //                             </select>
-
-//                             {/* 🔥 Filtered Doctor List */}
 //                             <select name="doctorName" value={formData.doctorName} onChange={handleInputChange} required style={inputStyle} disabled={!formData.department}>
 //                                 <option value="">Select Doctor</option>
-//                                 {filteredDoctors.map(doc => (
-//                                     <option key={doc.id} value={doc.name}>{doc.name}</option>
-//                                 ))}
+//                                 {filteredDoctors.map(doc => <option key={doc.id} value={doc.name}>{doc.name}</option>)}
 //                             </select>
-
 //                             <input type="date" name="admittedAt" value={formData.admittedAt} onChange={handleInputChange} required style={inputStyle} />
-
-//                             <div style={{ position: 'relative' }}>
-//                                 <input type="text" value={`Consultancy Fees: ₹${formData.consultancyFees}`} readOnly style={{ ...inputStyle, backgroundColor: '#f9f9f9', color: '#28a745', fontWeight: 'bold' }} />
-//                                 <FaMoneyCheckAlt style={{ position: 'absolute', right: '10px', top: '12px', color: '#28a745' }} />
-//                             </div>
-
 //                             <textarea name="address" placeholder="Full Address" value={formData.address} onChange={handleInputChange} required style={{ ...inputStyle, gridColumn: 'span 2', height: '40px' }}></textarea>
-
 //                             <button type="submit" style={submitFormBtnStyle}>Register Patient</button>
 //                         </form>
 //                     </div>
@@ -261,9 +274,14 @@
 //     );
 // };
 
-// // Styles remain identical to your previous version
+// // --- STYLES ---
+// const surgeryBtnStyle = { backgroundColor: '#e67e22', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center' };
+// const prescBtnStyle = { backgroundColor: '#8e44ad', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center' };
+// const labBtnStyle = { backgroundColor: '#f39c12', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center' };
+// const admitBtnStyle = { backgroundColor: '#3182ce', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center' };
+// const dischargeBtnStyle = { backgroundColor: '#e53e3e', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center' };
+
 // const admitDetailBox = { backgroundColor: '#f8f9fa', padding: '15px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #dee2e6', fontSize: '14px' };
-// const submitAdmitBtn = { width: '100%', padding: '12px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '8px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer' };
 // const addPatientBtnStyle = { backgroundColor: '#28a745', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center' };
 // const headerSection = { marginBottom: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #e2e8f0', paddingBottom: '15px' };
 // const modalOverlay = { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000, backdropFilter: 'blur(4px)' };
@@ -271,8 +289,6 @@
 // const formGrid = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' };
 // const inputStyle = { padding: '10px', borderRadius: '5px', border: '1px solid #ddd', fontSize: '14px', outline: 'none', width: '100%', boxSizing: 'border-box' };
 // const submitFormBtnStyle = { gridColumn: 'span 2', marginTop: '10px', padding: '12px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer' };
-// const admitBtnStyle = { backgroundColor: '#3182ce', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' };
-// const dischargeBtnStyle = { backgroundColor: '#e53e3e', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' };
 // const deptHeaderStyle = { display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '10px', padding: '0 5px' };
 // const countBadge = { backgroundColor: '#3182ce', color: 'white', padding: '2px 10px', borderRadius: '12px', fontSize: '12px', fontWeight: 'bold' };
 // const tableContainer = { backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', overflow: 'hidden' };
@@ -286,7 +302,8 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaUserCircle, FaCalendarCheck, FaEnvelope, FaPhoneAlt, FaHospitalUser, FaSignOutAlt, FaPlus, FaTimes, FaBed, FaMoneyCheckAlt, FaUserMd } from 'react-icons/fa';
+// FaHeartbeat removed from imports
+import { FaUserCircle, FaCalendarCheck, FaEnvelope, FaPhoneAlt, FaHospitalUser, FaSignOutAlt, FaPlus, FaTimes, FaBed, FaMoneyCheckAlt, FaUserMd, FaFilePrescription, FaFlask } from 'react-icons/fa';
 
 const Patients = () => {
     const [patients, setPatients] = useState([]);
@@ -395,7 +412,6 @@ const Patients = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (name === 'contact' && value.length > 10) return;
-        
         if (name === 'department') {
             setFormData({ ...formData, [name]: value, doctorName: '' });
         } else {
@@ -403,24 +419,18 @@ const Patients = () => {
         }
     };
 
-    // 🔥 UPDATED SUBMIT: Ensures 'Accepted' status is added so it shows in Pending Page
     const handleSubmit = async (e) => {
         e.preventDefault();
         const patientData = {
             ...formData,
-            status: "Accepted", // 🔥 This makes the patient appear in Pandingpatient.js
-            admittedDate: new Date().toLocaleDateString('en-GB') // Sets a readable date
+            status: "Accepted", 
+            admittedDate: new Date().toLocaleDateString('en-GB') 
         };
-
         try {
             await axios.post('http://localhost:5000/patients', patientData);
-            alert("Patient Registered and added to Doctor's queue!");
+            alert("Patient Registered!");
             setShowModal(false);
             fetchPatients();
-            setFormData({
-                fullName: '', age: '', contact: '', email: '', country: 'India', state: '', city: '', address: '',
-                department: '', doctorName: '', admittedAt: new Date().toISOString().split('T')[0], consultancyFees: 800 
-            });
         } catch (error) { console.error(error); }
     };
 
@@ -479,9 +489,12 @@ const Patients = () => {
                                             {patient.admittedAt}
                                         </td>
                                         <td style={tdStyle}>
-                                            <div style={{ display: 'flex', gap: '10px' }}>
-                                                <button onClick={() => handleAdmitClick(patient)} style={admitBtnStyle}>Admit</button>
-                                                <button onClick={() => handleDischarge(patient)} style={dischargeBtnStyle}>Discharge</button>
+                                            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                                                <button onClick={() => handleAdmitClick(patient)} style={admitBtnStyle} title="Admit Patient"><FaBed /></button>
+                                                <button onClick={() => handleDischarge(patient)} style={dischargeBtnStyle} title="Discharge Patient"><FaSignOutAlt /></button>
+                                                <button onClick={() => alert(`Prescription for ${patient.fullName}`)} style={prescBtnStyle} title="Prescription"><FaFilePrescription /></button>
+                                                <button onClick={() => alert(`Laboratory for ${patient.fullName}`)} style={labBtnStyle} title="Laboratory"><FaFlask /></button>
+                                                {/* Surgery button removed from here */}
                                             </div>
                                         </td>
                                     </tr>
@@ -492,7 +505,30 @@ const Patients = () => {
                 </div>
             ))}
 
-            {/* --- REGISTER PATIENT MODAL --- */}
+            {/* Modals */}
+            {showAdmitModal && selectedPatient && (
+                <div style={modalOverlay}>
+                    <div style={modalContent}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                            <h2 style={{ margin: 0, color: '#3182ce' }}><FaBed style={{marginRight: '10px'}}/> Admit Patient</h2>
+                            <FaTimes style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => setShowAdmitModal(false)} />
+                        </div>
+                        <div style={admitDetailBox}>
+                            <p><strong>Patient Name:</strong> {selectedPatient.fullName}</p>
+                            <p><strong>Department:</strong> {selectedPatient.department}</p>
+                        </div>
+                        <div style={{marginBottom: '20px'}}>
+                            <label style={{display: 'block', marginBottom: '8px', fontWeight: 'bold'}}>Select Room Type</label>
+                            <select value={roomType} onChange={(e) => setRoomType(e.target.value)} style={inputStyle}>
+                                <option value="">-- Choose Room --</option>
+                                {roomTypes.map(type => <option key={type} value={type}>{type}</option>)}
+                            </select>
+                        </div>
+                        <button onClick={processAdmission} style={{...submitFormBtnStyle, backgroundColor: '#3182ce'}}>Confirm Admission</button>
+                    </div>
+                </div>
+            )}
+
             {showModal && (
                 <div style={modalOverlay}>
                     <div style={modalContent}>
@@ -500,46 +536,29 @@ const Patients = () => {
                             <h2 style={{ margin: 0, color: '#007bff' }}>Register New Patient</h2>
                             <FaTimes style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => setShowModal(false)} />
                         </div>
-
                         <form onSubmit={handleSubmit} style={formGrid}>
                             <input type="text" name="fullName" placeholder="Patient Full Name" value={formData.fullName} onChange={handleInputChange} required style={inputStyle} />
                             <input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleInputChange} required style={inputStyle} />
                             <input type="number" name="contact" placeholder="Contact Number" value={formData.contact} onChange={handleInputChange} required style={inputStyle} />
                             <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleInputChange} required style={inputStyle} />
-
                             <select name="state" value={formData.state} onChange={handleInputChange} required style={inputStyle}>
                                 <option value="">Select State</option>
                                 {Object.keys(indiaStates).map(state => <option key={state} value={state}>{state}</option>)}
                             </select>
-
                             <select name="city" value={formData.city} onChange={handleInputChange} required style={inputStyle} disabled={!formData.state}>
                                 <option value="">Select City</option>
                                 {formData.state && indiaStates[formData.state].map(city => <option key={city} value={city}>{city}</option>)}
                             </select>
-
                             <select name="department" value={formData.department} onChange={handleInputChange} required style={inputStyle}>
                                 <option value="">Select Department</option>
-                                {availableDepartments.map(dept => (
-                                    <option key={dept} value={dept}>{dept}</option>
-                                ))}
+                                {availableDepartments.map(dept => <option key={dept} value={dept}>{dept}</option>)}
                             </select>
-
                             <select name="doctorName" value={formData.doctorName} onChange={handleInputChange} required style={inputStyle} disabled={!formData.department}>
                                 <option value="">Select Doctor</option>
-                                {filteredDoctors.map(doc => (
-                                    <option key={doc.id} value={doc.name}>{doc.name}</option>
-                                ))}
+                                {filteredDoctors.map(doc => <option key={doc.id} value={doc.name}>{doc.name}</option>)}
                             </select>
-
                             <input type="date" name="admittedAt" value={formData.admittedAt} onChange={handleInputChange} required style={inputStyle} />
-
-                            <div style={{ position: 'relative' }}>
-                                <input type="text" value={`Consultancy Fees: ₹${formData.consultancyFees}`} readOnly style={{ ...inputStyle, backgroundColor: '#f9f9f9', color: '#28a745', fontWeight: 'bold' }} />
-                                <FaMoneyCheckAlt style={{ position: 'absolute', right: '10px', top: '12px', color: '#28a745' }} />
-                            </div>
-
                             <textarea name="address" placeholder="Full Address" value={formData.address} onChange={handleInputChange} required style={{ ...inputStyle, gridColumn: 'span 2', height: '40px' }}></textarea>
-
                             <button type="submit" style={submitFormBtnStyle}>Register Patient</button>
                         </form>
                     </div>
@@ -550,6 +569,12 @@ const Patients = () => {
 };
 
 // --- STYLES ---
+// surgeryBtnStyle removed from here
+const prescBtnStyle = { backgroundColor: '#8e44ad', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center' };
+const labBtnStyle = { backgroundColor: '#f39c12', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center' };
+const admitBtnStyle = { backgroundColor: '#3182ce', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center' };
+const dischargeBtnStyle = { backgroundColor: '#e53e3e', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center' };
+
 const admitDetailBox = { backgroundColor: '#f8f9fa', padding: '15px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #dee2e6', fontSize: '14px' };
 const addPatientBtnStyle = { backgroundColor: '#28a745', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center' };
 const headerSection = { marginBottom: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #e2e8f0', paddingBottom: '15px' };
@@ -558,8 +583,6 @@ const modalContent = { backgroundColor: '#fff', padding: '30px', borderRadius: '
 const formGrid = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' };
 const inputStyle = { padding: '10px', borderRadius: '5px', border: '1px solid #ddd', fontSize: '14px', outline: 'none', width: '100%', boxSizing: 'border-box' };
 const submitFormBtnStyle = { gridColumn: 'span 2', marginTop: '10px', padding: '12px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer' };
-const admitBtnStyle = { backgroundColor: '#3182ce', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' };
-const dischargeBtnStyle = { backgroundColor: '#e53e3e', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' };
 const deptHeaderStyle = { display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '10px', padding: '0 5px' };
 const countBadge = { backgroundColor: '#3182ce', color: 'white', padding: '2px 10px', borderRadius: '12px', fontSize: '12px', fontWeight: 'bold' };
 const tableContainer = { backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', overflow: 'hidden' };

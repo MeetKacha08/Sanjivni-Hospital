@@ -8,6 +8,12 @@ const Mypatient = () => {
     const [showModal, setShowModal] = useState(false);
     const [history, setHistory] = useState([]); 
     
+    // --- ADMISSION STATES ---
+    const [showAdmitModal, setShowAdmitModal] = useState(false);
+    const [roomType, setRoomType] = useState("");
+    const roomTypes = ["ICU", "Private Room", "General Room", "General Ward"];
+    const roomCapacities = { "ICU": 10, "Private Room": 15, "General Room": 30, "General Ward": 50 };
+
     // --- LAB MODAL STATES ---
     const [showLabModal, setShowLabModal] = useState(false);
     const [availableReports, setAvailableReports] = useState([]);
@@ -15,19 +21,40 @@ const Mypatient = () => {
 
     // --- 🔥 SURGERY MODAL STATES ---
     const [showSurgeryModal, setShowSurgeryModal] = useState(false);
-    const [availableSurgeryTypes, setAvailableSurgeryTypes] = useState([]);
     const [surgeryForm, setSurgeryForm] = useState({
-        surgeryName: '',
+        surgeryType: '',
         surgeryDate: '',
-        timeSlot: ''
+        surgeryTime: ''
     });
+
+    const heartSurgeries = [
+        "Coronary Artery Bypass Grafting (CABG)", "Coronary Angioplasty and Stenting", "Atherectomy",
+        "Aortic Valve Replacement and Repair", "Mitral Valve Repair and Replacement", "Tricuspid Valve Replacement and Repair",
+        "Pulmonary Valve Replacement and Repair", "Transcatheter Aortic Valve Replacement (TAVR)",
+        "Implantable Cardioverter-Defibrillator (ICD) Insertion", "Pacemaker Insertion", "Catheter Ablation",
+        "Heart Transplant", "Insertion of Ventricular Assist Devices (VAD)", "Repair of Congenital Heart Defects",
+        "Aortic Aneurysm Repair", "Pericardiectomy", "Patent Foramen Ovale (PFO) / ASD Repair", "Robotic Heart Surgery"
+    ];
 
     const [prescription, setPrescription] = useState({ diagnosis: '', medicines: '', advice: '' });
     const doctorName = localStorage.getItem('loggedInDoctorName');
-    const doctorDept = localStorage.getItem('loggedInDoctorDept'); // Ensure this is in localStorage
+    const doctorDept = localStorage.getItem('loggedInDoctorDept');
 
     useEffect(() => {
         fetchApprovedPatients();
+    }, []);
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                setShowModal(false);
+                setShowAdmitModal(false);
+                setShowLabModal(false);
+                setShowSurgeryModal(false);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
     const fetchApprovedPatients = () => {
@@ -54,97 +81,76 @@ const Mypatient = () => {
         setPrescription({ diagnosis: '', medicines: '', advice: '' });
     };
 
-    const handleLaboratoryClick = async (patient) => {
-        setSelectedPatient(patient);
-        setSelectedReports([]); 
-        try {
-            const res = await axios.get('http://localhost:5000/reports');
-            setAvailableReports(res.data);
-            setShowLabModal(true);
-        } catch (err) { console.error(err); }
-    };
-
-    // 🔥 UPDATED: Surgery Click Logic
-    const handleSurgeryClick = async (patient) => {
-        setSelectedPatient(patient);
-        setSurgeryForm({ surgeryName: '', surgeryDate: '', timeSlot: '' });
-        try {
-            // Fetch surgery types. We filter by doctor's department.
-            const res = await axios.get('http://localhost:5000/surgeryTypes');
-            const deptSurgeries = res.data.filter(s => s.dept === doctorDept);
-            setAvailableSurgeryTypes(deptSurgeries);
-            setShowSurgeryModal(true);
-        } catch (err) {
-            console.error("Error fetching surgery types:", err);
-            // Fallback if endpoint doesn't exist yet
-            setAvailableSurgeryTypes([{id: 1, name: "General Surgery"}]);
-            setShowSurgeryModal(true);
-        }
-    };
-
-    const scheduleSurgerySubmit = async (e) => {
-        e.preventDefault();
-        const surgeryOrder = {
-            patientId: selectedPatient.id,
-            patientName: selectedPatient.fullName,
-            doctorName: doctorName,
-            department: doctorDept,
-            ...surgeryForm,
-            status: 'Scheduled',
-            createdAt: new Date().toLocaleString()
-        };
-
-        try {
-            await axios.post('http://localhost:5000/scheduledSurgeries', surgeryOrder);
-            alert("Surgery Scheduled Successfully!");
-            setShowSurgeryModal(false);
-        } catch (err) { console.error(err); }
-    };
-
     const handleAdmitClick = (patient) => {
-        alert(`Redirecting to Admission for: ${patient.fullName}`);
+        setSelectedPatient(patient);
+        setShowAdmitModal(true);
     };
 
-    const handleDischargeClick = (patient) => {
-        if (window.confirm(`Are you sure you want to discharge ${patient.fullName}?`)) {
-            alert(`Processing discharge for: ${patient.fullName}`);
-        }
+    // 🔥 Trigger Surgery Modal
+    const handleSurgeryClick = (patient) => {
+        setSelectedPatient(patient);
+        setShowSurgeryModal(true);
     };
 
-    const handleCheckboxChange = (report) => {
-        if (selectedReports.find(r => r.id === report.id)) {
-            setSelectedReports(selectedReports.filter(r => r.id !== report.id));
-        } else {
-            setSelectedReports([...selectedReports, report]);
-        }
-    };
+    // 🔥 Updated Book Surgery Logic with Admission Verification
+    const bookSurgerySubmit = async (e) => {
+        e.preventDefault();
 
-    const assignLabTests = async () => {
-        if (selectedReports.length === 0) { alert("Select a report"); return; }
-        const labOrder = {
-            patientId: selectedPatient.id,
-            patientName: selectedPatient.fullName,
-            doctorName: doctorName,
-            assignedReports: selectedReports,
-            status: 'Pending',
-            date: new Date().toLocaleString()
-        };
         try {
-            await axios.post('http://localhost:5000/labOrders', labOrder);
-            alert("Lab Tests assigned!");
-            setShowLabModal(false);
-        } catch (err) { console.error(err); }
+            // 1. Fetch the list of currently admitted patients from the server
+            const admitRes = await axios.get('http://localhost:5000/admitted');
+            
+            // 2. 🔥 Verification Logic: Check if the current patient's ID is in the admitted list
+            const isAlreadyAdmitted = admitRes.data.some(p => p.id === selectedPatient.id);
+
+            if (!isAlreadyAdmitted) {
+                // 3. If not admitted, show alert and block the booking
+                alert(`STOP! Surgery cannot be booked for ${selectedPatient.fullName} because they are NOT currently admitted. Please admit the patient first.`);
+                setShowSurgeryModal(false);
+                return; // Exit the function
+            }
+
+            // 4. If verification passes, proceed with booking the surgery
+            const bookingData = {
+                patientId: selectedPatient.id,
+                patientName: selectedPatient.fullName,
+                patientAge: selectedPatient.age,
+                patientDept: selectedPatient.department,
+                doctorName: doctorName,
+                ...surgeryForm,
+                bookedAt: new Date().toLocaleString(),
+                status: "Scheduled"
+            };
+
+            await axios.post('http://localhost:5000/surgery', bookingData);
+            alert(`Surgery Booked successfully for ${selectedPatient.fullName}`);
+            setShowSurgeryModal(false);
+            setSurgeryForm({ surgeryType: '', surgeryDate: '', surgeryTime: '' });
+        } catch (err) {
+            console.error("Booking Error:", err);
+            alert("Error connecting to the server. Please try again.");
+        }
+    };
+
+    const processAdmission = async () => {
+        if (!roomType) { alert("Please select a room type"); return; }
+        try {
+            const checkRes = await axios.get('http://localhost:5000/admitted');
+            if (checkRes.data.some(p => p.id === selectedPatient.id)) {
+                alert(`STOP! ${selectedPatient.fullName} is already admitted.`);
+                setShowAdmitModal(false);
+                return;
+            }
+            const admissionData = { ...selectedPatient, roomType, admissionStatus: "Admitted", admissionTimestamp: new Date().toLocaleString() };
+            await axios.post('http://localhost:5000/admitted', admissionData);
+            alert("Patient Admitted Successfully!");
+            setShowAdmitModal(false);
+        } catch (error) { console.error(error); }
     };
 
     const savePrescription = async (e) => {
         e.preventDefault();
-        const prescriptionData = {
-            patientId: selectedPatient.id,
-            patientName: selectedPatient.fullName,
-            doctorName: doctorName,
-            date: new Date().toLocaleString(),
-            ...prescription
-        };
+        const prescriptionData = { patientId: selectedPatient.id, patientName: selectedPatient.fullName, doctorName, date: new Date().toLocaleString(), ...prescription };
         try {
             await axios.post('http://localhost:5000/prescriptions', prescriptionData);
             alert("Prescription Saved!");
@@ -159,7 +165,6 @@ const Mypatient = () => {
                 <h2 style={{ margin: 0, color: '#27ae60' }}>
                     <FaUserCheck style={{ marginRight: '10px' }} /> My Approved Patients
                 </h2>
-                <p style={{ color: '#7f8c8d' }}>Current active patients under {doctorName}</p>
             </div>
 
             <div style={tableContainer}>
@@ -167,8 +172,8 @@ const Mypatient = () => {
                     <thead>
                         <tr style={headerRowStyle}>
                             <th style={thStyle}>Patient Name</th>
-                            <th style={thStyle}>Contact Details</th>
-                            <th style={thStyle}>Department</th>
+                            <th style={thStyle}>Contact Info</th>
+                            <th style={thStyle}>Admission Date</th>
                             <th style={thStyle}>Actions</th>
                         </tr>
                     </thead>
@@ -178,23 +183,36 @@ const Mypatient = () => {
                                 <td style={tdStyle}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                         <FaUserCircle size={25} color="#27ae60" />
-                                        <span style={{ fontWeight: '600' }}>{p.fullName}</span>
+                                        <div>
+                                            <span style={{ fontWeight: '600', display: 'block' }}>{p.fullName}</span>
+                                            <small style={{ color: '#7f8c8d' }}>Age: {p.age} | {p.department}</small>
+                                        </div>
                                     </div>
                                 </td>
                                 <td style={tdStyle}>
-                                    <div style={{ fontSize: '12px' }}>
-                                        <FaPhoneAlt size={10} /> {p.contact} <br/>
-                                        <FaEnvelope size={10} /> {p.email}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                            <FaPhoneAlt size={14} color="#2c3e50" />
+                                            <span>{p.contact}</span>
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                            <FaEnvelope size={14} color="#7f8c8d" />
+                                            <span style={{ color: '#7f8c8d' }}>{p.email}</span>
+                                        </div>
                                     </div>
                                 </td>
-                                <td style={tdStyle}>{p.department}</td>
+                                <td style={tdStyle}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <FaCalendarAlt size={16} color="#2c3e50" />
+                                        <span>{p.admittedDate || 'Pending'}</span>
+                                    </div>
+                                </td>
                                 <td style={tdStyle}>
                                     <div style={{ display: 'flex', gap: '10px' }}>
                                         <button style={prescBtn} onClick={() => handlePrescriptionClick(p)} title="Prescription"><FaFilePrescription /></button>
-                                        <button style={labBtn} onClick={() => handleLaboratoryClick(p)} title="Lab Reports"><FaFlask /></button>
+                                        <button style={admitBtn} onClick={() => handleAdmitClick(p)} title="Admit"><FaBed /></button> 
                                         <button style={surgeryBtn} onClick={() => handleSurgeryClick(p)} title="Schedule Surgery"><FaHeartbeat /></button>
-                                        <button style={admitBtn} onClick={() => handleAdmitClick(p)} title="Admit"><FaBed /></button>
-                                        <button style={dischargeBtn} onClick={() => handleDischargeClick(p)} title="Discharge"><FaSignOutAlt /></button>
+                                        <button style={dischargeBtn} onClick={() => alert("Process in Admited page")} title="Discharge"><FaSignOutAlt /></button>
                                     </div>
                                 </td>
                             </tr>
@@ -203,125 +221,96 @@ const Mypatient = () => {
                 </table>
             </div>
 
+            {/* --- 🔥 NEW: SURGERY BOOKING MODAL --- */}
+            {showSurgeryModal && selectedPatient && (
+                <div style={modalOverlay}>
+                    <div style={{...modalContent, width: '550px', position: 'relative'}}>
+                        <FaTimes 
+                            style={{ position: 'absolute', top: '20px', right: '20px', cursor: 'pointer', fontSize: '20px' }} 
+                            onClick={() => setShowSurgeryModal(false)} 
+                        />
+                        <h2 style={{color: '#e67e22', marginBottom: '20px'}}><FaHeartbeat /> Schedule Surgery</h2>
+                        
+                        <form onSubmit={bookSurgerySubmit}>
+                            <div style={admitDetailBox}>
+                                <p><b>Patient Name:</b> {selectedPatient.fullName}</p>
+                                <p><b>Patient Age:</b> {selectedPatient.age} Years</p>
+                                <p><b>Department:</b> {selectedPatient.department}</p>
+                            </div>
+
+                            <label style={labelStyle}>Select Type of Surgery</label>
+                            <select 
+                                style={inputStyle} 
+                                required 
+                                value={surgeryForm.surgeryType}
+                                onChange={(e) => setSurgeryForm({...surgeryForm, surgeryType: e.target.value})}
+                            >
+                                <option value="">-- Choose Procedure --</option>
+                                {heartSurgeries.map((s, idx) => <option key={idx} value={s}>{s}</option>)}
+                            </select>
+
+                            <div style={{display: 'flex', gap: '15px', marginTop: '10px'}}>
+                                <div style={{flex: 1}}>
+                                    <label style={labelStyle}>Select Date</label>
+                                    <input type="date" style={inputStyle} required value={surgeryForm.surgeryDate}
+                                        onChange={(e) => setSurgeryForm({...surgeryForm, surgeryDate: e.target.value})} />
+                                </div>
+                                <div style={{flex: 1}}>
+                                    <label style={labelStyle}>Select Time</label>
+                                    <input type="time" style={inputStyle} required value={surgeryForm.surgeryTime}
+                                        onChange={(e) => setSurgeryForm({...surgeryForm, surgeryTime: e.target.value})} />
+                                </div>
+                            </div>
+
+                            <button type="submit" style={{...submitBtn, backgroundColor: '#e67e22', marginTop: '20px'}}>
+                                Confirm & Book Surgery
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
+
             {/* --- PRESCRIPTION MODAL --- */}
             {showModal && (
                 <div style={modalOverlay}>
-                    <div style={{ ...modalContent, width: '900px', display: 'flex', gap: '20px', maxHeight: '90vh' }}>
+                    <div style={{ ...modalContent, width: '900px', display: 'flex', gap: '20px', maxHeight: '90vh', position: 'relative' }}>
+                        <FaTimes style={{ position: 'absolute', top: '15px', right: '15px', cursor: 'pointer', fontSize: '20px', color: '#666' }} onClick={() => setShowModal(false)} />
                         <div style={{ flex: 1.2 }}>
-                            <h3 style={{ margin: '0 0 20px 0' }}>New Prescription</h3>
+                            <h3>New Prescription</h3>
                             <form onSubmit={savePrescription}>
                                 <label style={labelStyle}>Diagnosis</label>
                                 <input style={inputStyle} required value={prescription.diagnosis} onChange={(e) => setPrescription({...prescription, diagnosis: e.target.value})} />
                                 <label style={labelStyle}>Medicines</label>
                                 <textarea style={{ ...inputStyle, height: '100px' }} required value={prescription.medicines} onChange={(e) => setPrescription({...prescription, medicines: e.target.value})} />
-                                <label style={labelStyle}>Advice</label>
-                                <textarea style={{ ...inputStyle, height: '70px' }} value={prescription.advice} onChange={(e) => setPrescription({...prescription, advice: e.target.value})} />
-                                <button type="submit" style={submitBtn}><FaSave /> Save Prescription</button>
+                                <button type="submit" style={submitBtn}><FaSave /> Save</button>
                             </form>
                         </div>
-                        <div style={{ flex: 1, borderLeft: '1px solid #eee', paddingLeft: '20px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                                <h3 style={{ margin: 0, fontSize: '16px' }}><FaHistory /> History</h3>
-                                <FaTimes style={{ cursor: 'pointer' }} onClick={() => setShowModal(false)} />
+                        <div style={{ flex: 1, borderLeft: '1px solid #eee', paddingLeft: '20px', overflowY: 'auto' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
+                                <FaHistory /> <h4 style={{ margin: 0 }}>History</h4>
                             </div>
-                            <div style={{ overflowY: 'auto', flex: 1 }}>
-                                {history.length > 0 ? [...history].reverse().map((h, i) => (
-                                    <div key={i} style={historyCard}>
-                                        <small style={{ color: '#3498db', fontWeight: 'bold' }}>{h.date}</small>
-                                        <p style={{ margin: '5px 0', fontSize: '13px' }}><b>Diag:</b> {h.diagnosis}</p>
-                                        <p style={{ margin: '5px 0', fontSize: '12px', color: '#555' }}><b>Med:</b> {h.medicines}</p>
-                                    </div>
-                                )) : <p>No history.</p>}
-                            </div>
+                            {history.length > 0 ? [...history].reverse().map((h, i) => (
+                                <div key={i} style={historyCard}><small>{h.date}</small><p>{h.diagnosis}</p></div>
+                            )) : <p>No history found.</p>}
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* --- LABORATORY MODAL --- */}
-            {showLabModal && (
+            {/* --- ADMISSION MODAL --- */}
+            {showAdmitModal && selectedPatient && (
                 <div style={modalOverlay}>
-                    <div style={{ ...modalContent, width: '500px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                            <h3 style={{ margin: 0, color: '#8e44ad' }}><FaFlask /> Lab Reports</h3>
-                            <FaTimes style={{ cursor: 'pointer' }} onClick={() => setShowLabModal(false)} />
+                    <div style={modalContent}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                            <h2 style={{ margin: 0, color: '#16a085' }}><FaBed style={{marginRight: '10px'}}/> Admit Patient</h2>
+                            <FaTimes style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => setShowAdmitModal(false)} />
                         </div>
-                        <div style={reportListContainer}>
-                            {availableReports.map(report => (
-                                <div key={report.id} style={reportItem}>
-                                    <label style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                        <input type="checkbox" checked={!!selectedReports.find(r => r.id === report.id)} onChange={() => handleCheckboxChange(report)} />
-                                        <span>{report.reportName}</span>
-                                    </label>
-                                </div>
-                            ))}
-                        </div>
-                        <button style={{ ...submitBtn, backgroundColor: '#8e44ad', marginTop: '20px' }} onClick={assignLabTests}><FaCheckSquare /> Confirm</button>
-                    </div>
-                </div>
-            )}
-
-            {/* 🔥 NEW: SURGERY MODAL 🔥 */}
-            {showSurgeryModal && (
-                <div style={modalOverlay}>
-                    <div style={{ ...modalContent, width: '500px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                            <h3 style={{ margin: 0, color: '#e67e22' }}><FaHeartbeat /> Schedule Surgery</h3>
-                            <FaTimes style={{ cursor: 'pointer' }} onClick={() => setShowSurgeryModal(false)} />
-                        </div>
-
-                        <div style={patientMiniDetail}>
-                            <p><b>Patient:</b> {selectedPatient?.fullName}</p>
-                            <p><b>Dept:</b> {doctorDept}</p>
-                        </div>
-
-                        <form onSubmit={scheduleSurgerySubmit}>
-                            <label style={labelStyle}>Select Surgery Type</label>
-                            <select 
-                                style={inputStyle} 
-                                required 
-                                value={surgeryForm.surgeryName}
-                                onChange={(e) => setSurgeryForm({...surgeryForm, surgeryName: e.target.value})}
-                            >
-                                <option value="">-- Choose Surgery --</option>
-                                {availableSurgeryTypes.map(s => (
-                                    <option key={s.id} value={s.name}>{s.name}</option>
-                                ))}
-                            </select>
-
-                            <label style={labelStyle}>Surgery Date</label>
-                            <div style={{ position: 'relative' }}>
-                                <input 
-                                    type="date" 
-                                    style={inputStyle} 
-                                    required 
-                                    value={surgeryForm.surgeryDate}
-                                    onChange={(e) => setSurgeryForm({...surgeryForm, surgeryDate: e.target.value})}
-                                />
-                                <FaCalendarAlt style={inputIcon} />
-                            </div>
-
-                            <label style={labelStyle}>Select Time Slot</label>
-                            <div style={{ position: 'relative' }}>
-                                <select 
-                                    style={inputStyle} 
-                                    required 
-                                    value={surgeryForm.timeSlot}
-                                    onChange={(e) => setSurgeryForm({...surgeryForm, timeSlot: e.target.value})}
-                                >
-                                    <option value="">-- Choose Slot --</option>
-                                    <option value="09:00 AM - 11:00 AM">09:00 AM - 11:00 AM</option>
-                                    <option value="11:30 AM - 01:30 PM">11:30 AM - 01:30 PM</option>
-                                    <option value="02:30 PM - 04:30 PM">02:30 PM - 04:30 PM</option>
-                                    <option value="05:00 PM - 07:00 PM">05:00 PM - 07:00 PM</option>
-                                </select>
-                                <FaClock style={inputIcon} />
-                            </div>
-
-                            <button type="submit" style={{ ...submitBtn, backgroundColor: '#e67e22', marginTop: '10px' }}>
-                                <FaSave /> Confirm Schedule
-                            </button>
-                        </form>
+                        <div style={admitDetailBox}><p><b>Patient:</b> {selectedPatient.fullName}</p></div>
+                        <select value={roomType} onChange={(e) => setRoomType(e.target.value)} style={inputStyle}>
+                            <option value="">-- Choose Room --</option>
+                            {roomTypes.map(type => <option key={type} value={type}>{type}</option>)}
+                        </select>
+                        <button onClick={processAdmission} style={{...submitBtn, backgroundColor: '#16a085', marginTop: '15px'}}>Confirm Admission</button>
                     </div>
                 </div>
             )}
@@ -330,10 +319,7 @@ const Mypatient = () => {
 };
 
 // --- STYLES ---
-const patientMiniDetail = { backgroundColor: '#fff5eb', padding: '10px', borderRadius: '8px', marginBottom: '15px', border: '1px solid #ffe8cc', fontSize: '14px' };
-const inputIcon = { position: 'absolute', right: '10px', top: '10px', color: '#999' };
-const reportListContainer = { maxHeight: '300px', overflowY: 'auto', border: '1px solid #eee', borderRadius: '8px', padding: '10px' };
-const reportItem = { padding: '10px', borderBottom: '1px solid #f1f1f1' };
+const admitDetailBox = { backgroundColor: '#f8f9fa', padding: '15px', borderRadius: '8px', marginBottom: '15px', border: '1px solid #eee', fontSize: '14px' };
 const prescBtn = { backgroundColor: '#3498db', color: 'white', border: 'none', padding: '10px', borderRadius: '6px', cursor: 'pointer' };
 const labBtn = { backgroundColor: '#8e44ad', color: 'white', border: 'none', padding: '10px', borderRadius: '6px', cursor: 'pointer' };
 const surgeryBtn = { backgroundColor: '#e67e22', color: 'white', border: 'none', padding: '10px', borderRadius: '6px', cursor: 'pointer' };
@@ -344,7 +330,7 @@ const modalOverlay = { position: 'fixed', top: 0, left: 0, width: '100%', height
 const modalContent = { backgroundColor: 'white', padding: '25px', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' };
 const labelStyle = { display: 'block', marginBottom: '5px', fontWeight: '600', fontSize: '13px' };
 const inputStyle = { width: '100%', padding: '8px', marginBottom: '10px', borderRadius: '6px', border: '1px solid #ddd', boxSizing: 'border-box' };
-const submitBtn = { width: '100%', padding: '10px', backgroundColor: '#27ae60', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' };
+const submitBtn = { width: '100%', padding: '10px', backgroundColor: '#27ae60', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' };
 const headerSection = { marginBottom: '30px', borderBottom: '2px solid #e2e8f0', paddingBottom: '15px' };
 const tableContainer = { backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', overflow: 'hidden' };
 const tableStyle = { width: '100%', borderCollapse: 'collapse' };

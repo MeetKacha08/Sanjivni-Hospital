@@ -7,6 +7,7 @@ import {
   FaBed,
   FaFileInvoiceDollar,
   FaDoorClosed,
+  FaSyringe
 } from 'react-icons/fa';
 
 import { useNavigate } from 'react-router-dom';
@@ -29,6 +30,9 @@ const Doc_sidebar = () => {
           </li>
           <li onClick={() => navigate('/doctor/admitedpatient')}>
             <FaBed className="icon" /> Admited Patient
+          </li>
+           <li onClick={() => navigate('/doctor/surgerybooking')}>
+            <FaSyringe className="icon" /> Surgery
           </li>
 
 
