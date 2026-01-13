@@ -28,9 +28,9 @@ import Admitedpatient from './DOCTOR/Admited-Patient/admitedpatient';
 import Surgerybooking from './DOCTOR/Surgery-Booking/surgerybooking';
 
 // ================= Laboratry =================
-import LabLayout from './LAB/LabDashboard';
-import LabDashboard from './LAB/LabDashboard';
-
+import LabLayout from './LAB/LabLayout';
+import LabDashboard from './LAB/Lab-Dashboard/LabDashboard';
+import Pandingrequest from './LAB/Panding-Request/pandingrequest';
 
 // ================= Auth =================
 import Login from './Login';
@@ -117,6 +117,7 @@ function App() {
           <Route index element={<Navigate to="labdashboard" replace />} />
 
           <Route path='labdashboard' element={<LabDashboard/>}/>
+          <Route path='pending-requests' element={<Pandingrequest/>}/>
         </Route>
 
         {/* ================= Other Dashboards ================= */}

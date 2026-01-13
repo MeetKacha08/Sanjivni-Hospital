@@ -1,4 +1,4 @@
-import '../Lab-Header/Lab_header.css';
+import '../Lab-Header/lab_header.css';
 import { FaSearch, FaUserCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of Navigate
 

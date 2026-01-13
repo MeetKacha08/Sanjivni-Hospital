@@ -1,4 +1,4 @@
-.doctor-layout {
+.lab-layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -6,7 +6,7 @@
 }
 
 /* below fixed header */
-.doctor-body {
+.lab-body {
   display: flex;
   flex: 1;
 }
@@ -23,7 +23,7 @@
 
 
 /* main content */
-.doctor-content {
+.lab-content {
   flex: 1;
   padding: 20px;
   background-color: #f5f6fa;

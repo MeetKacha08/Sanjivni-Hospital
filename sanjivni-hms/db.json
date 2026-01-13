@@ -378,8 +378,19 @@
       "email": "qisihoj@mailinator.com",
       "education": "Dolore necessitatibu",
       "experience": "Reiciendis nobis pro",
-      "loginId": "Provident animi qu",
-      "password": "Asperiores vel ea al"
+      "loginId": "lab",
+      "password": "lab"
+    },
+    {
+      "id": "cb5c",
+      "fullName": "Meet Kacha",
+      "age": "22",
+      "contact": "9512588231",
+      "email": "meet12@gmail.com",
+      "education": "Microbiology",
+      "experience": "5 Years",
+      "loginId": "meet",
+      "password": "meet"
     }
   ],
   "reports": [
@@ -407,6 +418,11 @@
       "id": "20b6",
       "reportName": "X-Ray",
       "reportFees": "6000"
+    },
+    {
+      "id": "afdd",
+      "reportName": "RBC",
+      "reportFees": "4500"
     }
   ],
   "admitted": [
@@ -465,7 +481,47 @@
       "admittedDate": "06/01/2026",
       "roomType": "ICU",
       "admissionStatus": "Admitted",
-      "admissionTimestamp": "08/01/2026, 04:09:28"
+      "admissionTimestamp": "09/01/2026, 11:10:40"
+    },
+    {
+      "id": "e969",
+      "fullName": "Dante Wooten",
+      "age": "15",
+      "contact": "48",
+      "email": "hinixoba@mailinator.com",
+      "country": "India",
+      "state": "Maharashtra",
+      "city": "Mumbai",
+      "address": "Commodo hic dolor mo",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "admittedAt": "2013-09-27",
+      "consultancyFees": 800,
+      "status": "Approved",
+      "admittedDate": "06/01/2026",
+      "roomType": "Private Room",
+      "admissionStatus": "Admitted",
+      "admissionTimestamp": "12/01/2026, 11:41:29"
+    },
+    {
+      "id": "1f8d",
+      "fullName": "Indira Barton",
+      "age": "40",
+      "contact": "9",
+      "email": "javi@mailinator.com",
+      "country": "India",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "address": "Odio quasi laudantiu",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2011-08-03",
+      "consultancyFees": 800,
+      "status": "Approved",
+      "admittedDate": "07/01/2026",
+      "roomType": "ICU",
+      "admissionStatus": "Admitted",
+      "admissionTimestamp": "13/01/2026, 10:47:49"
     }
   ],
   "rooms": [],
@@ -754,6 +810,46 @@
       "diagnosis": "dvfdgfgfdgfd",
       "medicines": "fhfdghfdhfd",
       "advice": "fdhdfhfdh"
+    },
+    {
+      "id": "1384",
+      "patientId": "c3e7",
+      "patientName": "Noelani Mckee",
+      "doctorName": "Dr. Sarah Williams",
+      "date": "12/01/2026, 12:30:37",
+      "diagnosis": "gg v gcghkcvgkkg",
+      "medicines": "jgjhvjcvjh",
+      "advice": ""
+    },
+    {
+      "id": "8457",
+      "patientId": "87a2",
+      "patientName": "Kamal Melton",
+      "doctorName": "Dr. John Smith",
+      "date": "13/01/2026, 10:47:14",
+      "diagnosis": "dscssvsv",
+      "medicines": "vsdvsdv",
+      "advice": ""
+    },
+    {
+      "id": "811e",
+      "patientId": "87a2",
+      "patientName": "Kamal Melton",
+      "doctorName": "Dr. John Smith",
+      "date": "13/01/2026, 10:47:20",
+      "diagnosis": "dvsvsd",
+      "medicines": "sdvsdvdsvsdvs",
+      "advice": ""
+    },
+    {
+      "id": "ad39",
+      "patientId": "87a2",
+      "patientName": "Kamal Melton",
+      "doctorName": "Dr. John Smith",
+      "date": "13/01/2026, 10:47:28",
+      "diagnosis": "sdvsdvsdv",
+      "medicines": "sdvsdvsd",
+      "advice": ""
     }
   ],
   "surgery": [
@@ -782,6 +878,74 @@
       "surgeryTime": "14:20",
       "bookedAt": "08/01/2026, 03:17:35",
       "status": "Scheduled"
+    },
+    {
+      "id": "bc23",
+      "patientId": "1f8d",
+      "patientName": "Indira Barton",
+      "patientAge": "40",
+      "patientDept": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "surgeryType": "Pacemaker Insertion",
+      "surgeryDate": "2026-01-27",
+      "surgeryTime": "10:53",
+      "bookedAt": "13/01/2026, 10:49:01",
+      "status": "Scheduled"
+    },
+    {
+      "id": "794e",
+      "patientId": "87a2",
+      "patientName": "Kamal Melton",
+      "patientAge": "44",
+      "patientDept": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "surgeryType": "Robotic Heart Surgery",
+      "surgeryDate": "2026-01-28",
+      "surgeryTime": "04:44",
+      "bookedAt": "13/01/2026, 11:38:39",
+      "status": "Scheduled"
+    }
+  ],
+  "pandinglabrequest": [
+    {
+      "id": "adcf",
+      "patientId": "87a2",
+      "patientName": "Kamal Melton",
+      "doctorName": "Dr. John Smith",
+      "date": "13/01/2026",
+      "assignedReports": [
+        {
+          "id": "3cfc",
+          "reportName": "ECG",
+          "reportFees": "5000"
+        },
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400"
+        }
+      ],
+      "status": "Pending"
+    },
+    {
+      "id": "3f45",
+      "patientId": "cee0",
+      "patientName": "Lucian Sloan",
+      "doctorName": "Dr. Sarah Williams",
+      "date": "13/01/2026",
+      "assignedReports": [
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000"
+        },
+        {
+          "id": "20b6",
+          "reportName": "X-Ray",
+          "reportFees": "6000"
+        }
+      ],
+      "status": "Pending"
     }
   ]
 }

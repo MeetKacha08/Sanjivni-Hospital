@@ -1,6 +1,7 @@
-import '../Lab-Sidebar/Lab_sidebar.css';
+import '../Lab-Sidebar/lab_sidebar.css';
 import {
   FaCalendarCheck,
+  FaHourglassHalf, // 🔥 Added icon for Pending Requests
 } from 'react-icons/fa';
 
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +16,11 @@ const Lab_sidebar = () => {
           <li onClick={() => navigate('/lab/labdashboard')}>
             <FaCalendarCheck className="icon" /> Dashboard
           </li>
+          
+          {/* 🔥 Added Pending Requests field */}
+          <li onClick={() => navigate('/lab/pending-requests')}>
+            <FaHourglassHalf className="icon" /> Pending Requests
+          </li>
 
         </ul>
       </aside>
@@ -23,4 +29,3 @@ const Lab_sidebar = () => {
 };
 
 export default Lab_sidebar;
-
