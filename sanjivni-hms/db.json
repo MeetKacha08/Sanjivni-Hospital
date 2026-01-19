@@ -371,17 +371,6 @@
   ],
   "labStaff": [
     {
-      "id": "0401",
-      "fullName": "Sawyer Flowers",
-      "age": "34",
-      "contact": "Nostrum voluptatibus",
-      "email": "qisihoj@mailinator.com",
-      "education": "Dolore necessitatibu",
-      "experience": "Reiciendis nobis pro",
-      "loginId": "lab",
-      "password": "lab"
-    },
-    {
       "id": "cb5c",
       "fullName": "Meet Kacha",
       "age": "22",
@@ -390,7 +379,32 @@
       "education": "Microbiology",
       "experience": "5 Years",
       "loginId": "meet",
-      "password": "meet"
+      "password": "meet",
+      "position": "Lab-Head"
+    },
+    {
+      "id": "8476",
+      "fullName": "Sumit Chauhan",
+      "age": "22",
+      "contact": "9054277510",
+      "email": "sumit12@gmail.com",
+      "education": "jbjbj",
+      "experience": "6 years",
+      "loginId": "sumit",
+      "password": "5120",
+      "position": "Lab-Staff"
+    },
+    {
+      "id": "c727",
+      "fullName": "Anand Kumar",
+      "age": "36",
+      "contact": "1234567890",
+      "email": "anand12@gmail.com",
+      "education": "Microbiology",
+      "experience": "8 Years",
+      "loginId": "lab",
+      "password": "lab",
+      "position": "Lab-Head"
     }
   ],
   "reports": [
@@ -925,7 +939,9 @@
           "reportFees": "400"
         }
       ],
-      "status": "Pending"
+      "status": "Completed",
+      "resultNote": "hello",
+      "completedAt": "15/01/2026, 10:35:36"
     },
     {
       "id": "3f45",
@@ -943,6 +959,98 @@
           "id": "20b6",
           "reportName": "X-Ray",
           "reportFees": "6000"
+        }
+      ],
+      "status": "Pending"
+    },
+    {
+      "id": "3521",
+      "patientId": "87a2",
+      "patientName": "Kamal Melton",
+      "doctorName": "Dr. John Smith",
+      "date": "15/01/2026",
+      "assignedReports": [
+        {
+          "id": "5621",
+          "reportName": "MRI",
+          "reportFees": "8000"
+        }
+      ],
+      "status": "Pending"
+    },
+    {
+      "id": "bc3f",
+      "patientId": "fd66",
+      "patientName": "Rose Kelley",
+      "doctorName": "Dr. John Smith",
+      "date": "15/01/2026",
+      "assignedReports": [
+        {
+          "id": "3cfc",
+          "reportName": "ECG",
+          "reportFees": "5000"
+        },
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400"
+        },
+        {
+          "id": "5621",
+          "reportName": "MRI",
+          "reportFees": "8000"
+        },
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000"
+        },
+        {
+          "id": "20b6",
+          "reportName": "X-Ray",
+          "reportFees": "6000"
+        },
+        {
+          "id": "afdd",
+          "reportName": "RBC",
+          "reportFees": "4500"
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "jbljbs",
+      "completedAt": "19/01/2026, 10:09:42"
+    },
+    {
+      "id": "60ed",
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "doctorName": "Dr. John Smith",
+      "date": "15/01/2026",
+      "assignedReports": [
+        {
+          "id": "3cfc",
+          "reportName": "ECG",
+          "reportFees": "5000"
+        },
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400"
+        }
+      ],
+      "status": "Pending"
+    },
+    {
+      "id": "1ebc",
+      "patientId": "c3e7",
+      "patientName": "Noelani Mckee",
+      "doctorName": "Dr. Sarah Williams",
+      "date": "15/01/2026",
+      "assignedReports": [
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000"
         }
       ],
       "status": "Pending"

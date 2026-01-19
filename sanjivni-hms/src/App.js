@@ -31,6 +31,7 @@ import Surgerybooking from './DOCTOR/Surgery-Booking/surgerybooking';
 import LabLayout from './LAB/LabLayout';
 import LabDashboard from './LAB/Lab-Dashboard/LabDashboard';
 import Pandingrequest from './LAB/Panding-Request/pandingrequest';
+import Staffmanagement from './LAB/Staff-management/staffmanagement';
 
 // ================= Auth =================
 import Login from './Login';
@@ -118,6 +119,7 @@ function App() {
 
           <Route path='labdashboard' element={<LabDashboard/>}/>
           <Route path='pending-requests' element={<Pandingrequest/>}/>
+          <Route path='lab-staff' element={<Staffmanagement/>}/>
         </Route>
 
         {/* ================= Other Dashboards ================= */}
