@@ -17,7 +17,7 @@ import Admit from './ADMIN/Admit/Admit';
 import Room from './ADMIN/Room/room';
 import Billing from './ADMIN/Biling/Billing';
 import Surgery from './ADMIN/Surgery/surgery';
-
+// import Esalary from './ADMIN/Employee-Salary/esalary';
 
 // ================= Doctor =================
 import DoctorLayout from './DOCTOR/DoctorLayout';
@@ -32,6 +32,7 @@ import LabLayout from './LAB/LabLayout';
 import LabDashboard from './LAB/Lab-Dashboard/LabDashboard';
 import Pandingrequest from './LAB/Panding-Request/pandingrequest';
 import Staffmanagement from './LAB/Staff-management/staffmanagement';
+import Labreport from './LAB/Lab-Report/labreports';
 
 // ================= Auth =================
 import Login from './Login';
@@ -85,6 +86,7 @@ function App() {
           <Route path="room" element={<Room />} />
           <Route path="billing" element={<Billing />} />
           <Route path='surgery' element={<Surgery />} />
+          {/* <Route path='esalary' element={<Esalary/>}/> */}
         </Route>
 
         {/* ================= Doctor Routes ================= */}
@@ -120,6 +122,7 @@ function App() {
           <Route path='labdashboard' element={<LabDashboard/>}/>
           <Route path='pending-requests' element={<Pandingrequest/>}/>
           <Route path='lab-staff' element={<Staffmanagement/>}/>
+          <Route path='lab-report' element={<Labreport/>}/>
         </Route>
 
         {/* ================= Other Dashboards ================= */}

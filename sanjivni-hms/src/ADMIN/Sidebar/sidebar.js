@@ -61,7 +61,13 @@ import {
   FaFileInvoiceDollar,
   FaBroom,
   FaDoorClosed,
-  FaSyringe, // 🔥 Imported a new icon for Surgery
+  FaSyringe,
+  FaMoneyBill,
+  FaMoneyBillAlt,
+  FaMoneyBillWave,
+  FaMoneyCheck,
+  FaFileInvoice,
+  FaRupeeSign, // 🔥 Imported a new icon for Surgery
 } from 'react-icons/fa';
 
 import { useNavigate } from 'react-router-dom';
@@ -99,8 +105,11 @@ const Sidebar = () => {
             <FaDoorClosed className="icon" /> Rooms
           </li>
           <li onClick={() => navigate('/admin/billing')}>
-            <FaFileInvoiceDollar className="icon" /> Billing
+            <FaRupeeSign className="icon" /> Billing
           </li>
+          {/* <li onClick={() => navigate('/admin/esalary')}>
+            <FaFileInvoiceDollar className="icon" /> Employee-Salary
+          </li> */}
         </ul>
       </aside>
     </div>

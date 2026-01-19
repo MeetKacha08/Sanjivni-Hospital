@@ -411,32 +411,44 @@
     {
       "id": "3cfc",
       "reportName": "ECG",
-      "reportFees": "5000"
+      "reportFees": "5000",
+      "status": false
     },
     {
       "id": "b8db",
       "reportName": "Bool Sugar",
-      "reportFees": "400"
+      "reportFees": "400",
+      "status": false
     },
     {
       "id": "5621",
       "reportName": "MRI",
-      "reportFees": "8000"
+      "reportFees": "8000",
+      "status": false
     },
     {
       "id": "f83f",
       "reportName": "Full Body",
-      "reportFees": "10000"
+      "reportFees": "10000",
+      "status": false
     },
     {
       "id": "20b6",
       "reportName": "X-Ray",
-      "reportFees": "6000"
+      "reportFees": "6000",
+      "status": false
     },
     {
       "id": "afdd",
       "reportName": "RBC",
-      "reportFees": "4500"
+      "reportFees": "4500",
+      "status": false
+    },
+    {
+      "id": "ba74",
+      "reportName": "WBC",
+      "reportFees": "4500",
+      "status": false
     }
   ],
   "admitted": [
@@ -907,16 +919,16 @@
       "status": "Scheduled"
     },
     {
-      "id": "794e",
+      "id": "2dcf",
       "patientId": "87a2",
       "patientName": "Kamal Melton",
       "patientAge": "44",
       "patientDept": "Cardiology",
       "doctorName": "Dr. John Smith",
-      "surgeryType": "Robotic Heart Surgery",
-      "surgeryDate": "2026-01-28",
-      "surgeryTime": "04:44",
-      "bookedAt": "13/01/2026, 11:38:39",
+      "surgeryType": "Catheter Ablation",
+      "surgeryDate": "2026-01-13",
+      "surgeryTime": "11:06",
+      "bookedAt": "19/01/2026, 11:02:08",
       "status": "Scheduled"
     }
   ],
@@ -1054,6 +1066,76 @@
         }
       ],
       "status": "Pending"
+    },
+    {
+      "id": "4f6a",
+      "patientId": "87a2",
+      "patientName": "Kamal Melton",
+      "doctorName": "Dr. John Smith",
+      "date": "19/01/2026",
+      "assignedReports": [
+        {
+          "id": "5621",
+          "reportName": "MRI",
+          "reportFees": "8000",
+          "status": false
+        }
+      ],
+      "status": "Pending"
+    },
+    {
+      "id": "17a1",
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "doctorName": "Dr. John Smith",
+      "date": "19/01/2026",
+      "assignedReports": [
+        {
+          "id": "3cfc",
+          "reportName": "ECG",
+          "reportFees": "5000",
+          "status": false
+        },
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400",
+          "status": false
+        },
+        {
+          "id": "5621",
+          "reportName": "MRI",
+          "reportFees": "8000",
+          "status": false
+        },
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000",
+          "status": false
+        },
+        {
+          "id": "20b6",
+          "reportName": "X-Ray",
+          "reportFees": "6000",
+          "status": false
+        },
+        {
+          "id": "afdd",
+          "reportName": "RBC",
+          "reportFees": "4500",
+          "status": false
+        },
+        {
+          "id": "ba74",
+          "reportName": "WBC",
+          "reportFees": "4500",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "ghfvhgkckg kgv",
+      "completedAt": "19/01/2026, 11:01:36"
     }
   ]
 }

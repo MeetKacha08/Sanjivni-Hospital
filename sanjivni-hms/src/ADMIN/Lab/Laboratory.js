@@ -271,7 +271,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaPlus, FaMicroscope, FaTimes, FaUserAlt, FaIdCard, FaGraduationCap, FaBriefcase, FaEnvelope, FaPhoneAlt, FaLock, FaEdit, FaTrash, FaFileAlt, FaUsers, FaUserTag } from 'react-icons/fa';
+import { FaPlus, FaMicroscope, FaTimes, FaIdCard, FaGraduationCap, FaBriefcase, FaEnvelope, FaPhoneAlt, FaLock, FaEdit, FaTrash, FaFileAlt, FaUsers, FaUserTag } from 'react-icons/fa';
 
 const Laboratory = () => {
     // UI States

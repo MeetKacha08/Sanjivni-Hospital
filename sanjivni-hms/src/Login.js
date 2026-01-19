@@ -142,7 +142,7 @@ const Login = () => {
     // Note: Removed lab01 from static as it's now dynamic
     const staticUsers = [
       { id: 'admin01', password: 'password123', role: 'admin' },
-      { id: 'biling01', password: 'billingpass', role: 'billing' }
+      { id: 'bill', password: 'bill', role: 'billing' }
     ];
 
     const staticUser = staticUsers.find(u => u.id === credentials.id && u.password === credentials.password);
@@ -220,7 +220,7 @@ const Login = () => {
              Use credentials from dynamic staff or doctor lists.
            </p>
            <p><strong>Admin:</strong> admin01 / password123</p>
-           <p><strong>Billing:</strong> biling01 / billingpass</p>
+           <p><strong>Billing:</strong> bill / bill</p>
         </div>
       </div>
     </div>

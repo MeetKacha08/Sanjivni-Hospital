@@ -2,6 +2,7 @@ import '../Lab-Sidebar/lab_sidebar.css';
 import {
   FaCalendarCheck,
   FaHourglassHalf,
+  FaSyringe,
   FaUsers,
 } from 'react-icons/fa';
 
@@ -22,9 +23,14 @@ const Lab_sidebar = () => {
             <FaHourglassHalf className="icon" /> Pending Requests
           </li>
 
+          <li onClick={() => navigate('/lab/lab-report')}>
+            <FaSyringe className="icon" /> Manage Lab-Reports
+          </li>
+          
           <li onClick={() => navigate('/lab/lab-staff')}>
             <FaUsers className="icon" /> Manage Lab-Staff
           </li>
+
 
         </ul>
       </aside>

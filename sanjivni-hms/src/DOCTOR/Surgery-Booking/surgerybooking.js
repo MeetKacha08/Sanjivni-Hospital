@@ -5,7 +5,6 @@
 // const Surgerybooking = () => {
 //     const [surgeries, setSurgeries] = useState([]);
     
-//     // 🔥 PROCEDURE LIST (Same as your booking page)
 //     const heartSurgeries = [
 //         "Coronary Artery Bypass Grafting (CABG)", "Coronary Angioplasty and Stenting", "Atherectomy",
 //         "Aortic Valve Replacement and Repair", "Mitral Valve Repair and Replacement", "Tricuspid Valve Replacement and Repair",
@@ -15,13 +14,10 @@
 //         "Aortic Aneurysm Repair", "Pericardiectomy", "Patent Foramen Ovale (PFO) / ASD Repair", "Robotic Heart Surgery"
 //     ];
 
-//     // 🔥 Get Logged-in Doctor's Name to filter the data
 //     const doctorName = localStorage.getItem('loggedInDoctorName');
 
-//     // --- EDIT STATES ---
 //     const [showEditModal, setShowEditModal] = useState(false);
 //     const [editingSurgery, setEditingSurgery] = useState(null);
-//     // 🔥 Added surgeryType to edit state
 //     const [editData, setEditData] = useState({ surgeryType: '', surgeryDate: '', surgeryTime: '' });
 
 //     useEffect(() => {
@@ -46,7 +42,6 @@
 
 //     const handleEditClick = (surgery) => {
 //         setEditingSurgery(surgery);
-//         // 🔥 Prefill the type, date, and time
 //         setEditData({
 //             surgeryType: surgery.surgeryType,
 //             surgeryDate: surgery.surgeryDate,
@@ -120,7 +115,8 @@
 //             {/* --- 🔥 EDIT SCHEDULE MODAL --- */}
 //             {showEditModal && (
 //                 <div style={modalOverlay}>
-//                     <div style={{...modalContent, width: '500px'}}>
+//                     {/* Fixed the modal to start from top to ensure dropdown always has space at the bottom */}
+//                     <div style={{...modalContent, width: '500px', alignSelf: 'flex-start', marginTop: '50px'}}>
 //                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
 //                             <h3 style={{ margin: 0, color: '#2c3e50' }}><FaEdit color="#e67e22" /> Edit Surgery Details</h3>
 //                             <FaTimes style={{ cursor: 'pointer' }} onClick={() => setShowEditModal(false)} />
@@ -129,10 +125,10 @@
 //                         <p style={{ fontSize: '14px', color: '#718096' }}>Patient: <b>{editingSurgery?.patientName}</b></p>
                         
 //                         <form onSubmit={handleUpdate}>
-//                             {/* 🔥 Procedure Dropdown in Edit Modal */}
 //                             <label style={labelStyle}>Update Procedure Type</label>
+//                             {/* 🔥 Logic: To force downward feel, we ensure the modal is at the top of the screen */}
 //                             <select 
-//                                 style={inputStyle} 
+//                                 style={{...inputStyle, cursor: 'pointer'}} 
 //                                 value={editData.surgeryType}
 //                                 onChange={(e) => setEditData({...editData, surgeryType: e.target.value})}
 //                                 required
@@ -174,7 +170,9 @@
 // const badgeStyle = { backgroundColor: '#fff4e6', color: '#e67e22', padding: '5px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px' };
 // const deleteBtn = { backgroundColor: 'transparent', color: '#e74c3c', border: 'none', cursor: 'pointer', fontSize: '18px' };
 // const editBtnStyle = { backgroundColor: 'transparent', color: '#3498db', border: 'none', cursor: 'pointer', fontSize: '18px' };
+
 // const modalOverlay = { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 };
+// // Added alignSelf and marginTop to the modal content in the JSX above
 // const modalContent = { backgroundColor: 'white', padding: '25px', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' };
 // const labelStyle = { display: 'block', marginBottom: '5px', fontWeight: '600', fontSize: '13px', marginTop: '15px' };
 // const inputStyle = { width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ddd', boxSizing: 'border-box' };
@@ -247,6 +245,41 @@ const Surgerybooking = () => {
         }
     };
 
+    // 🔥 Added Logic for when you are adding a surgery (Verification Logic)
+    // Note: If this function is called from your "Mypatient" page, use this logic there.
+    const bookSurgerySubmit = async (selectedPatient, surgeryForm) => {
+        try {
+            // 1. Fetch current surgeries to check for duplicates
+            const res = await axios.get('http://localhost:5000/surgery');
+            
+            // 2. 🔥 Verification: Check if this patient ID already has a scheduled surgery
+            const surgeryExists = res.data.some(s => s.patientId === selectedPatient.id);
+
+            if (surgeryExists) {
+                alert(`STOP! A surgery is already scheduled for ${selectedPatient.fullName}. You cannot book multiple surgeries for the same patient.`);
+                return; // Block the process
+            }
+
+            // 3. Proceed if no duplicate found
+            const bookingData = {
+                patientId: selectedPatient.id,
+                patientName: selectedPatient.fullName,
+                patientAge: selectedPatient.age,
+                patientDept: selectedPatient.department,
+                doctorName: doctorName,
+                ...surgeryForm,
+                bookedAt: new Date().toLocaleString(),
+                status: "Scheduled"
+            };
+
+            await axios.post('http://localhost:5000/surgery', bookingData);
+            alert(`Surgery Booked successfully for ${selectedPatient.fullName}`);
+            fetchSurgeries();
+        } catch (err) {
+            console.error("Booking Error:", err);
+        }
+    };
+
     return (
         <div style={{ padding: '30px', backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
             <h2 style={{ color: '#2c3e50', borderBottom: '2px solid #e67e22', paddingBottom: '10px', marginBottom: '30px' }}>
@@ -296,10 +329,9 @@ const Surgerybooking = () => {
                 </div>
             )}
 
-            {/* --- 🔥 EDIT SCHEDULE MODAL --- */}
+            {/* --- EDIT SCHEDULE MODAL --- */}
             {showEditModal && (
                 <div style={modalOverlay}>
-                    {/* Fixed the modal to start from top to ensure dropdown always has space at the bottom */}
                     <div style={{...modalContent, width: '500px', alignSelf: 'flex-start', marginTop: '50px'}}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                             <h3 style={{ margin: 0, color: '#2c3e50' }}><FaEdit color="#e67e22" /> Edit Surgery Details</h3>
@@ -310,7 +342,6 @@ const Surgerybooking = () => {
                         
                         <form onSubmit={handleUpdate}>
                             <label style={labelStyle}>Update Procedure Type</label>
-                            {/* 🔥 Logic: To force downward feel, we ensure the modal is at the top of the screen */}
                             <select 
                                 style={{...inputStyle, cursor: 'pointer'}} 
                                 value={editData.surgeryType}
@@ -356,7 +387,6 @@ const deleteBtn = { backgroundColor: 'transparent', color: '#e74c3c', border: 'n
 const editBtnStyle = { backgroundColor: 'transparent', color: '#3498db', border: 'none', cursor: 'pointer', fontSize: '18px' };
 
 const modalOverlay = { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 };
-// Added alignSelf and marginTop to the modal content in the JSX above
 const modalContent = { backgroundColor: 'white', padding: '25px', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' };
 const labelStyle = { display: 'block', marginBottom: '5px', fontWeight: '600', fontSize: '13px', marginTop: '15px' };
 const inputStyle = { width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ddd', boxSizing: 'border-box' };
