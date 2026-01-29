@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaUserAlt, FaBed, FaCalendarAlt, FaHashtag, FaHospitalSymbol } from 'react-icons/fa';
 
-const Admit = () => {
+const Admitedpatients = () => {
     const [admittedPatients, setAdmittedPatients] = useState([]);
 
     useEffect(() => {
@@ -26,6 +26,7 @@ const Admit = () => {
     };
 
     // --- TWO-LEVEL GROUPING LOGIC ---
+    // Level 1: Department -> Level 2: Room Type
     const groupedByDept = admittedPatients.reduce((acc, patient) => {
         const dept = patient.department || "General";
         const room = patient.roomType || "Unassigned";
@@ -40,7 +41,7 @@ const Admit = () => {
     return (
         <div style={{ padding: '30px', backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
             <h2 style={{ color: '#2c3e50', borderBottom: '3px solid #3182ce', paddingBottom: '10px', marginBottom: '30px', display: 'flex', alignItems: 'center' }}>
-                <FaHospitalSymbol style={{marginRight: '15px'}}/> Hospital Admission Dashboard (Department Wise)
+                <FaHospitalSymbol style={{marginRight: '15px'}}/> Admitted Patients List (Read Only)
             </h2>
             
             {Object.keys(groupedByDept).length > 0 ? (
@@ -70,7 +71,7 @@ const Admit = () => {
                                             <hr style={{ margin: '10px 0' }} />
                                             
                                             <p style={{ ...cardText, color: '#2b6cb0', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                                <FaHashtag size={12} /> Room No: {patient.allocatedRoom || `${getRoomPrefix(patient.roomType)}-${index + 1}`}
+                                                <FaHashtag size={12} /> Room No: {getRoomPrefix(patient.roomType)}-{(index + 1).toString().padStart(2, '0')}
                                             </p>
 
                                             <p style={cardText}><strong>Age:</strong> {patient.age} Years</p>
@@ -169,4 +170,4 @@ const roomBadge = {
 
 const cardText = { margin: '5px 0', color: '#4a5568', fontSize: '14px' };
 
-export default Admit;
+export default Admitedpatients;

@@ -1,5 +1,104 @@
 {
-  "appointments": [],
+  "appointments": [
+    {
+      "id": "4267",
+      "fullName": "Melodie Bray",
+      "age": "61",
+      "contact": "36",
+      "email": "qyhaziby@mailinator.com",
+      "country": "India",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "address": "Qui iure modi fugiat",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "1998-09-11"
+    },
+    {
+      "id": "4e9f",
+      "fullName": "Stacy Buck",
+      "age": "15",
+      "contact": "11",
+      "email": "segit@mailinator.com",
+      "country": "India",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "address": "Pariatur Eiusmod vo",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "admittedAt": "1979-12-11"
+    },
+    {
+      "id": "4a5c",
+      "fullName": "Ursula Garrett",
+      "age": "32",
+      "contact": "33",
+      "email": "bucymuquf@mailinator.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "address": "Aut id dolore ex est",
+      "department": "Neurosurgery",
+      "doctorName": "Dr. Robert Brown",
+      "admittedAt": "2014-10-06"
+    },
+    {
+      "id": "03ec",
+      "fullName": "Malachi Wiley",
+      "age": "22",
+      "contact": "77",
+      "email": "wyquca@mailinator.com",
+      "country": "India",
+      "state": "Maharashtra",
+      "city": "Mumbai",
+      "address": "Illo eum facere nisi",
+      "department": "Pediatrics",
+      "doctorName": "Dr. Emily Davis",
+      "admittedAt": "2022-09-28"
+    },
+    {
+      "id": "cd1b",
+      "fullName": "Forrest Goodwin",
+      "age": "95",
+      "contact": "81",
+      "email": "kemi@mailinator.com",
+      "country": "India",
+      "state": "Maharashtra",
+      "city": "Pune",
+      "address": "Non ab modi pariatur",
+      "department": "Dermatology",
+      "doctorName": "Dr. Michael Wilson",
+      "admittedAt": "1975-10-07"
+    },
+    {
+      "id": "dbc3",
+      "fullName": "Rama Stevens",
+      "age": "23",
+      "contact": "94",
+      "email": "wide@mailinator.com",
+      "country": "India",
+      "state": "Maharashtra",
+      "city": "Mumbai",
+      "address": "Non doloribus conseq",
+      "department": "Dermatology",
+      "doctorName": "Dr. Michael Wilson",
+      "admittedAt": "2021-07-26"
+    },
+    {
+      "id": "cb1e",
+      "fullName": "Ivan Henson",
+      "age": "15",
+      "contact": "36",
+      "email": "bajelyzu@mailinator.com",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Bangalore",
+      "address": "Dolor vel at amet s",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2015-03-07"
+    }
+  ],
   "doctors": [
     {
       "id": "d1",
@@ -154,6 +253,26 @@
       "availableHours": "09:00 AM - 03:00 PM",
       "experience": "7 years",
       "education": "MBBS, M.Ch, Urology"
+    },
+    {
+      "id": "07a3",
+      "name": "Meet Kacha",
+      "department": "Cardiology",
+      "contact": "9512588231",
+      "email": "meet12@gmail.com",
+      "experience": "5 Years",
+      "education": "MBBS, MS Heart Surgen",
+      "availableHours": "4 Hours",
+      "loginId": "meet",
+      "password": "meet",
+      "availableDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ]
     }
   ],
   "patients": [
@@ -315,7 +434,7 @@
       "department": "Cardiology",
       "doctorName": "Dr. John Smith",
       "admittedAt": "2024-12-10",
-      "status": "Approved",
+      "status": "Discharged",
       "admittedDate": "06/01/2026"
     },
     {
@@ -332,7 +451,7 @@
       "doctorName": "Dr. John Smith",
       "admittedAt": "2011-08-03",
       "consultancyFees": 800,
-      "status": "Approved",
+      "status": "Discharged",
       "admittedDate": "07/01/2026"
     },
     {
@@ -367,6 +486,293 @@
       "admittedAt": "1979-01-19",
       "status": "Approved",
       "admittedDate": "07/01/2026"
+    },
+    {
+      "id": "b370",
+      "fullName": "Meet Kacha",
+      "age": "22",
+      "contact": "9512588231",
+      "email": "meet12@gmail.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "address": "Rajkot",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2026-01-23",
+      "status": "Approved",
+      "admittedDate": "21/01/2026"
+    },
+    {
+      "id": "a47d",
+      "fullName": "Allegra Klein",
+      "age": "72",
+      "contact": "9712234560",
+      "email": "luvof@mailinator.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Surat",
+      "address": "In aliquip voluptate",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2004-11-12",
+      "consultancyFees": 800,
+      "status": "Approved",
+      "admittedDate": "21/01/2026"
+    },
+    {
+      "id": "3e36",
+      "fullName": "Forrest Roach",
+      "age": "36",
+      "contact": "21",
+      "email": "cepopijije@mailinator.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "address": "Maiores nihil dolore",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "1991-08-16",
+      "status": "Approved",
+      "admittedDate": "21/01/2026"
+    },
+    {
+      "id": "ece6",
+      "fullName": "Lamar Mcintosh",
+      "age": "55",
+      "contact": "1346876854",
+      "email": "dyse@mailinator.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Surat",
+      "address": "Eveniet impedit qu",
+      "department": "ENT",
+      "doctorName": "Dr. David Miller",
+      "status": "Accepted",
+      "admittedDate": "21/01/2026"
+    },
+    {
+      "id": "95c4",
+      "fullName": "Daquan Vaughn",
+      "age": "35",
+      "contact": "2343242423",
+      "email": "juwagyjoq@mailinator.com",
+      "country": "India",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "address": "Numquam cupidatat na",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "status": "Accepted",
+      "admittedDate": "21/01/2026"
+    },
+    {
+      "id": "9c79",
+      "fullName": "Brenda Thornton",
+      "age": "55",
+      "contact": "1545616132",
+      "email": "kitopuz@mailinator.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Surat",
+      "address": "Dolores est ut omnis",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "status": "Accepted",
+      "admittedAt": "21/01/2026",
+      "consultancyFees": 800
+    },
+    {
+      "id": "d48f",
+      "fullName": "Ezra Mcclure",
+      "age": "97",
+      "contact": "4134324324",
+      "email": "qydu@mailinator.com",
+      "country": "India",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "address": "Dolorem quasi aperia",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2026-01-21",
+      "status": "Approved",
+      "admittedDate": "21/01/2026"
+    },
+    {
+      "id": "e1c7",
+      "fullName": "Zachery Ewing",
+      "age": "25",
+      "contact": "3543543543",
+      "email": "zupo@mailinator.com",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Hubli",
+      "address": "Aute placeat ullam ",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "status": "Approved",
+      "admittedAt": "21/01/2026",
+      "consultancyFees": 800
+    },
+    {
+      "id": "86aa",
+      "fullName": "Maya Cooper",
+      "age": "52",
+      "contact": "31",
+      "email": "hozatyxuh@mailinator.com",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Mysore",
+      "address": "Omnis fugiat blandi",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "admittedAt": "2021-09-12",
+      "status": "Accepted",
+      "admittedDate": "21/01/2026"
+    },
+    {
+      "id": "86aa",
+      "fullName": "Maya Cooper",
+      "age": "52",
+      "contact": "31",
+      "email": "hozatyxuh@mailinator.com",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Mysore",
+      "address": "Omnis fugiat blandi",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "admittedAt": "2021-09-12",
+      "status": "Accepted",
+      "admittedDate": "22/01/2026"
+    },
+    {
+      "id": "463c",
+      "fullName": "Namra",
+      "age": "22",
+      "contact": "2135156465",
+      "email": "tazeseby@mailinator.com",
+      "country": "India",
+      "state": "Maharashtra",
+      "city": "Pune",
+      "address": "Et esse amet eaque ",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "status": "Accepted",
+      "admittedAt": "22/01/2026",
+      "consultancyFees": 800
+    },
+    {
+      "id": "d6e3",
+      "fullName": "Meet Kacha",
+      "age": "25",
+      "contact": "9512588231",
+      "email": "meet12@gmail.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Rajkot",
+      "address": "Rajkot",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2026-01-22",
+      "status": "Accepted",
+      "admittedDate": "22/01/2026"
+    },
+    {
+      "id": "94a4",
+      "fullName": "Ciaran Bryan",
+      "age": "18",
+      "contact": "6",
+      "email": "kafev@mailinator.com",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Bangalore",
+      "address": "Odio neque eos inci",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "1976-09-02",
+      "status": "Approved",
+      "admittedDate": "22/01/2026"
+    },
+    {
+      "id": "f2ea",
+      "fullName": "Amity Dorsey",
+      "age": "88",
+      "contact": "92",
+      "email": "nuly@mailinator.com",
+      "country": "India",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "address": "Eaque ipsam in aliqu",
+      "department": "Dermatology",
+      "doctorName": "Dr. Michael Wilson",
+      "admittedAt": "2016-05-22",
+      "status": "Accepted",
+      "admittedDate": "22/01/2026"
+    },
+    {
+      "id": "0ed7",
+      "fullName": "Latifah Arnold",
+      "age": "73",
+      "contact": "4856132845",
+      "email": "qesybyfit@mailinator.com",
+      "country": "India",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "address": "Tempora sunt eos odi",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2026-01-30",
+      "status": "Accepted",
+      "admittedDate": "23/01/2026"
+    },
+    {
+      "id": "44fc",
+      "fullName": "Namra Pithwa",
+      "age": "23",
+      "contact": "9173316294",
+      "email": "np@gmail.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Rajkot",
+      "address": "Navalanagar",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2026-01-30",
+      "status": "Accepted",
+      "admittedDate": "23/01/2026"
+    },
+    {
+      "id": "2094",
+      "fullName": "Aiko Hester",
+      "age": "59",
+      "contact": "93",
+      "email": "dyfejuru@mailinator.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "address": "Aut inventore ration",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2026-01-23",
+      "status": "Accepted",
+      "admittedDate": "28/01/2026"
+    },
+    {
+      "id": "94cb",
+      "fullName": "Flynn Richardson",
+      "age": "26",
+      "contact": "38",
+      "email": "tilela@mailinator.com",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Bangalore",
+      "address": "Dolore est ab rerum ",
+      "department": "Cardiology",
+      "doctorName": "Meet Kacha",
+      "admittedAt": "2015-07-01",
+      "status": "Approved",
+      "admittedDate": "28/01/2026"
     }
   ],
   "labStaff": [
@@ -405,6 +811,18 @@
       "loginId": "lab",
       "password": "lab",
       "position": "Lab-Head"
+    },
+    {
+      "id": "c99f",
+      "fullName": "Ursula Wheeler",
+      "age": "69",
+      "contact": "Ut Nam quos iusto do",
+      "email": "qemagu@mailinator.com",
+      "education": "Consequatur ad quis",
+      "experience": "Sint amet sed porro",
+      "loginId": "Consequuntur aliquid",
+      "password": "Ipsum cillum quisqua",
+      "position": "Lab-Staff"
     }
   ],
   "reports": [
@@ -453,317 +871,817 @@
   ],
   "admitted": [
     {
-      "id": "cee0",
-      "fullName": "Lucian Sloan",
-      "age": "4",
-      "contact": "15",
-      "email": "xyzy@mailinator.com",
+      "id": "383d",
+      "fullName": "Jana Wise",
+      "age": "52",
+      "contact": "47",
+      "email": "wuxiwosel@mailinator.com",
       "country": "India",
-      "state": "Delhi",
-      "city": "New Delhi",
-      "address": "Ut sed dolor nisi na",
-      "department": "Orthopedic",
-      "doctorName": "Dr. Sarah Williams",
-      "admittedAt": "2004-03-14",
-      "status": "Approved",
-      "admittedDate": "06/01/2026",
-      "roomType": "ICU",
-      "admissionStatus": "Admitted",
-      "admissionTimestamp": "07/01/2026, 10:37:28"
-    },
-    {
-      "id": "e81e",
-      "fullName": "Yeo Fuller",
-      "age": "58",
-      "contact": "88",
-      "email": "wemutak@mailinator.com",
-      "country": "India",
-      "state": "Karnataka",
-      "city": "Mysore",
-      "address": "Tempora in unde volu",
-      "department": "Dermatology",
-      "doctorName": "Dr. Michael Wilson",
-      "admittedAt": "1987-11-23",
-      "status": "Accepted",
-      "admittedDate": "05/01/2026",
-      "roomType": "ICU",
-      "admissionStatus": "Admitted",
-      "admissionTimestamp": "07/01/2026, 10:38:12"
-    },
-    {
-      "id": "87a2",
-      "fullName": "Kamal Melton",
-      "age": "44",
-      "contact": "80",
-      "email": "doryna@mailinator.com",
-      "country": "India",
-      "state": "Rajasthan",
-      "city": "Jaipur",
-      "address": "Temporibus nostrud m",
+      "state": "Gujarat",
+      "city": "Surat",
+      "address": "Nulla maxime accusam",
       "department": "Cardiology",
       "doctorName": "Dr. John Smith",
-      "admittedAt": "2024-12-10",
-      "status": "Approved",
-      "admittedDate": "06/01/2026",
-      "roomType": "ICU",
-      "admissionStatus": "Admitted",
-      "admissionTimestamp": "09/01/2026, 11:10:40"
-    },
-    {
-      "id": "e969",
-      "fullName": "Dante Wooten",
-      "age": "15",
-      "contact": "48",
-      "email": "hinixoba@mailinator.com",
-      "country": "India",
-      "state": "Maharashtra",
-      "city": "Mumbai",
-      "address": "Commodo hic dolor mo",
-      "department": "Orthopedic",
-      "doctorName": "Dr. Sarah Williams",
-      "admittedAt": "2013-09-27",
-      "consultancyFees": 800,
-      "status": "Approved",
-      "admittedDate": "06/01/2026",
-      "roomType": "Private Room",
-      "admissionStatus": "Admitted",
-      "admissionTimestamp": "12/01/2026, 11:41:29"
-    },
-    {
-      "id": "1f8d",
-      "fullName": "Indira Barton",
-      "age": "40",
-      "contact": "9",
-      "email": "javi@mailinator.com",
-      "country": "India",
-      "state": "Delhi",
-      "city": "New Delhi",
-      "address": "Odio quasi laudantiu",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "2011-08-03",
+      "admittedAt": "1987-10-16",
       "consultancyFees": 800,
       "status": "Approved",
       "admittedDate": "07/01/2026",
       "roomType": "ICU",
+      "allocatedRoom": "ICU-02",
       "admissionStatus": "Admitted",
-      "admissionTimestamp": "13/01/2026, 10:47:49"
-    }
-  ],
-  "rooms": [],
-  "bills": [
-    {
-      "id": "98b6",
-      "fullName": "Serena Hughes",
-      "age": "12",
-      "contact": "24",
-      "email": "gasopycepa@mailinator.com",
-      "country": "India",
-      "state": "Karnataka",
-      "city": "Bangalore",
-      "address": "Incididunt est ipsum",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "1990-04-20",
-      "consultancyFees": 800,
-      "roomRent": 0,
-      "gst": 40,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 11:54:34"
+      "admissionTimestamp": "28/01/2026, 11:27:44",
+      "admittedBy": "Dr. John Smith"
     },
     {
-      "id": "e31c",
-      "fullName": "Wendy Poole",
-      "age": "67",
-      "contact": "44",
-      "email": "xohuwit@mailinator.com",
-      "country": "India",
-      "state": "Karnataka",
-      "city": "Bangalore",
-      "address": "Labore reiciendis re",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "2008-05-07",
-      "status": "Accepted",
-      "admittedDate": "05/01/2026",
-      "consultancyFees": 800,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 12:06:52"
-    },
-    {
-      "id": "7dfb",
-      "fullName": "Vincent Buckner",
-      "age": "31",
-      "contact": "54",
-      "email": "hegibi@mailinator.com",
-      "country": "India",
-      "state": "Karnataka",
-      "city": "Bangalore",
-      "address": "Non magna consequatu",
-      "department": "Orthopedic",
-      "doctorName": "Dr. Sarah Williams",
-      "admittedAt": "2014-04-23",
-      "status": "Accepted",
-      "admittedDate": "05/01/2026",
-      "consultancyFees": 800,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 12:06:54"
-    },
-    {
-      "id": "66fe",
-      "fullName": "Sumit Chauhan",
-      "age": "22",
-      "contact": "9054277510",
-      "email": "sumit123@gmail.com",
+      "id": "fd66",
+      "fullName": "Rose Kelley",
+      "age": "66",
+      "contact": "20",
+      "email": "bezahajix@mailinator.com",
       "country": "India",
       "state": "Gujarat",
-      "city": "Rajkot",
-      "address": "Rajkot",
+      "city": "Ahmedabad",
+      "address": "Rerum porro qui eu v",
       "department": "Cardiology",
       "doctorName": "Dr. John Smith",
-      "admittedAt": "2026-01-06",
-      "status": "Accepted",
-      "admittedDate": "06/01/2026",
-      "consultancyFees": 800,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 12:07:20"
+      "admittedAt": "1979-01-19",
+      "status": "Approved",
+      "admittedDate": "07/01/2026",
+      "roomType": "ICU",
+      "allocatedRoom": "ICU-04",
+      "admissionStatus": "Admitted",
+      "admissionTimestamp": "28/01/2026, 11:35:58",
+      "admittedBy": "Dr. John Smith"
     },
     {
-      "id": "db7d",
-      "fullName": "Namra Pithwa",
-      "age": "24",
-      "contact": "1234567890",
-      "email": "namre123@gmail.com",
-      "country": "India",
-      "state": "Maharashtra",
-      "city": "Pune",
-      "address": "Mumbai",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "2026-01-06",
-      "status": "Accepted",
-      "admittedDate": "06/01/2026",
-      "consultancyFees": 800,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 12:07:24"
-    },
-    {
-      "id": "af44",
-      "fullName": "Kenyon Melendez",
-      "age": "58",
-      "contact": "1234567890",
-      "email": "kuxomymu@mailinator.com",
-      "country": "India",
-      "state": "Delhi",
-      "city": "New Delhi",
-      "address": "Eos maiores voluptat",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "2022-11-19",
-      "status": "Accepted",
-      "admittedDate": "06/01/2026",
-      "consultancyFees": 800,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 12:07:25"
-    },
-    {
-      "id": "b26d",
+      "id": "b370",
       "fullName": "Meet Kacha",
       "age": "22",
       "contact": "9512588231",
-      "email": "meet@gmail.com",
+      "email": "meet12@gmail.com",
       "country": "India",
       "state": "Gujarat",
-      "city": "Rajkot",
+      "city": "Ahmedabad",
       "address": "Rajkot",
       "department": "Cardiology",
-      "admittedAt": "2026-01-06",
-      "consultancyFees": 800,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 12:07:28"
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2026-01-23",
+      "status": "Approved",
+      "admittedDate": "21/01/2026",
+      "roomType": "ICU",
+      "allocatedRoom": "ICU-01",
+      "admissionStatus": "Admitted",
+      "admissionTimestamp": "28/01/2026, 11:36:27",
+      "admittedBy": "Dr. John Smith"
     },
     {
-      "id": "cf4f",
-      "fullName": "Irma Wilkerson",
-      "age": "98",
-      "contact": "60",
-      "email": "digy@mailinator.com",
+      "id": "d48f",
+      "fullName": "Ezra Mcclure",
+      "age": "97",
+      "contact": "4134324324",
+      "email": "qydu@mailinator.com",
+      "country": "India",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "address": "Dolorem quasi aperia",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2026-01-21",
+      "status": "Approved",
+      "admittedDate": "21/01/2026",
+      "roomType": "Private Room",
+      "allocatedRoom": "PR-01",
+      "admissionStatus": "Admitted",
+      "admissionTimestamp": "28/01/2026, 19:01:40",
+      "admittedBy": "Dr. John Smith"
+    },
+    {
+      "id": "94cb",
+      "fullName": "Flynn Richardson",
+      "age": "26",
+      "contact": "38",
+      "email": "tilela@mailinator.com",
       "country": "India",
       "state": "Karnataka",
       "city": "Bangalore",
-      "address": "Velit eum voluptatem",
+      "address": "Dolore est ab rerum ",
       "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "1977-06-17",
-      "consultancyFees": 800,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 12:07:29"
-    },
-    {
-      "id": "b987",
-      "fullName": "Tasha Marquez",
-      "age": "95",
-      "contact": "71",
-      "email": "cele@mailinator.com",
-      "country": "India",
-      "state": "Karnataka",
-      "city": "Mysore",
-      "address": "Odit quo illum volu",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "2002-03-20",
-      "consultancyFees": 800,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 12:07:31"
-    },
-    {
-      "id": "c91e",
-      "fullName": "Cynthia Gill",
-      "age": "77",
-      "contact": "19",
-      "email": "cagyj@mailinator.com",
-      "country": "India",
-      "state": "Maharashtra",
-      "city": "Mumbai",
-      "address": "Sunt eiusmod quos od",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "1999-11-10",
-      "consultancyFees": 800,
-      "status": "Accepted",
-      "admittedDate": "06/01/2026",
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "06/01/2026, 12:08:11"
-    },
-    {
-      "id": "ef96",
-      "fullName": "Yael Park",
-      "age": "65",
-      "contact": "24",
-      "email": "lacejagi@mailinator.com",
-      "country": "India",
-      "state": "Rajasthan",
-      "city": "Jaipur",
-      "address": "Eius ut architecto e",
-      "department": "Neurosurgery",
-      "doctorName": "Dr. Robert Brown",
-      "admittedAt": "1987-07-09",
+      "doctorName": "Meet Kacha",
+      "admittedAt": "2015-07-01",
       "status": "Approved",
-      "admittedDate": "05/01/2026",
-      "consultancyFees": 800,
-      "totalAmount": 840,
-      "billStatus": "Pending",
-      "generatedAt": "08/01/2026, 02:34:04"
+      "admittedDate": "28/01/2026",
+      "roomType": "ICU",
+      "allocatedRoom": "ICU-09",
+      "admissionStatus": "Admitted",
+      "admissionTimestamp": "28/01/2026, 19:19:05",
+      "admittedBy": "Meet Kacha"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "1",
+      "name": "ICU",
+      "capacity": 10,
+      "prefix": "ICU",
+      "color": "#e53e3e",
+      "roomList": [
+        {
+          "id": "ICU-01",
+          "status": "Occupied",
+          "occupiedBy": "Meet Kacha",
+          "admitDate": "28/01/2026"
+        },
+        {
+          "id": "ICU-02",
+          "status": "Occupied",
+          "occupiedBy": "Jana Wise",
+          "admitDate": "28/01/2026"
+        },
+        {
+          "id": "ICU-03",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "ICU-04",
+          "status": "Occupied",
+          "occupiedBy": "Rose Kelley",
+          "admitDate": "28/01/2026"
+        },
+        {
+          "id": "ICU-05",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "ICU-06",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "ICU-07",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "ICU-08",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "ICU-09",
+          "status": "Occupied",
+          "occupiedBy": "Flynn Richardson",
+          "admitDate": "28/01/2026"
+        },
+        {
+          "id": "ICU-10",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Private Room",
+      "capacity": 15,
+      "prefix": "PR",
+      "color": "#3182ce",
+      "roomList": [
+        {
+          "id": "PR-01",
+          "status": "Occupied",
+          "occupiedBy": "Ezra Mcclure",
+          "admitDate": "28/01/2026"
+        },
+        {
+          "id": "PR-02",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-03",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-04",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-05",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-06",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-07",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-08",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-09",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-10",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-11",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-12",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-13",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-14",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "PR-15",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "General Room",
+      "capacity": 30,
+      "prefix": "GR",
+      "color": "#38a169",
+      "roomList": [
+        {
+          "id": "GR-01",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-02",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-03",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-04",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-05",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-06",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-07",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-08",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-09",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-10",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-11",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-12",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-13",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-14",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-15",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-16",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-17",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-18",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-19",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-20",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-21",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-22",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-23",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-24",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-25",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-26",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-27",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-28",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-29",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GR-30",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "General Ward",
+      "capacity": 50,
+      "prefix": "GW",
+      "color": "#805ad5",
+      "roomList": [
+        {
+          "id": "GW-01",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-02",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-03",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-04",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-05",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-06",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-07",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-08",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-09",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-10",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-11",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-12",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-13",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-14",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-15",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-16",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-17",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-18",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-19",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-20",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-21",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-22",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-23",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-24",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-25",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-26",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-27",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-28",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-29",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-30",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-31",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-32",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-33",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-34",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-35",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-36",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-37",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-38",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-39",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-40",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-41",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-42",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-43",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-44",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-45",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-46",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-47",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-48",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-49",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "GW-50",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Operation Theater",
+      "capacity": 5,
+      "prefix": "OT",
+      "color": "#dd6b20",
+      "roomList": [
+        {
+          "id": "OT-01",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "OT-02",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "OT-03",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "OT-04",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        },
+        {
+          "id": "OT-05",
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null
+        }
+      ]
     }
   ],
   "prescriptions": [
@@ -876,6 +1794,46 @@
       "diagnosis": "sdvsdvsdv",
       "medicines": "sdvsdvsd",
       "advice": ""
+    },
+    {
+      "id": "f467",
+      "patientId": "d48f",
+      "patientName": "Ezra Mcclure",
+      "doctorName": "Dr. John Smith",
+      "date": "21/01/2026, 17:50:22",
+      "diagnosis": "cvbdfbdfbdb",
+      "medicines": "fdbdfbdb",
+      "advice": ""
+    },
+    {
+      "id": "5963",
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "doctorName": "Dr. John Smith",
+      "date": "22/01/2026, 10:14:59",
+      "diagnosis": "hbsgub",
+      "medicines": "iubiubgui",
+      "advice": ""
+    },
+    {
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "doctorName": "Dr. John Smith",
+      "date": "29/01/2026, 02:21:58",
+      "diagnosis": "ubbvi",
+      "medicines": "bbvhkvbhvi",
+      "advice": "",
+      "id": "7a8b"
+    },
+    {
+      "id": "7a0f",
+      "patientId": "94cb",
+      "patientName": "Flynn Richardson",
+      "doctorName": "Meet Kacha",
+      "date": "28/01/2026, 19:03:49",
+      "diagnosis": "bjkbkjbujbiudjkbvk",
+      "medicines": "jbkjb",
+      "advice": ""
     }
   ],
   "surgery": [
@@ -893,43 +1851,43 @@
       "status": "Scheduled"
     },
     {
-      "id": "7735",
-      "patientId": "87a2",
-      "patientName": "Kamal Melton",
-      "patientAge": "44",
+      "id": "dc69",
+      "patientId": "94cb",
+      "patientName": "Flynn Richardson",
+      "patientAge": "26",
       "patientDept": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "surgeryType": "Coronary Artery Bypass Grafting (CABG)",
-      "surgeryDate": "2026-01-29",
-      "surgeryTime": "14:20",
-      "bookedAt": "08/01/2026, 03:17:35",
+      "doctorName": "Meet Kacha",
+      "surgeryType": "Robotic Heart Surgery",
+      "surgeryDate": "2026-01-30",
+      "surgeryTime": "19:24",
+      "bookedAt": "28/01/2026, 19:20:59",
       "status": "Scheduled"
     },
     {
-      "id": "bc23",
-      "patientId": "1f8d",
-      "patientName": "Indira Barton",
-      "patientAge": "40",
+      "id": "bdc4",
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "patientAge": "52",
       "patientDept": "Cardiology",
       "doctorName": "Dr. John Smith",
-      "surgeryType": "Pacemaker Insertion",
-      "surgeryDate": "2026-01-27",
-      "surgeryTime": "10:53",
-      "bookedAt": "13/01/2026, 10:49:01",
-      "status": "Scheduled"
+      "surgeryType": "Aortic Aneurysm Repair",
+      "surgeryDate": "2026-01-08",
+      "surgeryTime": "02:37",
+      "bookedAt": "29/01/2026, 02:31:41",
+      "status": "Completed"
     },
     {
-      "id": "2dcf",
-      "patientId": "87a2",
-      "patientName": "Kamal Melton",
-      "patientAge": "44",
+      "id": "8fb9",
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "patientAge": "52",
       "patientDept": "Cardiology",
       "doctorName": "Dr. John Smith",
-      "surgeryType": "Catheter Ablation",
-      "surgeryDate": "2026-01-13",
-      "surgeryTime": "11:06",
-      "bookedAt": "19/01/2026, 11:02:08",
-      "status": "Scheduled"
+      "surgeryType": "Implantable Cardioverter-Defibrillator (ICD) Insertion",
+      "surgeryDate": "2026-01-31",
+      "surgeryTime": "02:40",
+      "bookedAt": "29/01/2026, 02:36:28",
+      "status": "Completed"
     }
   ],
   "pandinglabrequest": [
@@ -973,7 +1931,9 @@
           "reportFees": "6000"
         }
       ],
-      "status": "Pending"
+      "status": "Completed",
+      "resultNote": "hvlvyuhjvkjcjg",
+      "completedAt": "23/01/2026, 11:51:44"
     },
     {
       "id": "3521",
@@ -988,7 +1948,9 @@
           "reportFees": "8000"
         }
       ],
-      "status": "Pending"
+      "status": "Completed",
+      "resultNote": "haa tai gayu chhr\n",
+      "completedAt": "28/01/2026, 19:04:55"
     },
     {
       "id": "bc3f",
@@ -1050,7 +2012,9 @@
           "reportFees": "400"
         }
       ],
-      "status": "Pending"
+      "status": "Completed",
+      "resultNote": "fdvdvf",
+      "completedAt": "21/01/2026, 10:05:04"
     },
     {
       "id": "1ebc",
@@ -1136,6 +2100,166 @@
       "status": "Completed",
       "resultNote": "ghfvhgkckg kgv",
       "completedAt": "19/01/2026, 11:01:36"
+    },
+    {
+      "id": "b93e",
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "doctorName": "Dr. John Smith",
+      "date": "21/01/2026",
+      "assignedReports": [
+        {
+          "id": "3cfc",
+          "reportName": "ECG",
+          "reportFees": "5000",
+          "status": false
+        },
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "knljbnlf",
+      "completedAt": "21/01/2026, 10:05:11"
+    },
+    {
+      "id": "7b20",
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "doctorName": "Dr. John Smith",
+      "date": "21/01/2026",
+      "assignedReports": [
+        {
+          "id": "5621",
+          "reportName": "MRI",
+          "reportFees": "8000",
+          "status": false
+        },
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000",
+          "status": false
+        },
+        {
+          "id": "20b6",
+          "reportName": "X-Ray",
+          "reportFees": "6000",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "vhkvd\n\n",
+      "completedAt": "21/01/2026, 10:25:55"
+    },
+    {
+      "id": "ea64",
+      "patientId": "d48f",
+      "patientName": "Ezra Mcclure",
+      "doctorName": "Dr. John Smith",
+      "date": "21/01/2026",
+      "assignedReports": [
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400",
+          "status": false
+        },
+        {
+          "id": "5621",
+          "reportName": "MRI",
+          "reportFees": "8000",
+          "status": false
+        },
+        {
+          "id": "20b6",
+          "reportName": "X-Ray",
+          "reportFees": "6000",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "jbdkjfbkefejbjkebjkbfkjbkjb",
+      "completedAt": "21/01/2026, 17:50:53"
+    },
+    {
+      "id": "6ff1",
+      "patientId": "b370",
+      "patientName": "Meet Kacha",
+      "doctorName": "Dr. John Smith",
+      "date": "29/01/2026",
+      "assignedReports": [
+        {
+          "id": "5621",
+          "reportName": "MRI",
+          "reportFees": "8000",
+          "status": false
+        },
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000",
+          "status": false
+        },
+        {
+          "id": "afdd",
+          "reportName": "RBC",
+          "reportFees": "4500",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "compleated all reports\nall good\n",
+      "completedAt": "29/01/2026, 02:13:45"
     }
-  ]
+  ],
+  "pendingBills": [
+    {
+      "Bill-id": "none",
+      "patientId": "none",
+      "patientName": "none",
+      "age": "0",
+      "department": "none",
+      "doctorName": "none",
+      "date": "none",
+      "consultancyFees": "0",
+      "services": [
+        {
+          "room": [
+            {
+              "id": "none",
+              "roomType": "none",
+              "daysStayed": "0",
+              "ratePerDay": "0",
+              "amount": "0"
+            }
+          ],
+          "Lab Tests": [
+            {
+              "id": "none",
+              "testName": "none",
+              "testFees": "0"
+            }
+          ],
+          "Surgery": [
+            {
+              "id": "none",
+              "surgeryType": "none",
+              "surgeryFees": "0"
+            }
+          ]
+        }
+      ],
+      "totalAmount": "0",
+      "gst": "5%",
+      "gstAmount": "0",
+      "grandTotal": "0",
+      "status": "unpaid"
+    }
+  ],
+  "oldpatients": [],
+  "admitRequests": []
 }

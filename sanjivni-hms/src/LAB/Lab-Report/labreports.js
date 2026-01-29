@@ -197,7 +197,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaPlus, FaTimes, FaEdit, FaTrash, FaFileAlt, FaMicroscope, FaLock, FaEye, FaEyeSlash, FaUserShield } from 'react-icons/fa';
+import { FaPlus, FaTimes, FaEdit, FaTrash, FaFileAlt, FaMicroscope, FaEye, FaEyeSlash, FaUserShield } from 'react-icons/fa';
 
 const Labreport = () => {
     // --- AUTHENTICATION STATES ---

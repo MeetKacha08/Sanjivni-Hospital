@@ -5,9 +5,7 @@ import { FaUserAlt, FaBed, FaCalendarAlt, FaSignOutAlt, FaHashtag } from 'react-
 const Admitedpatient = () => {
     const [admittedPatients, setAdmittedPatients] = useState([]);
 
-    // 🔥 1. Get Logged-in Doctor's Name from LocalStorage
     const doctorName = localStorage.getItem('loggedInDoctorName');
-    const doctorDept = localStorage.getItem('loggedInDoctorDept');
 
     useEffect(() => {
         fetchAdmittedPatients();
@@ -16,7 +14,6 @@ const Admitedpatient = () => {
     const fetchAdmittedPatients = () => {
         axios.get('http://localhost:5000/admitted')
             .then(res => {
-                // 🔥 2. FILTER LOGIC: Only show patients assigned to THIS specific doctor
                 const myAdmittedPatients = res.data.filter(patient => 
                     patient.doctorName === doctorName
                 );
@@ -25,7 +22,6 @@ const Admitedpatient = () => {
             .catch(err => console.log(err));
     };
 
-    // Helper to get prefix based on room type
     const getRoomPrefix = (type) => {
         switch(type) {
             case "ICU": return "ICU";
@@ -36,7 +32,6 @@ const Admitedpatient = () => {
         }
     };
 
-    // --- GROUPING LOGIC ---
     const groupedAdmissions = admittedPatients.reduce((acc, patient) => {
         const type = patient.roomType || "Unassigned";
         if (!acc[type]) acc[type] = [];
@@ -44,23 +39,35 @@ const Admitedpatient = () => {
         return acc;
     }, {});
 
-    const handleDischarge = (id, name) => {
-        if (window.confirm(`Are you sure you want to discharge ${name}?`)) {
-            axios.delete(`http://localhost:5000/admitted/${id}`)
-                .then(() => {
-                    alert(`${name} discharged successfully!`);
-                    setAdmittedPatients(prev => prev.filter(p => p.id !== id));
-                })
-                .catch(err => {
-                    console.error("Error discharging patient:", err);
-                    alert("Failed to discharge patient.");
-                });
+    // 🔥 UPDATED: handleDischarge logic with Surgery Verification
+    const handleDischarge = async (id, name) => {
+        try {
+            // 1. Fetch the surgery list from the server
+            const surgeryRes = await axios.get('http://localhost:5000/surgery');
+            
+            // 2. 🔥 Verification: Check if this patient ID exists in the surgery list
+            const hasSurgery = surgeryRes.data.some(s => s.patientId === id);
+
+            if (hasSurgery) {
+                // 3. Block discharge if surgery is found
+                alert(`STOP! Cannot discharge ${name}. This patient has a surgery scheduled in the Surgery Booking system. Please cancel or complete the surgery record before discharging.`);
+                return; // Exit function
+            }
+
+            // 4. If no surgery exists, proceed with discharge confirmation
+            if (window.confirm(`Are you sure you want to discharge ${name}?`)) {
+                await axios.delete(`http://localhost:5000/admitted/${id}`);
+                alert(`${name} discharged successfully!`);
+                setAdmittedPatients(prev => prev.filter(p => p.id !== id));
+            }
+        } catch (err) {
+            console.error("Discharge error:", err);
+            alert("An error occurred while trying to verify surgery status.");
         }
     };
 
     return (
         <div style={{ padding: '30px', backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
-            {/* Header updated to show the specific doctor's context */}
             <h2 style={{ color: '#2c3e50', borderBottom: '2px solid #3182ce', paddingBottom: '10px', marginBottom: '30px' }}>
                 My Admitted Patients ({doctorName})
             </h2>
@@ -68,7 +75,6 @@ const Admitedpatient = () => {
             {admittedPatients.length > 0 ? (
                 Object.keys(groupedAdmissions).map((category) => (
                     <div key={category} style={{ marginBottom: '40px' }}>
-                        {/* CATEGORY HEADER */}
                         <div style={categoryHeaderStyle}>
                             <FaBed style={{ marginRight: '10px' }} /> {category}
                             <span style={countBadgeStyle}>{groupedAdmissions[category].length} Occupied</span>
@@ -118,7 +124,6 @@ const Admitedpatient = () => {
     );
 };
 
-// --- STYLES (No changes made to styles) ---
 const categoryHeaderStyle = { display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: '#3182ce', marginBottom: '15px', backgroundColor: '#fff', padding: '10px 20px', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' };
 const countBadgeStyle = { marginLeft: 'auto', fontSize: '12px', backgroundColor: '#3182ce', color: '#fff', padding: '4px 12px', borderRadius: '20px' };
 const admitCard = { backgroundColor: '#fff', padding: '20px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0', position: 'relative' };

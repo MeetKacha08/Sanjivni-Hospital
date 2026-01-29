@@ -1,4 +1,4 @@
-import '../Doc-Sidebar/doc_sidebar.css';
+import '../Bill-Sidebar/bill_sidebar.css';
 import {
   FaCalendarCheck,
   FaUserInjured,
@@ -7,41 +7,40 @@ import {
   FaBed,
   FaFileInvoiceDollar,
   FaDoorClosed,
-  FaSyringe
+  FaSyringe,
+  FaRupeeSign
 } from 'react-icons/fa';
 
 import { useNavigate } from 'react-router-dom';
 
-const Doc_sidebar = () => {
+const Bill_sidebar = () => {
   const navigate = useNavigate();
 
   return (
     <div className="sidebar-component">
       <aside className="sidebar">
         <ul className="sidebar-menu">
-          <li onClick={() => navigate('/doctor/doctordashboard')}>
+          <li onClick={() => navigate('/billing/billdashboard')}>
             <FaCalendarCheck className="icon" /> Dashboard
           </li>
-          <li onClick={() => navigate('/doctor/pandingpatient')}>
-            <FaUserInjured className="icon" /> Panding Patients
+          <li onClick={() => navigate('/billing/pendingbills')}>
+            <FaRupeeSign className="icon" /> Panding-Bills
           </li>
-          <li onClick={() => navigate('/doctor/mypatient')}>
+          {/*<li onClick={() => navigate('/bill/mypatient')}>
             <FaUserInjured className="icon" /> My Patients
           </li>
-          <li onClick={() => navigate('/doctor/allpatients')}>
-            <FaUserInjured className="icon" /> All Patients
-          </li>
-          <li onClick={() => navigate('/doctor/admitedpatient')}>
+          <li onClick={() => navigate('/bill/admitedpatient')}>
             <FaBed className="icon" /> Admited Patient
           </li>
-           <li onClick={() => navigate('/doctor/surgerybooking')}>
+           <li onClick={() => navigate('/bill/surgerybooking')}>
             <FaSyringe className="icon" /> Surgery
-          </li>
+          </li> */}
+
         </ul>
       </aside>
     </div>
   );
 };
 
-export default Doc_sidebar;
+export default Bill_sidebar;
 
