@@ -1,6 +1,123 @@
-.admin-dashboard {
-  background-color: #a52828;
-  padding: 20px;
-  border-radius: 8px;
-  min-height: 200px;
+/* Container and Header */
+.dashboard-container {
+    padding: 30px;
+    background-color: #f4f7f6;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.dashboard-header {
+    margin-bottom: 40px;
+    border-bottom: 2px solid #e1e8ed;
+    padding-bottom: 15px;
+}
+
+.dashboard-header h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 28px;
+}
+
+.dashboard-header p {
+    color: #7f8c8d;
+    margin: 8px 0 0 0;
+    font-size: 16px;
+}
+
+/* --- GRID LAYOUT (3 Cards Per Row) --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Forces exactly 3 equal columns */
+    gap: 30px; /* Slightly larger gap between the bigger cards */
+}
+
+/* Responsive fallback for smaller screens */
+@media (max-width: 1100px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* 1 card per row on mobile */
+    }
+}
+
+/* --- INDIVIDUAL STAT CARDS (Made Bigger) --- */
+.stat-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 35px 25px; /* Increased padding to make the card taller/wider */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Increased space between icon and text */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 8px solid #ccc; /* Thicker accent border */
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.icon-wrapper {
+    width: 85px; /* Increased from 65px */
+    height: 85px; /* Increased from 65px */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px; /* Increased icon size */
+}
+
+.stat-info h3 {
+    margin: 0;
+    font-size: 42px; /* Increased number size */
+    color: #2c3e50;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.stat-info .small-text {
+    font-size: 20px; /* Increased from 16px */
+    color: #95a5a6;
+    font-weight: normal;
+}
+
+.stat-info p {
+    margin: 8px 0 0 0;
+    color: #7f8c8d;
+    font-size: 16px; /* Increased text size */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* --- THEME COLORS FOR CARDS --- */
+
+/* Orange for Appointments */
+.card-orange { border-left-color: #f39c12; }
+.card-orange .icon-wrapper { background-color: #fef5e7; color: #f39c12; }
+
+/* Green for Patients */
+.card-green { border-left-color: #2ecc71; }
+.card-green .icon-wrapper { background-color: #eafaf1; color: #2ecc71; }
+
+/* Blue for Doctors */
+.card-blue { border-left-color: #3498db; }
+.card-blue .icon-wrapper { background-color: #ebf5fb; color: #3498db; }
+
+/* Purple for Lab Staff */
+.card-purple { border-left-color: #9b59b6; }
+.card-purple .icon-wrapper { background-color: #f5eef8; color: #9b59b6; }
+
+/* Teal for Reports */
+.card-teal { border-left-color: #1abc9c; }
+.card-teal .icon-wrapper { background-color: #e8f8f5; color: #1abc9c; }
+
+/* Red for Beds */
+.card-red { border-left-color: #e74c3c; }
+.card-red .icon-wrapper { background-color: #fdedec; color: #e74c3c; }

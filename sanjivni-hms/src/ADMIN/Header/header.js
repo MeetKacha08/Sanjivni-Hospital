@@ -1,49 +1,15 @@
-// import './header.css';
-// import {FaSearch, FaUserCircle } from 'react-icons/fa';
-// import { Navigate } from 'react-router-dom';
-
-// const Header = () => {
-
-//     return (
-//         <div className="header-component">
-//             {/* --- NAVBAR --- */}
-//             <nav className="admin-navbar">
-//                 <div className="nav-left">
-//                     <img src="https://via.placeholder.com/40" alt="Logo" className="hospital-logo" />
-//                 </div>
-
-//                 <div className="nav-center">
-//                     <div className="search-box">
-//                         <FaSearch className="search-icon" />
-//                         <input type="text" placeholder="Search patients, records..." />
-//                     </div>
-//                 </div>
-
-//                 <div className="nav-right">
-//                     <button className="profile-btn" onClick={() => alert("Profile Settings")}>
-//                         <FaUserCircle size={30} />
-//                     </button>
-//                     <button onClick={Navigate('/login')} className="logout-link">Logout</button>
-//                 </div>
-//             </nav>
-//         </div>
-//     );
-// };
-// export default Header;
-
+import React from 'react';
 import './header.css';
-import { FaSearch, FaUserCircle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of Navigate
+import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import sanjivniLogo from '../Header/sanjivni_full_logo.png';
 
 const Header = () => {
-    const navigate = useNavigate(); // Initialize the navigate hook
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        // 1. Clear the authentication data from localStorage
         localStorage.removeItem('userRole');
         localStorage.removeItem('isAuthenticated');
-
-        // 2. Redirect the user to the login page
         navigate('/login');
     };
 
@@ -53,25 +19,20 @@ const Header = () => {
             <nav className="admin-navbar">
                 <div className="nav-left">
                     <div className="logo-container">
-                        <img src="https://via.placeholder.com/40" alt="Logo" className="hospital-logo" />
-                        <span className="logo-text">SANJIVNI <span className="logo-sub">LAB</span></span>
+                        <img src={sanjivniLogo} alt="Sanjivni City Hospital Logo" className="hospital-logo" />
                     </div>
                 </div>
 
                 <div className="nav-center">
                     <div className="search-box">
                         <FaSearch className="search-icon" />
-                        <input type="text" placeholder="Search patients, records..." />
+                        {/* Updated placeholder text here */}
+                        <input type="text" placeholder="Search patients, records, or departments..." />
                     </div>
                 </div>
 
                 <div className="nav-right">
                     <div className="user-profile">
-                        <button className="profile-btn" onClick={() => alert("Profile Settings")}>
-                            <FaUserCircle size={28} />
-                            <span className="user-name">Admin</span>
-                        </button>
-                        <div className="divider"></div>
                         <button onClick={handleLogout} className="logout-btn">
                             Logout
                         </button>

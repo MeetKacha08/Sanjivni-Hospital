@@ -1,11 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { FaUserCircle, FaCalendarCheck, FaEnvelope, FaPhoneAlt, FaPlus, FaTimes } from 'react-icons/fa';
+import { FaUserCircle, FaCalendarCheck, FaEnvelope, FaPhoneAlt, FaPlus, FaTimes, FaFileAlt, FaDownload, FaHospitalSymbol } from 'react-icons/fa';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 const Patients = () => {
     const [patients, setPatients] = useState([]);
     const [doctors, setDoctors] = useState([]); 
     const [showModal, setShowModal] = useState(false);
+    
+    // --- VIEW FILE MODAL STATES ---
+    const [showFileModal, setShowFileModal] = useState(false);
+    const [selectedPatientFile, setSelectedPatientFile] = useState(null);
+    const [patientHistory, setPatientHistory] = useState({
+        prescriptions: [],
+        labReports: [],
+        surgeries: [],
+        admission: null
+    });
+    const reportRef = useRef(); 
 
     // --- FORM DATA STATE ---
     const [formData, setFormData] = useState({
@@ -70,6 +83,50 @@ const Patients = () => {
         } catch (error) { console.error(error); }
     };
 
+    const handleViewFile = async (patient) => {
+        setSelectedPatientFile(patient);
+        setShowFileModal(true);
+        try {
+            const [prescRes, labRes, surgeryRes, admitRes] = await Promise.all([
+                axios.get(`http://localhost:5000/prescriptions?patientId=${patient.id}`).catch(() => ({ data: [] })),
+                axios.get(`http://localhost:5000/pandinglabrequest?patientId=${patient.id}`).catch(() => ({ data: [] })),
+                axios.get(`http://localhost:5000/surgery?patientId=${patient.id}`).catch(() => ({ data: [] })),
+                axios.get(`http://localhost:5000/admitted?id=${patient.id}`).catch(() => ({ data: [] }))
+            ]);
+
+            setPatientHistory({
+                prescriptions: prescRes.data,
+                labReports: labRes.data,
+                surgeries: surgeryRes.data,
+                admission: admitRes.data.length > 0 ? admitRes.data[0] : null
+            });
+        } catch (error) {
+            console.error("Error fetching patient history:", error);
+        }
+    };
+
+    const downloadPDF = () => {
+        const input = reportRef.current;
+        html2canvas(input, { scale: 2, useCORS: true }).then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+            
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save(`${selectedPatientFile.fullName}_Medical_Report.pdf`);
+        });
+    };
+
+    const calculateDays = (dateString) => {
+        if (!dateString) return 0;
+        const admitDate = new Date(dateString); 
+        if (isNaN(admitDate)) return "N/A"; 
+        const today = new Date();
+        const diffTime = Math.abs(today - admitDate);
+        return Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    };
+
     const groupedPatients = patients.reduce((acc, patient) => {
         const dept = patient.department || "General";
         if (!acc[dept]) acc[dept] = [];
@@ -82,7 +139,7 @@ const Patients = () => {
             <div style={headerSection}>
                 <div>
                     <h2 style={{ margin: 0, color: '#2c3e50' }}>Permanent Patients List</h2>
-                    <p style={{ color: '#7f8c8d', margin: '5px 0 0 0' }}>Total Registered Patients: {patients.length}</p>
+                    <p style={{ color: '#7f8c8d', margin: '5px 0 0 0' }}>Total Registered: {patients.length}</p>
                 </div>
                 <button onClick={() => setShowModal(true)} style={addPatientBtnStyle}>
                     <FaPlus style={{ marginRight: '8px' }} /> Patient
@@ -102,6 +159,7 @@ const Patients = () => {
                                     <th style={thStyle}>Patient Name</th>
                                     <th style={thStyle}>Contact Info</th>
                                     <th style={thStyle}>Admission Date</th>
+                                    <th style={thStyle}>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -123,6 +181,14 @@ const Patients = () => {
                                             <FaCalendarCheck size={14} style={{ marginRight: '5px' }} />
                                             {patient.admittedAt}
                                         </td>
+                                        <td style={tdStyle}>
+                                            <button 
+                                                style={viewFileBtnStyle}
+                                                onClick={() => handleViewFile(patient)}
+                                            >
+                                                <FaFileAlt style={{ marginRight: '5px' }} /> View File
+                                            </button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -131,6 +197,7 @@ const Patients = () => {
                 </div>
             ))}
 
+            {/* --- REGISTRATION MODAL --- */}
             {showModal && (
                 <div style={modalOverlay}>
                     <div style={modalContent}>
@@ -166,6 +233,198 @@ const Patients = () => {
                     </div>
                 </div>
             )}
+
+            {/* --- AUTHENTIC HOSPITAL REPORT MODAL --- */}
+            {showFileModal && selectedPatientFile && (
+                <div style={modalOverlay}>
+                    <div style={{ ...modalContent, width: '850px', padding: '0', background: '#525659', overflow: 'hidden' }}>
+                        
+                        {/* Toolbar */}
+                        <div style={{ padding: '10px 20px', backgroundColor: '#333', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #444' }}>
+                            <span style={{fontSize: '14px', fontWeight: 'bold'}}>Medical Record Preview</span>
+                            <div style={{ display: 'flex', gap: '15px' }}>
+                                <button onClick={downloadPDF} style={downloadBtnStyle}>
+                                    <FaDownload style={{ marginRight: '5px' }} /> Download PDF
+                                </button>
+                                <FaTimes style={{ cursor: 'pointer', fontSize: '18px', marginTop: '5px' }} onClick={() => setShowFileModal(false)} />
+                            </div>
+                        </div>
+
+                        {/* --- THE A4 PAPER DOCUMENT --- */}
+                        <div style={{ height: '85vh', overflowY: 'auto', display: 'flex', justifyContent: 'center', padding: '20px' }}>
+                            <div ref={reportRef} style={a4PaperStyle}>
+                                
+                                {/* 1. Hospital Letterhead */}
+                                <div style={reportHeader}>
+                                    <div style={{display: 'flex', alignItems: 'center', gap: '15px'}}>
+                                        <div style={logoBox}><FaHospitalSymbol size={30} color="white"/></div>
+                                        <div>
+                                            <h1 style={hospitalName}>CITY GENERAL HOSPITAL</h1>
+                                            <p style={hospitalAddress}>123 Health Avenue, Medical District, NY 10001</p>
+                                            <p style={hospitalAddress}>Ph: +1-202-555-0199 | Email: info@citygeneral.com</p>
+                                        </div>
+                                    </div>
+                                    <div style={{textAlign: 'right'}}>
+                                        <h3 style={{margin: '0', color: '#2c3e50', fontFamily: 'serif'}}>MEDICAL DOSSIER</h3>
+                                        <p style={{margin: '5px 0 0 0', fontSize: '12px', color: '#555'}}>Report Date: {new Date().toLocaleDateString()}</p>
+                                    </div>
+                                </div>
+
+                                <hr style={{ border: 'none', borderTop: '2px solid #2c3e50', margin: '10px 0 25px 0' }} />
+
+                                {/* 2. Patient Demographics */}
+                                <div style={patientInfoBox}>
+                                    <div style={{ borderRight: '1px solid #000', paddingRight: '15px' }}>
+                                        <table style={infoTable}>
+                                            <tbody>
+                                                <tr><td style={infoLabel}>Patient Name:</td><td style={infoVal}>{selectedPatientFile.fullName}</td></tr>
+                                                <tr><td style={infoLabel}>Patient ID:</td><td style={infoVal}>{selectedPatientFile.id}</td></tr>
+                                                <tr><td style={infoLabel}>Age/Gender:</td><td style={infoVal}>{selectedPatientFile.age} Yrs</td></tr>
+                                                <tr><td style={infoLabel}>Contact:</td><td style={infoVal}>{selectedPatientFile.contact}</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div style={{ paddingLeft: '15px' }}>
+                                        <table style={infoTable}>
+                                            <tbody>
+                                                <tr><td style={infoLabel}>Department:</td><td style={infoVal}>{selectedPatientFile.department}</td></tr>
+                                                <tr><td style={infoLabel}>Consultant:</td><td style={infoVal}>Dr. {selectedPatientFile.doctorName}</td></tr>
+                                                <tr><td style={infoLabel}>Reg. Date:</td><td style={infoVal}>{selectedPatientFile.admittedAt}</td></tr>
+                                                <tr><td style={infoLabel}>Address:</td><td style={infoVal}>{selectedPatientFile.city}, {selectedPatientFile.state}</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                {/* 3. Admission Status Table */}
+                                <div style={sectionContainer}>
+                                    <h4 style={reportSectionTitle}>CURRENT ADMISSION STATUS</h4>
+                                    {patientHistory.admission ? (
+                                        <table style={reportTableStyle}>
+                                            <thead>
+                                                <tr style={tableHeaderRow}>
+                                                    <th style={tableHeaderCell}>Admission Date</th>
+                                                    <th style={tableHeaderCell}>Room / Ward</th>
+                                                    <th style={tableHeaderCell}>Bed No</th>
+                                                    <th style={tableHeaderCell}>Duration</th>
+                                                    <th style={tableHeaderCell}>Attending Doctor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style={tableCell}>{patientHistory.admission.admissionTimestamp}</td>
+                                                    <td style={tableCell}>{patientHistory.admission.roomType}</td>
+                                                    <td style={tableCell}>{patientHistory.admission.allocatedRoom}</td>
+                                                    <td style={tableCell}>{calculateDays(patientHistory.admission.admissionTimestamp)} Days</td>
+                                                    <td style={tableCell}>{patientHistory.admission.admittedBy}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    ) : (
+                                        <div style={noDataStyle}>Patient is currently not admitted.</div>
+                                    )}
+                                </div>
+
+                                {/* 4. Clinical History Table */}
+                                <div style={sectionContainer}>
+                                    <h4 style={reportSectionTitle}>CLINICAL HISTORY (PRESCRIPTIONS)</h4>
+                                    {patientHistory.prescriptions.length > 0 ? (
+                                        <table style={reportTableStyle}>
+                                            <thead>
+                                                <tr style={tableHeaderRow}>
+                                                    <th style={{...tableHeaderCell, width: '15%'}}>Date</th>
+                                                    <th style={{...tableHeaderCell, width: '25%'}}>Diagnosis</th>
+                                                    <th style={{...tableHeaderCell, width: '35%'}}>Medicines (Rx)</th>
+                                                    <th style={{...tableHeaderCell, width: '25%'}}>Advice</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {patientHistory.prescriptions.slice().reverse().map((p, i) => (
+                                                    <tr key={i}>
+                                                        <td style={tableCell}>{p.date.split(',')[0]}</td>
+                                                        <td style={tableCell}>{p.diagnosis}</td>
+                                                        <td style={tableCell}>{p.medicines}</td>
+                                                        <td style={tableCell}>{p.advice || '-'}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    ) : <div style={noDataStyle}>No clinical records available.</div>}
+                                </div>
+
+                                {/* 5. Laboratory Reports Table */}
+                                <div style={sectionContainer}>
+                                    <h4 style={reportSectionTitle}>LABORATORY INVESTIGATIONS</h4>
+                                    {patientHistory.labReports.length > 0 ? (
+                                        <table style={reportTableStyle}>
+                                            <thead>
+                                                <tr style={tableHeaderRow}>
+                                                    <th style={{...tableHeaderCell, width: '15%'}}>Date</th>
+                                                    <th style={{...tableHeaderCell, width: '40%'}}>Investigation Name</th>
+                                                    <th style={{...tableHeaderCell, width: '15%'}}>Status</th>
+                                                    <th style={{...tableHeaderCell, width: '30%'}}>Findings / Notes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {patientHistory.labReports.slice().reverse().map((l, i) => (
+                                                    <tr key={i}>
+                                                        <td style={tableCell}>{l.date}</td>
+                                                        <td style={tableCell}>{l.assignedReports.map(r => r.reportName).join(", ")}</td>
+                                                        <td style={{...tableCell, fontWeight: 'bold', color: l.status === 'Completed' ? '#27ae60' : '#d35400'}}>
+                                                            {l.status}
+                                                        </td>
+                                                        <td style={tableCell}>{l.resultNote || 'Pending Analysis'}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    ) : <div style={noDataStyle}>No lab investigations recorded.</div>}
+                                </div>
+
+                                {/* 6. Surgical History Table */}
+                                <div style={sectionContainer}>
+                                    <h4 style={reportSectionTitle}>SURGICAL PROCEDURES</h4>
+                                    {patientHistory.surgeries.length > 0 ? (
+                                        <table style={reportTableStyle}>
+                                            <thead>
+                                                <tr style={tableHeaderRow}>
+                                                    <th style={{...tableHeaderCell, width: '40%'}}>Procedure Type</th>
+                                                    <th style={{...tableHeaderCell, width: '30%'}}>Scheduled Date & Time</th>
+                                                    <th style={{...tableHeaderCell, width: '30%'}}>Current Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {patientHistory.surgeries.slice().reverse().map((s, i) => (
+                                                    <tr key={i}>
+                                                        <td style={tableCell}>{s.surgeryType}</td>
+                                                        <td style={tableCell}>{s.surgeryDate} at {s.surgeryTime}</td>
+                                                        <td style={{...tableCell, fontWeight: 'bold'}}>{s.status}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    ) : <div style={noDataStyle}>No surgical procedures recorded.</div>}
+                                </div>
+
+                                {/* Footer */}
+                                <div style={{ marginTop: 'auto', paddingTop: '30px', borderTop: '2px solid #2c3e50' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end' }}>
+                                        <div style={{ fontSize: '10px', color: '#555' }}>
+                                            <p style={{margin: 0}}>* This is a computer-generated document and does not require a physical signature.</p>
+                                            <p style={{margin: 0}}>* Confidential Medical Record - For authorized personnel only.</p>
+                                        </div>
+                                        <div style={{ textAlign: 'center' }}>
+                                            <div style={{ borderBottom: '1px solid #000', width: '150px', marginBottom: '5px' }}></div>
+                                            <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Authorized Signatory</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
@@ -186,5 +445,40 @@ const thStyle = { textAlign: 'left', padding: '15px 20px', backgroundColor: '#f8
 const tdStyle = { padding: '15px 20px', borderBottom: '1px solid #f1f4f8', color: '#2d3748', fontSize: '14px' };
 const rowStyle = { transition: 'background-color 0.2s', };
 const headerRowStyle = { borderBottom: '2px solid #eee' };
+
+const viewFileBtnStyle = { backgroundColor: '#17a2b8', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: '500', display: 'flex', alignItems: 'center', transition: 'background 0.2s' };
+const downloadBtnStyle = { backgroundColor: '#2ecc71', color: 'white', border: 'none', padding: '6px 15px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold', display: 'flex', alignItems: 'center' };
+
+// --- REPORT SPECIFIC STYLES ---
+const a4PaperStyle = {
+    width: '210mm',
+    minHeight: '297mm',
+    padding: '15mm',
+    backgroundColor: 'white',
+    boxShadow: '0 0 15px rgba(0,0,0,0.2)',
+    margin: '0 auto',
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    fontFamily: '"Times New Roman", serif', 
+    color: '#000'
+};
+const reportHeader = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' };
+const logoBox = { width: '50px', height: '50px', backgroundColor: '#2c3e50', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' };
+const hospitalName = { margin: '0', fontSize: '24px', fontWeight: 'bold', fontFamily: 'serif', letterSpacing: '1px', color: '#2c3e50' };
+const hospitalAddress = { margin: '2px 0', fontSize: '10px', color: '#555' };
+const patientInfoBox = { display: 'grid', gridTemplateColumns: '1fr 1fr', border: '1px solid #000', marginBottom: '20px', padding: '10px' };
+const infoTable = { width: '100%', fontSize: '12px' };
+const infoLabel = { fontWeight: 'bold', padding: '2px 0', width: '90px' };
+const infoVal = { padding: '2px 0' };
+const sectionContainer = { marginBottom: '20px' };
+const reportSectionTitle = { margin: '0 0 8px 0', fontSize: '14px', fontWeight: 'bold', backgroundColor: '#eee', padding: '5px', borderLeft: '4px solid #2c3e50', fontFamily: 'sans-serif' };
+const noDataStyle = { padding: '10px', border: '1px dashed #ccc', textAlign: 'center', color: '#666', fontStyle: 'italic', fontSize: '12px' };
+
+// 🔥 TABULAR DATA STYLES 🔥
+const reportTableStyle = { width: '100%', borderCollapse: 'collapse', fontSize: '12px', border: '1px solid #000' };
+const tableHeaderRow = { backgroundColor: '#f0f0f0' };
+const tableHeaderCell = { border: '1px solid #000', padding: '8px', textAlign: 'left', fontWeight: 'bold', backgroundColor: '#e9ecef' };
+const tableCell = { border: '1px solid #000', padding: '8px', textAlign: 'left' };
 
 export default Patients;

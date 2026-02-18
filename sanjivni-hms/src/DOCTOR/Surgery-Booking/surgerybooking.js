@@ -1,6 +1,6 @@
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
-// import { FaUserCircle, FaCalendarAlt, FaClock, FaHeartbeat, FaTrash, FaUserMd, FaEdit, FaTimes, FaSave } from 'react-icons/fa';
+// import { FaUserCircle, FaCalendarAlt, FaClock, FaHeartbeat, FaTrash, FaUserMd, FaEdit, FaTimes, FaSave, FaCheckCircle } from 'react-icons/fa';
 
 // const Surgerybooking = () => {
 //     const [surgeries, setSurgeries] = useState([]);
@@ -33,6 +33,21 @@
 //             .catch(err => console.error(err));
 //     };
 
+//     // 🔥 NEW FUNCTION: Handle Completion
+//     const handleComplete = async (id) => {
+//         if (window.confirm("Mark this surgery as Completed?")) {
+//             try {
+//                 // Update the status in the backend
+//                 await axios.patch(`http://localhost:5000/surgery/${id}`, { status: 'Completed' });
+//                 alert("Surgery Completed!");
+//                 fetchSurgeries(); // Refresh data to show updated status
+//             } catch (err) {
+//                 console.error("Error completing surgery:", err);
+//                 alert("Error updating status.");
+//             }
+//         }
+//     };
+
 //     const handleDelete = (id) => {
 //         if (window.confirm("Cancel this scheduled surgery?")) {
 //             axios.delete(`http://localhost:5000/surgery/${id}`)
@@ -63,22 +78,16 @@
 //         }
 //     };
 
-//     // 🔥 Added Logic for when you are adding a surgery (Verification Logic)
-//     // Note: If this function is called from your "Mypatient" page, use this logic there.
 //     const bookSurgerySubmit = async (selectedPatient, surgeryForm) => {
 //         try {
-//             // 1. Fetch current surgeries to check for duplicates
 //             const res = await axios.get('http://localhost:5000/surgery');
-            
-//             // 2. 🔥 Verification: Check if this patient ID already has a scheduled surgery
 //             const surgeryExists = res.data.some(s => s.patientId === selectedPatient.id);
 
 //             if (surgeryExists) {
 //                 alert(`STOP! A surgery is already scheduled for ${selectedPatient.fullName}. You cannot book multiple surgeries for the same patient.`);
-//                 return; // Block the process
+//                 return; 
 //             }
 
-//             // 3. Proceed if no duplicate found
 //             const bookingData = {
 //                 patientId: selectedPatient.id,
 //                 patientName: selectedPatient.fullName,
@@ -110,13 +119,20 @@
 //                         <div key={s.id} style={cardStyle}>
 //                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
 //                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-//                                     <FaUserCircle size={40} color="#e67e22" />
+//                                     <FaUserCircle size={40} color={s.status === 'Completed' ? '#2ecc71' : '#e67e22'} />
 //                                     <div>
 //                                         <h3 style={{ margin: 0, fontSize: '18px' }}>{s.patientName}</h3>
 //                                         <p style={{ margin: 0, color: '#7f8c8d', fontSize: '12px' }}>Age: {s.patientAge} | Dept: {s.patientDept}</p>
 //                                     </div>
 //                                 </div>
 //                                 <div style={{ display: 'flex', gap: '10px' }}>
+//                                     {/* 🔥 NEW COMPLETED BUTTON */}
+//                                     {s.status !== 'Completed' && (
+//                                         <button onClick={() => handleComplete(s.id)} style={completeBtnStyle} title="Mark as Completed">
+//                                             <FaCheckCircle />
+//                                         </button>
+//                                     )}
+                                    
 //                                     <button onClick={() => handleEditClick(s)} style={editBtnStyle} title="Edit Schedule"><FaEdit /></button>
 //                                     <button onClick={() => handleDelete(s.id)} style={deleteBtn}><FaTrash /></button>
 //                                 </div>
@@ -125,7 +141,15 @@
 //                             <hr style={{ margin: '15px 0', border: 'none', borderTop: '1px solid #eee' }} />
                             
 //                             <div style={{ marginBottom: '15px' }}>
-//                                 <small style={{ color: '#e67e22', fontWeight: 'bold', textTransform: 'uppercase' }}>Procedure</small>
+//                                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
+//                                     <small style={{ color: '#e67e22', fontWeight: 'bold', textTransform: 'uppercase' }}>Procedure</small>
+//                                     {/* Status Badge */}
+//                                     {s.status === 'Completed' ? (
+//                                         <small style={{ color: '#2ecc71', fontWeight: 'bold', border: '1px solid #2ecc71', padding: '2px 5px', borderRadius: '4px' }}>COMPLETED</small>
+//                                     ) : (
+//                                         <small style={{ color: '#f39c12', fontWeight: 'bold', border: '1px solid #f39c12', padding: '2px 5px', borderRadius: '4px' }}>SCHEDULED</small>
+//                                     )}
+//                                 </div>
 //                                 <p style={{ margin: '5px 0', color: '#2d3748', fontWeight: '600' }}>{s.surgeryType}</p>
 //                             </div>
                             
@@ -203,6 +227,8 @@
 // const badgeStyle = { backgroundColor: '#fff4e6', color: '#e67e22', padding: '5px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px' };
 // const deleteBtn = { backgroundColor: 'transparent', color: '#e74c3c', border: 'none', cursor: 'pointer', fontSize: '18px' };
 // const editBtnStyle = { backgroundColor: 'transparent', color: '#3498db', border: 'none', cursor: 'pointer', fontSize: '18px' };
+// // 🔥 NEW STYLE FOR COMPLETE BUTTON
+// const completeBtnStyle = { backgroundColor: 'transparent', color: '#2ecc71', border: 'none', cursor: 'pointer', fontSize: '18px' };
 
 // const modalOverlay = { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 };
 // const modalContent = { backgroundColor: 'white', padding: '25px', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' };
@@ -247,14 +273,12 @@ const Surgerybooking = () => {
             .catch(err => console.error(err));
     };
 
-    // 🔥 NEW FUNCTION: Handle Completion
     const handleComplete = async (id) => {
         if (window.confirm("Mark this surgery as Completed?")) {
             try {
-                // Update the status in the backend
                 await axios.patch(`http://localhost:5000/surgery/${id}`, { status: 'Completed' });
                 alert("Surgery Completed!");
-                fetchSurgeries(); // Refresh data to show updated status
+                fetchSurgeries();
             } catch (err) {
                 console.error("Error completing surgery:", err);
                 alert("Error updating status.");
@@ -292,35 +316,6 @@ const Surgerybooking = () => {
         }
     };
 
-    const bookSurgerySubmit = async (selectedPatient, surgeryForm) => {
-        try {
-            const res = await axios.get('http://localhost:5000/surgery');
-            const surgeryExists = res.data.some(s => s.patientId === selectedPatient.id);
-
-            if (surgeryExists) {
-                alert(`STOP! A surgery is already scheduled for ${selectedPatient.fullName}. You cannot book multiple surgeries for the same patient.`);
-                return; 
-            }
-
-            const bookingData = {
-                patientId: selectedPatient.id,
-                patientName: selectedPatient.fullName,
-                patientAge: selectedPatient.age,
-                patientDept: selectedPatient.department,
-                doctorName: doctorName,
-                ...surgeryForm,
-                bookedAt: new Date().toLocaleString(),
-                status: "Scheduled"
-            };
-
-            await axios.post('http://localhost:5000/surgery', bookingData);
-            alert(`Surgery Booked successfully for ${selectedPatient.fullName}`);
-            fetchSurgeries();
-        } catch (err) {
-            console.error("Booking Error:", err);
-        }
-    };
-
     return (
         <div style={{ padding: '30px', backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
             <h2 style={{ color: '#2c3e50', borderBottom: '2px solid #e67e22', paddingBottom: '10px', marginBottom: '30px' }}>
@@ -340,14 +335,17 @@ const Surgerybooking = () => {
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', gap: '10px' }}>
-                                    {/* 🔥 NEW COMPLETED BUTTON */}
                                     {s.status !== 'Completed' && (
-                                        <button onClick={() => handleComplete(s.id)} style={completeBtnStyle} title="Mark as Completed">
-                                            <FaCheckCircle />
-                                        </button>
+                                        <>
+                                            <button onClick={() => handleComplete(s.id)} style={completeBtnStyle} title="Mark as Completed">
+                                                <FaCheckCircle />
+                                            </button>
+                                            {/* Logic Changed Here: Edit button only shows if status is not Completed */}
+                                            <button onClick={() => handleEditClick(s)} style={editBtnStyle} title="Edit Schedule">
+                                                <FaEdit />
+                                            </button>
+                                        </>
                                     )}
-                                    
-                                    <button onClick={() => handleEditClick(s)} style={editBtnStyle} title="Edit Schedule"><FaEdit /></button>
                                     <button onClick={() => handleDelete(s.id)} style={deleteBtn}><FaTrash /></button>
                                 </div>
                             </div>
@@ -357,7 +355,6 @@ const Surgerybooking = () => {
                             <div style={{ marginBottom: '15px' }}>
                                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                                     <small style={{ color: '#e67e22', fontWeight: 'bold', textTransform: 'uppercase' }}>Procedure</small>
-                                    {/* Status Badge */}
                                     {s.status === 'Completed' ? (
                                         <small style={{ color: '#2ecc71', fontWeight: 'bold', border: '1px solid #2ecc71', padding: '2px 5px', borderRadius: '4px' }}>COMPLETED</small>
                                     ) : (
@@ -385,7 +382,6 @@ const Surgerybooking = () => {
                 </div>
             )}
 
-            {/* --- EDIT SCHEDULE MODAL --- */}
             {showEditModal && (
                 <div style={modalOverlay}>
                     <div style={{...modalContent, width: '500px', alignSelf: 'flex-start', marginTop: '50px'}}>
@@ -441,7 +437,6 @@ const cardStyle = { backgroundColor: '#fff', padding: '20px', borderRadius: '12p
 const badgeStyle = { backgroundColor: '#fff4e6', color: '#e67e22', padding: '5px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px' };
 const deleteBtn = { backgroundColor: 'transparent', color: '#e74c3c', border: 'none', cursor: 'pointer', fontSize: '18px' };
 const editBtnStyle = { backgroundColor: 'transparent', color: '#3498db', border: 'none', cursor: 'pointer', fontSize: '18px' };
-// 🔥 NEW STYLE FOR COMPLETE BUTTON
 const completeBtnStyle = { backgroundColor: 'transparent', color: '#2ecc71', border: 'none', cursor: 'pointer', fontSize: '18px' };
 
 const modalOverlay = { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 };

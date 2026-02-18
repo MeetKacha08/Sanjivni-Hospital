@@ -1,10 +1,12 @@
+/* Keep your existing .admin-navbar, .logo-container, .hospital-logo styles... */
+
 .admin-navbar {
   height: 70px;
   background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 20px 0 10px;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
   position: fixed;
   top: 0;
@@ -16,29 +18,43 @@
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 12px;
+  height: 100%; 
 }
 
-.logo-text {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #2c3e50;
-  letter-spacing: 1px;
+.hospital-logo {
+  max-height: 85px; 
+  width: auto;      
+  object-fit: contain; 
+  display: block;
+  margin-left: 1px;
 }
 
-.logo-sub {
-  color: #3498db;
-}
+/* --- UPDATED SEARCH BOX STYLES --- */
 
 .search-box {
-  background: #f8f9fa;
+  background: #f4f6f9; /* Slightly lighter gray to match image */
   padding: 10px 20px;
-  border-radius: 12px;
+  border-radius: 24px; /* Pill-shape matched to image */
   display: flex;
   align-items: center;
-  width: 450px;
+  width: 600px; /* Made wider to match the proportion in the image */
   border: 1px solid #e9ecef;
   transition: all 0.3s ease;
+}
+
+/* NEW: Need to strip default input styles so it blends into the container */
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  margin-left: 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+.search-box input::placeholder {
+  color: #8fa0b3; /* Matched the grayish-blue placeholder color */
 }
 
 .search-box:focus-within {
@@ -47,33 +63,17 @@
   box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
 }
 
-.search-icon { color: #95a5a6; }
+.search-icon { 
+  color: #95a5a6; 
+  font-size: 16px;
+}
+
+/* --- REST OF YOUR STYLES --- */
 
 .user-profile {
   display: flex;
   align-items: center;
   gap: 15px;
-}
-
-.profile-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #34495e;
-  font-weight: 600;
-  padding: 5px 10px;
-  border-radius: 8px;
-}
-
-.profile-btn:hover { background-color: #f8f9fa; }
-
-.divider {
-  width: 1px;
-  height: 25px;
-  background-color: #dee2e6;
 }
 
 .logout-btn {

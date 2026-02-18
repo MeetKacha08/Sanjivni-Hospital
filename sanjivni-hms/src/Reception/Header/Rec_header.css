@@ -55,27 +55,6 @@
   gap: 15px;
 }
 
-.profile-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #34495e;
-  font-weight: 600;
-  padding: 5px 10px;
-  border-radius: 8px;
-}
-
-.profile-btn:hover { background-color: #f8f9fa; }
-
-.divider {
-  width: 1px;
-  height: 25px;
-  background-color: #dee2e6;
-}
-
 .logout-btn {
   color: #e74c3c;
   border: 1.5px solid #e74c3c;

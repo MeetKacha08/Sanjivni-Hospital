@@ -25,7 +25,7 @@ const Rec_sidebar = () => {
           </li>
 
           <li onClick={() => navigate('/reception/oldpatients')}>
-            <FaCalendarCheck className="icon" /> Old-Patients
+            <FaCalendarCheck className="icon" /> Our-Patients
           </li>
 
           <li onClick={() => navigate('/reception/admitrequests')}>

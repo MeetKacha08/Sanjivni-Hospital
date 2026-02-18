@@ -135,9 +135,23 @@
 
 // export default Room;
 
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaBed, FaProcedures, FaUserShield, FaHospitalAlt, FaEdit, FaTimes, FaUserCircle, FaCheckCircle, FaCalendarAlt, FaSignOutAlt, FaMicroscope } from 'react-icons/fa';
+import { 
+    FaBed, 
+    FaProcedures, 
+    FaUserShield, 
+    FaHospitalAlt, 
+    FaEdit, 
+    FaTimes, 
+    FaUserCircle, 
+    FaCheckCircle, 
+    FaCalendarAlt, 
+    FaSignOutAlt, 
+    FaMicroscope,
+    FaExclamationCircle
+} from 'react-icons/fa';
 
 const Room = () => {
     const [rooms, setRooms] = useState([]); 
@@ -162,50 +176,95 @@ const Room = () => {
 
     useEffect(() => {
         fetchData();
-        const interval = setInterval(fetchData, 5000); 
+        // Poll for real-time updates every 3 seconds
+        const interval = setInterval(fetchData, 3000); 
         return () => clearInterval(interval);
     }, []);
 
-    const fetchData = async () => {
-        try {
-            const roomsRes = await axios.get('http://localhost:5000/rooms');
-            setRooms(roomsRes.data);
-        } catch (err) {
-            console.error("Error fetching room data:", err);
-        }
+    const fetchData = () => {
+        // 🔥 SYNC LOGIC (Matches Roomstatus.js)
+        Promise.all([
+            axios.get('http://localhost:5000/rooms'),
+            axios.get('http://localhost:5000/admitted')
+        ])
+        .then(([roomsRes, patientsRes]) => {
+            const rawRooms = roomsRes.data;
+            const admittedPatients = patientsRes.data;
+
+            // Merge Data: Map the admitted patients onto the room grid
+            const mergedRooms = rawRooms.map(room => {
+                const patientsInThisType = admittedPatients.filter(p => p.roomType === room.name);
+
+                const updatedRoomList = room.roomList.map(bed => {
+                    // Match Bed ID
+                    const occupant = patientsInThisType.find(p => String(p.allocatedRoom) === String(bed.id));
+
+                    if (occupant) {
+                        // 🔴 Occupied by Patient
+                        return {
+                            ...bed,
+                            status: "Occupied",
+                            occupiedBy: occupant.fullName,
+                            admitDate: occupant.admissionTimestamp, // Use Timestamp
+                            patientId: occupant.id // Store ID for easy discharge
+                        };
+                    } else {
+                        // 🟢 Available / Maintenance
+                        return {
+                            ...bed,
+                            // If it was marked occupied but no patient found, reset to Available
+                            status: bed.status === "Occupied" ? "Available" : bed.status,
+                            occupiedBy: "none",
+                            admitDate: null,
+                            patientId: null
+                        };
+                    }
+                });
+
+                return { ...room, roomList: updatedRoomList };
+            });
+
+            setRooms(mergedRooms);
+        })
+        .catch(err => console.error("Error fetching data:", err));
     };
 
     // --- DISCHARGE LOGIC ---
-    const handleDischarge = async (roomCategory, bedId, patientName) => {
+    const handleDischarge = async (roomCategory, bedId, patientName, patientId) => {
         if (!window.confirm(`Are you sure you want to discharge ${patientName} from ${bedId}?`)) {
             return;
         }
 
         try {
-            // 1. Create the updated list for this specific room category
+            // 1. Update Room Data (Client Side Logic for immediate update, Server patch)
             const updatedRoomList = roomCategory.roomList.map(bed => {
                 if (bed.id === bedId) {
                     return {
                         ...bed,
                         status: "Available",
                         occupiedBy: "none",
-                        admitDate: null
+                        admitDate: null,
+                        patientId: null
                     };
                 }
                 return bed;
             });
 
-            // 2. Patch the 'rooms' endpoint with the new list
+            // Patch Rooms DB
             await axios.patch(`http://localhost:5000/rooms/${roomCategory.id}`, {
                 roomList: updatedRoomList
             });
 
-            // 3. Find and remove from 'admitted' list (Optional based on your workflow, but good for consistency)
-            const admittedRes = await axios.get(`http://localhost:5000/admitted?allocatedRoom=${bedId}`);
-            if (admittedRes.data.length > 0) {
-                const patientId = admittedRes.data[0].id;
-                // Move to history or just delete. Here we delete from 'admitted'
+            // 2. Delete from 'admitted' list
+            if (patientId) {
+                // If we mapped the ID successfully, delete directly
                 await axios.delete(`http://localhost:5000/admitted/${patientId}`);
+            } else {
+                // Fallback: Search by Room ID if patientId wasn't mapped
+                const admittedRes = await axios.get(`http://localhost:5000/admitted?allocatedRoom=${bedId}`);
+                if (admittedRes.data.length > 0) {
+                    await axios.delete(`http://localhost:5000/admitted/${admittedRes.data[0].id}`);
+                }
             }
 
             alert(`Patient ${patientName} discharged successfully.`);
@@ -243,7 +302,6 @@ const Room = () => {
                 });
             }
         } else if (newCap < currentCap) {
-            // Only slice if reducing (Note: Does not check if occupied for simplicity)
             updatedRoomList = updatedRoomList.slice(0, newCap);
         }
 
@@ -313,14 +371,16 @@ const Room = () => {
                                         {bed.status === "Occupied" ? (
                                             // 🔴 OCCUPIED SLOT
                                             <>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                    <FaUserCircle color="#e53e3e" size={24} />
-                                                    <div>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                    <FaUserCircle color="#e53e3e" size={26} />
+                                                    <div style={{lineHeight: '1.2'}}>
                                                         <span style={{ fontWeight: '600', fontSize: '13px', display: 'block', color: '#2d3748' }}>
                                                             {bed.occupiedBy}
                                                         </span>
                                                         <span style={{ fontSize: '10px', color: '#718096', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                                            <FaCalendarAlt size={10}/> {bed.admitDate || 'No Date'}
+                                                            <FaCalendarAlt size={10}/> 
+                                                            {/* Shorten the timestamp for display */}
+                                                            {bed.admitDate ? bed.admitDate.split(',')[0] : 'No Date'}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -332,7 +392,7 @@ const Room = () => {
                                                     
                                                     {/* DISCHARGE BUTTON */}
                                                     <button 
-                                                        onClick={() => handleDischarge(room, bed.id, bed.occupiedBy)}
+                                                        onClick={() => handleDischarge(room, bed.id, bed.occupiedBy, bed.patientId)}
                                                         style={dischargeIconBtn}
                                                         title="Discharge Patient"
                                                     >
@@ -340,7 +400,7 @@ const Room = () => {
                                                     </button>
                                                 </div>
                                             </>
-                                        ) : (
+                                        ) : bed.status === "Available" ? (
                                             // 🟢 AVAILABLE SLOT
                                             <>
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -351,6 +411,20 @@ const Room = () => {
                                                     </div>
                                                 </div>
                                                 <span style={{ ...bedLabel, backgroundColor: '#edf2f7', color: '#718096', border: '1px solid #cbd5e0' }}>
+                                                    {bed.id}
+                                                </span>
+                                            </>
+                                        ) : (
+                                             // ⚪ OTHER (Maintenance etc)
+                                             <>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                    <FaExclamationCircle color="#e67e22" size={20} />
+                                                    <div>
+                                                        <span style={{ fontWeight: '500', fontSize: '13px', color: '#e67e22', display: 'block' }}>{bed.status}</span>
+                                                        <span style={{ fontSize: '10px', color: '#718096' }}>Blocked</span>
+                                                    </div>
+                                                </div>
+                                                <span style={{ ...bedLabel, backgroundColor: '#fff3cd', color: '#e67e22', border: '1px solid #ffeeba' }}>
                                                     {bed.id}
                                                 </span>
                                             </>

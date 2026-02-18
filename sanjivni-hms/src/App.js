@@ -49,6 +49,7 @@ import Labreport from './LAB/Lab-Report/labreports';
 import BillLayout from './BILING/BillLayout';
 import BillingDashboard from './BILING/Biling-Dashboard/BilingDashboard';
 import Pandingbills from './BILING/Panding-Bills/panding_bills';
+import Admited_Patients from './BILING/Admited-Patients/admited_patients';
 
 // ================= Auth =================
 import Login from './Login';
@@ -172,6 +173,7 @@ function App() {
           <Route index element={<Navigate to="billdashboard" replace/>} />
           <Route path='billdashboard' element={<BillingDashboard/>}/>
           <Route path='pendingbills' element={<Pandingbills/>}/>
+          <Route path='admitedpatients' element={<Admited_Patients/>}/>
         </Route>
 
         {/* ================= Fallback ================= */}

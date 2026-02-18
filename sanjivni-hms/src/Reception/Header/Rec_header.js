@@ -1,7 +1,8 @@
-import './Rec_header.css';
 import React, { useState } from 'react';
-import { FaSearch, FaUserCircle, FaTimes } from 'react-icons/fa'; 
+import './Rec_header.css';
+import { FaSearch, FaTimes } from 'react-icons/fa'; // Removed FaUserCircle
 import { useNavigate } from 'react-router-dom';
+import sanjivniLogo from './sanjivni_full_logo.png';
 
 const Rec_header = ({ onSearchChange }) => {
     const navigate = useNavigate();
@@ -26,8 +27,7 @@ const Rec_header = ({ onSearchChange }) => {
             <nav className="admin-navbar">
                 <div className="nav-left">
                     <div className="logo-container">
-                        <img src="https://via.placeholder.com/40" alt="Logo" className="hospital-logo" />
-                        <span className="logo-text">SANJIVNI <span className="logo-sub">LAB</span></span>
+                        <img src={sanjivniLogo} alt="Sanjivni City Hospital Logo" className="hospital-logo" />                        
                     </div>
                 </div>
 
@@ -53,11 +53,7 @@ const Rec_header = ({ onSearchChange }) => {
 
                 <div className="nav-right">
                     <div className="user-profile">
-                        <button className="profile-btn" onClick={() => alert("Profile Settings")}>
-                            <FaUserCircle size={28} />
-                            <span className="user-name">Reception</span>
-                        </button>
-                        <div className="divider"></div>
+                        {/* Removed the profile button and divider */}
                         <button onClick={handleLogout} className="logout-btn">
                             Logout
                         </button>
@@ -68,10 +64,10 @@ const Rec_header = ({ onSearchChange }) => {
     );
 };
 
-// --- UPDATED STYLES FOR LONG SEARCH BAR ---
+// --- STYLES FOR LONG SEARCH BAR ---
 
 const centerWrapper = {
-    flex: 2, // Allows the center section to grow much larger than left/right
+    flex: 2, 
     display: 'flex',
     justifyContent: 'center',
     padding: '0 20px'
@@ -81,10 +77,10 @@ const headerSearchContainer = {
     display: 'flex', 
     alignItems: 'center', 
     backgroundColor: '#f1f4f8', 
-    padding: '10px 20px', // Slightly more padding for the longer bar
+    padding: '10px 20px', 
     borderRadius: '25px', 
-    width: '100%', // Take full width of the wrapper
-    maxWidth: '700px', // 🔥 Increased from 350px to 700px for a long look
+    width: '100%', 
+    maxWidth: '700px', 
     border: '1px solid #e2e8f0',
     transition: 'all 0.3s ease'
 };

@@ -1,15 +1,147 @@
-import React from 'react';
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import './BilingDashboard.css';
+
+// const BilingDashboard = () => {
+//   // --- STATE FOR LIVE STATS ---
+//   const [stats, setStats] = useState({
+//     todaysRevenue: 0,
+//     pendingBills: 0,
+//     admittedPatients: 0
+//   });
+
+//   useEffect(() => {
+//     fetchBillingStats();
+    
+//     // Auto-refresh stats every 5 seconds
+//     const interval = setInterval(fetchBillingStats, 5000);
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   const fetchBillingStats = async () => {
+//     try {
+//       // Fetch data in parallel
+//       const [pendingRes, admittedRes, oldPatientsRes] = await Promise.all([
+//         axios.get('http://localhost:5000/pendingBills').catch(() => ({ data: [] })),
+//         axios.get('http://localhost:5000/admitted').catch(() => ({ data: [] })),
+//         axios.get('http://localhost:5000/oldpatients').catch(() => ({ data: [] }))
+//       ]);
+
+//       // 1. Pending Bills Count
+//       const pendingCount = pendingRes.data.filter(b => b.patientId !== 'none').length;
+
+//       // 2. Admitted Patients Count
+//       const admittedCount = admittedRes.data.length;
+
+//       // 3. Today's Revenue Calculation (From Paid/Archived Bills)
+//       const todayString = new Date().toLocaleDateString();
+//       let dailyRevenue = 0;
+      
+//       oldPatientsRes.data.forEach(bill => {
+//         // Check if the bill was discharged/paid today
+//         if (bill.dischargeDate === todayString && bill.status === 'Paid') {
+//           dailyRevenue += Number(bill.grandTotal) || 0;
+//         }
+//       });
+
+//       // Update State
+//       setStats({
+//         todaysRevenue: dailyRevenue,
+//         pendingBills: pendingCount,
+//         admittedPatients: admittedCount
+//       });
+
+//     } catch (error) {
+//       console.error("Error fetching billing stats:", error);
+//     }
+//   };
+
+//   return (
+//     <div className="billing-wrapper">
+//       <header className="billing-header">
+//         <div className="header-left">
+//           <h1>Billing Dashboard</h1>
+//           <p>Financial Management System</p>
+//         </div>
+//       </header>
+
+//       {/* --- DYNAMIC STATS ROW --- */}
+//       <div className="billing-stats-row">
+//         <div className="mini-stat">
+//           Today's Revenue: <strong>₹{stats.todaysRevenue.toLocaleString('en-IN')}</strong>
+//         </div>
+//         <div className="mini-stat">
+//           Pending Bills: <strong>{stats.pendingBills}</strong>
+//         </div>
+//         <div className="mini-stat">
+//           Admitted Patients: <strong>{stats.admittedPatients}</strong>
+//         </div>
+//       </div>
+
+//     </div>
+//   );
+// };
+
+// export default BilingDashboard;
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './BilingDashboard.css';
-import { FaFileInvoiceDollar, FaUserTie, FaChartLine } from 'react-icons/fa';
+import { FaRupeeSign, FaFileInvoiceDollar, FaProcedures } from 'react-icons/fa';
 
 const BilingDashboard = () => {
-  // Navigation and handleLogout logic removed as requested
+  // --- STATE FOR LIVE STATS ---
+  const [stats, setStats] = useState({
+    todaysRevenue: 0,
+    pendingBills: 0,
+    admittedPatients: 0
+  });
 
-  const menuItems = [
-    { title: "Patient Billing", icon: <FaFileInvoiceDollar size={30} />, desc: "Generate invoices and manage payments" },
-    { title: "Salary Management", icon: <FaUserTie size={30} />, desc: "Staff payroll and doctor commissions" },
-    { title: "Expense Reports", icon: <FaChartLine size={30} />, desc: "Track hospital utility and supply costs" },
-  ];
+  useEffect(() => {
+    fetchBillingStats();
+    
+    // Auto-refresh stats every 5 seconds
+    const interval = setInterval(fetchBillingStats, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const fetchBillingStats = async () => {
+    try {
+      // Fetch data in parallel
+      const [pendingRes, admittedRes, oldPatientsRes] = await Promise.all([
+        axios.get('http://localhost:5000/pendingBills').catch(() => ({ data: [] })),
+        axios.get('http://localhost:5000/admitted').catch(() => ({ data: [] })),
+        axios.get('http://localhost:5000/oldpatients').catch(() => ({ data: [] }))
+      ]);
+
+      // 1. Pending Bills Count
+      const pendingCount = pendingRes.data.filter(b => b.patientId !== 'none').length;
+
+      // 2. Admitted Patients Count
+      const admittedCount = admittedRes.data.length;
+
+      // 3. Today's Revenue Calculation (From Paid/Archived Bills)
+      const todayString = new Date().toLocaleDateString();
+      let dailyRevenue = 0;
+      
+      oldPatientsRes.data.forEach(bill => {
+        // Check if the bill was discharged/paid today
+        if (bill.dischargeDate === todayString && bill.status === 'Paid') {
+          dailyRevenue += Number(bill.grandTotal) || 0;
+        }
+      });
+
+      // Update State
+      setStats({
+        todaysRevenue: dailyRevenue,
+        pendingBills: pendingCount,
+        admittedPatients: admittedCount
+      });
+
+    } catch (error) {
+      console.error("Error fetching billing stats:", error);
+    }
+  };
 
   return (
     <div className="billing-wrapper">
@@ -18,24 +150,44 @@ const BilingDashboard = () => {
           <h1>Billing Dashboard</h1>
           <p>Financial Management System</p>
         </div>
-        {/* Logout button element removed from here */}
       </header>
 
-      <div className="billing-stats-row">
-        <div className="mini-stat">Today's Revenue: <strong>$4,250</strong></div>
-        <div className="mini-stat">Pending Bills: <strong>12</strong></div>
-        <div className="mini-stat">Staff Paid: <strong>85%</strong></div>
-      </div>
-
-      <div className="billing-grid">
-        {menuItems.map((item, index) => (
-          <div key={index} className="billing-card">
-            <div className="icon-wrapper">{item.icon}</div>
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
-            <button className="action-link">Open Module</button>
+      {/* --- DYNAMIC STATS GRID (Big Cards) --- */}
+      <div className="billing-stats-grid">
+        
+        {/* Revenue Card */}
+        <div className="stat-card revenue-card">
+          <div className="icon-wrapper">
+            <FaRupeeSign />
           </div>
-        ))}
+          <div className="stat-info">
+            <h3>₹{stats.todaysRevenue.toLocaleString('en-IN')}</h3>
+            <p>Today's Revenue</p>
+          </div>
+        </div>
+
+        {/* Pending Bills Card */}
+        <div className="stat-card pending-card">
+          <div className="icon-wrapper">
+            <FaFileInvoiceDollar />
+          </div>
+          <div className="stat-info">
+            <h3>{stats.pendingBills}</h3>
+            <p>Pending Bills</p>
+          </div>
+        </div>
+
+        {/* Admitted Patients Card */}
+        <div className="stat-card admitted-card">
+          <div className="icon-wrapper">
+            <FaProcedures />
+          </div>
+          <div className="stat-info">
+            <h3>{stats.admittedPatients}</h3>
+            <p>Admitted Patients</p>
+          </div>
+        </div>
+
       </div>
     </div>
   );

@@ -26,15 +26,9 @@ const Bill_sidebar = () => {
           <li onClick={() => navigate('/billing/pendingbills')}>
             <FaRupeeSign className="icon" /> Panding-Bills
           </li>
-          {/*<li onClick={() => navigate('/bill/mypatient')}>
-            <FaUserInjured className="icon" /> My Patients
+          <li onClick={() => navigate('/billing/admitedpatients')}>
+            <FaRupeeSign className="icon" /> Admited-Patients
           </li>
-          <li onClick={() => navigate('/bill/admitedpatient')}>
-            <FaBed className="icon" /> Admited Patient
-          </li>
-           <li onClick={() => navigate('/bill/surgerybooking')}>
-            <FaSyringe className="icon" /> Surgery
-          </li> */}
 
         </ul>
       </aside>

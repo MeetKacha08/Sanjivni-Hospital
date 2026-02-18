@@ -15,20 +15,6 @@
       "admittedAt": "1998-09-11"
     },
     {
-      "id": "4e9f",
-      "fullName": "Stacy Buck",
-      "age": "15",
-      "contact": "11",
-      "email": "segit@mailinator.com",
-      "country": "India",
-      "state": "Rajasthan",
-      "city": "Jaipur",
-      "address": "Pariatur Eiusmod vo",
-      "department": "Orthopedic",
-      "doctorName": "Dr. Sarah Williams",
-      "admittedAt": "1979-12-11"
-    },
-    {
       "id": "4a5c",
       "fullName": "Ursula Garrett",
       "age": "32",
@@ -85,18 +71,18 @@
       "admittedAt": "2021-07-26"
     },
     {
-      "id": "cb1e",
-      "fullName": "Ivan Henson",
-      "age": "15",
-      "contact": "36",
-      "email": "bajelyzu@mailinator.com",
+      "id": "676f",
+      "fullName": "Selma Mullen",
+      "age": "74",
+      "contact": "1234567890",
+      "email": "xeroqe@mailinator.com",
       "country": "India",
-      "state": "Karnataka",
-      "city": "Bangalore",
-      "address": "Dolor vel at amet s",
+      "state": "Delhi",
+      "city": "",
+      "address": "Iste fugiat quia ra",
       "department": "Cardiology",
       "doctorName": "Dr. John Smith",
-      "admittedAt": "2015-03-07"
+      "admittedAt": "2026-02-17"
     }
   ],
   "doctors": [
@@ -418,8 +404,10 @@
       "department": "Orthopedic",
       "doctorName": "Dr. Sarah Williams",
       "admittedAt": "2004-03-14",
-      "status": "Approved",
-      "admittedDate": "06/01/2026"
+      "status": "Discharged",
+      "admittedDate": "06/01/2026",
+      "dischargeDate": "17/02/2026",
+      "finalBillId": "bec3"
     },
     {
       "id": "87a2",
@@ -468,8 +456,10 @@
       "doctorName": "Dr. John Smith",
       "admittedAt": "1987-10-16",
       "consultancyFees": 800,
-      "status": "Approved",
-      "admittedDate": "07/01/2026"
+      "status": "Discharged",
+      "admittedDate": "07/01/2026",
+      "dischargeDate": "03/02/2026",
+      "paymentMode": "Cash"
     },
     {
       "id": "fd66",
@@ -484,8 +474,10 @@
       "department": "Cardiology",
       "doctorName": "Dr. John Smith",
       "admittedAt": "1979-01-19",
-      "status": "Approved",
-      "admittedDate": "07/01/2026"
+      "status": "Discharged",
+      "admittedDate": "07/01/2026",
+      "dischargeDate": "12/02/2026",
+      "finalBillId": "ee65"
     },
     {
       "id": "b370",
@@ -500,8 +492,10 @@
       "department": "Cardiology",
       "doctorName": "Dr. John Smith",
       "admittedAt": "2026-01-23",
-      "status": "Approved",
-      "admittedDate": "21/01/2026"
+      "status": "Discharged",
+      "admittedDate": "21/01/2026",
+      "dischargeDate": "16/02/2026",
+      "finalBillId": "ccdc"
     },
     {
       "id": "a47d",
@@ -658,7 +652,7 @@
       "address": "Et esse amet eaque ",
       "department": "Orthopedic",
       "doctorName": "Dr. Sarah Williams",
-      "status": "Accepted",
+      "status": "Approved",
       "admittedAt": "22/01/2026",
       "consultancyFees": 800
     },
@@ -675,7 +669,7 @@
       "department": "Cardiology",
       "doctorName": "Dr. John Smith",
       "admittedAt": "2026-01-22",
-      "status": "Accepted",
+      "status": "Approved",
       "admittedDate": "22/01/2026"
     },
     {
@@ -691,8 +685,10 @@
       "department": "Cardiology",
       "doctorName": "Dr. John Smith",
       "admittedAt": "1976-09-02",
-      "status": "Approved",
-      "admittedDate": "22/01/2026"
+      "status": "Discharged",
+      "admittedDate": "22/01/2026",
+      "dischargeDate": "17/02/2026",
+      "finalBillId": "355a"
     },
     {
       "id": "f2ea",
@@ -755,8 +751,10 @@
       "department": "Cardiology",
       "doctorName": "Dr. John Smith",
       "admittedAt": "2026-01-23",
-      "status": "Accepted",
-      "admittedDate": "28/01/2026"
+      "status": "Discharged",
+      "admittedDate": "28/01/2026",
+      "dischargeDate": "12/02/2026",
+      "finalBillId": "de33"
     },
     {
       "id": "94cb",
@@ -773,6 +771,62 @@
       "admittedAt": "2015-07-01",
       "status": "Approved",
       "admittedDate": "28/01/2026"
+    },
+    {
+      "id": "b50d",
+      "fullName": "Rushita Patel",
+      "age": "22",
+      "contact": "1234567890",
+      "email": "rushita12@gmail.com",
+      "country": "India",
+      "state": "Gujarat",
+      "city": "Surat",
+      "address": "surat",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "admittedAt": "2026-02-02",
+      "status": "Discharged",
+      "admittedDate": "29/01/2026",
+      "dischargeDate": "17/02/2026",
+      "finalBillId": "78bd"
+    },
+    {
+      "id": "cb1e",
+      "fullName": "Ivan Henson",
+      "age": "15",
+      "contact": "36",
+      "email": "bajelyzu@mailinator.com",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Bangalore",
+      "address": "Dolor vel at amet s",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admittedAt": "2015-03-07",
+      "status": "Discharged",
+      "admittedDate": "16/02/2026",
+      "consultancyFee": "2500",
+      "paymentMode": "UPI",
+      "dischargeDate": "16/02/2026",
+      "finalBillId": "7956"
+    },
+    {
+      "id": "4e9f",
+      "fullName": "Stacy Buck",
+      "age": "15",
+      "contact": "11",
+      "email": "segit@mailinator.com",
+      "country": "India",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "address": "Pariatur Eiusmod vo",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "admittedAt": "1979-12-11",
+      "status": "Accepted",
+      "admittedDate": "16/02/2026",
+      "consultancyFee": "1800",
+      "paymentMode": "Cash"
     }
   ],
   "labStaff": [
@@ -871,91 +925,6 @@
   ],
   "admitted": [
     {
-      "id": "383d",
-      "fullName": "Jana Wise",
-      "age": "52",
-      "contact": "47",
-      "email": "wuxiwosel@mailinator.com",
-      "country": "India",
-      "state": "Gujarat",
-      "city": "Surat",
-      "address": "Nulla maxime accusam",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "1987-10-16",
-      "consultancyFees": 800,
-      "status": "Approved",
-      "admittedDate": "07/01/2026",
-      "roomType": "ICU",
-      "allocatedRoom": "ICU-02",
-      "admissionStatus": "Admitted",
-      "admissionTimestamp": "28/01/2026, 11:27:44",
-      "admittedBy": "Dr. John Smith"
-    },
-    {
-      "id": "fd66",
-      "fullName": "Rose Kelley",
-      "age": "66",
-      "contact": "20",
-      "email": "bezahajix@mailinator.com",
-      "country": "India",
-      "state": "Gujarat",
-      "city": "Ahmedabad",
-      "address": "Rerum porro qui eu v",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "1979-01-19",
-      "status": "Approved",
-      "admittedDate": "07/01/2026",
-      "roomType": "ICU",
-      "allocatedRoom": "ICU-04",
-      "admissionStatus": "Admitted",
-      "admissionTimestamp": "28/01/2026, 11:35:58",
-      "admittedBy": "Dr. John Smith"
-    },
-    {
-      "id": "b370",
-      "fullName": "Meet Kacha",
-      "age": "22",
-      "contact": "9512588231",
-      "email": "meet12@gmail.com",
-      "country": "India",
-      "state": "Gujarat",
-      "city": "Ahmedabad",
-      "address": "Rajkot",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "2026-01-23",
-      "status": "Approved",
-      "admittedDate": "21/01/2026",
-      "roomType": "ICU",
-      "allocatedRoom": "ICU-01",
-      "admissionStatus": "Admitted",
-      "admissionTimestamp": "28/01/2026, 11:36:27",
-      "admittedBy": "Dr. John Smith"
-    },
-    {
-      "id": "d48f",
-      "fullName": "Ezra Mcclure",
-      "age": "97",
-      "contact": "4134324324",
-      "email": "qydu@mailinator.com",
-      "country": "India",
-      "state": "Delhi",
-      "city": "New Delhi",
-      "address": "Dolorem quasi aperia",
-      "department": "Cardiology",
-      "doctorName": "Dr. John Smith",
-      "admittedAt": "2026-01-21",
-      "status": "Approved",
-      "admittedDate": "21/01/2026",
-      "roomType": "Private Room",
-      "allocatedRoom": "PR-01",
-      "admissionStatus": "Admitted",
-      "admissionTimestamp": "28/01/2026, 19:01:40",
-      "admittedBy": "Dr. John Smith"
-    },
-    {
       "id": "94cb",
       "fullName": "Flynn Richardson",
       "age": "26",
@@ -987,63 +956,73 @@
       "roomList": [
         {
           "id": "ICU-01",
-          "status": "Occupied",
-          "occupiedBy": "Meet Kacha",
-          "admitDate": "28/01/2026"
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null,
+          "patientId": null
         },
         {
           "id": "ICU-02",
-          "status": "Occupied",
-          "occupiedBy": "Jana Wise",
-          "admitDate": "28/01/2026"
+          "status": "Available",
+          "occupiedBy": "none",
+          "admitDate": null,
+          "patientId": null
         },
         {
           "id": "ICU-03",
-          "status": "Available",
-          "occupiedBy": "none",
-          "admitDate": null
+          "status": "Occupied",
+          "occupiedBy": "Rushita Patel",
+          "admitDate": "29/01/2026, 11:35:30",
+          "patientId": "b50d"
         },
         {
           "id": "ICU-04",
           "status": "Occupied",
-          "occupiedBy": "Rose Kelley",
-          "admitDate": "28/01/2026"
+          "occupiedBy": "Ciaran Bryan",
+          "admitDate": "17/02/2026",
+          "patientId": null
         },
         {
           "id": "ICU-05",
           "status": "Available",
           "occupiedBy": "none",
-          "admitDate": null
+          "admitDate": null,
+          "patientId": null
         },
         {
           "id": "ICU-06",
           "status": "Available",
           "occupiedBy": "none",
-          "admitDate": null
+          "admitDate": null,
+          "patientId": null
         },
         {
           "id": "ICU-07",
-          "status": "Available",
-          "occupiedBy": "none",
-          "admitDate": null
+          "status": "Occupied",
+          "occupiedBy": "Meet Kacha",
+          "admitDate": "16/02/2026",
+          "patientId": null
         },
         {
           "id": "ICU-08",
           "status": "Available",
           "occupiedBy": "none",
-          "admitDate": null
+          "admitDate": null,
+          "patientId": null
         },
         {
           "id": "ICU-09",
           "status": "Occupied",
           "occupiedBy": "Flynn Richardson",
-          "admitDate": "28/01/2026"
+          "admitDate": "28/01/2026, 19:19:05",
+          "patientId": "94cb"
         },
         {
           "id": "ICU-10",
-          "status": "Available",
-          "occupiedBy": "none",
-          "admitDate": null
+          "status": "Occupied",
+          "occupiedBy": "Rose Kelley",
+          "admitDate": "03/02/2026, 19:42:06",
+          "patientId": "fd66"
         }
       ]
     },
@@ -1062,15 +1041,15 @@
         },
         {
           "id": "PR-02",
-          "status": "Available",
-          "occupiedBy": "none",
-          "admitDate": null
+          "status": "Occupied",
+          "occupiedBy": "Lucian Sloan",
+          "admitDate": "29/01/2026"
         },
         {
           "id": "PR-03",
-          "status": "Available",
-          "occupiedBy": "none",
-          "admitDate": null
+          "status": "Occupied",
+          "occupiedBy": "Forrest Roach",
+          "admitDate": "02/02/2026"
         },
         {
           "id": "PR-04",
@@ -1110,9 +1089,9 @@
         },
         {
           "id": "PR-10",
-          "status": "Available",
-          "occupiedBy": "none",
-          "admitDate": null
+          "status": "Occupied",
+          "occupiedBy": "Ivan Henson",
+          "admitDate": "16/02/2026"
         },
         {
           "id": "PR-11",
@@ -1173,9 +1152,9 @@
         },
         {
           "id": "GR-04",
-          "status": "Available",
-          "occupiedBy": "none",
-          "admitDate": null
+          "status": "Occupied",
+          "occupiedBy": "Rushita Patel",
+          "admitDate": "29/01/2026"
         },
         {
           "id": "GR-05",
@@ -1819,9 +1798,9 @@
       "patientId": "383d",
       "patientName": "Jana Wise",
       "doctorName": "Dr. John Smith",
-      "date": "29/01/2026, 02:21:58",
-      "diagnosis": "ubbvi",
-      "medicines": "bbvhkvbhvi",
+      "date": "29/01/2026, 10:10:10",
+      "diagnosis": "ok",
+      "medicines": "no",
       "advice": "",
       "id": "7a8b"
     },
@@ -1834,6 +1813,36 @@
       "diagnosis": "bjkbkjbujbiudjkbvk",
       "medicines": "jbkjb",
       "advice": ""
+    },
+    {
+      "patientId": "b50d",
+      "patientName": "Rushita Patel",
+      "doctorName": "Dr. Sarah Williams",
+      "date": "29/01/2026, 10:26:17",
+      "diagnosis": "assign reports",
+      "medicines": "nothing\nparacita mol 1-0-1",
+      "advice": "",
+      "id": "dfae"
+    },
+    {
+      "id": "d3be",
+      "patientId": "94a4",
+      "patientName": "Ciaran Bryan",
+      "doctorName": "Dr. John Smith",
+      "date": "03/02/2026, 10:24:42",
+      "diagnosis": "bgjdbvhvhj",
+      "medicines": "hvjhvbjhvjhv",
+      "advice": "jhvhhvjgv jlv jg"
+    },
+    {
+      "id": "ce97",
+      "patientId": "2094",
+      "patientName": "Aiko Hester",
+      "doctorName": "Dr. John Smith",
+      "date": "03/02/2026, 11:56:51",
+      "diagnosis": "bjhvj",
+      "medicines": "vjhvjv",
+      "advice": "jvjv"
     }
   ],
   "surgery": [
@@ -1887,6 +1896,84 @@
       "surgeryDate": "2026-01-31",
       "surgeryTime": "02:40",
       "bookedAt": "29/01/2026, 02:36:28",
+      "status": "Completed"
+    },
+    {
+      "id": "2213",
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "patientAge": "52",
+      "patientDept": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "surgeryType": "Pericardiectomy",
+      "surgeryDate": "2026-01-29",
+      "surgeryTime": "10:10",
+      "bookedAt": "29/01/2026, 10:05:23",
+      "status": "Completed"
+    },
+    {
+      "id": "a016",
+      "patientId": "b50d",
+      "patientName": "Rushita Patel",
+      "patientAge": "22",
+      "patientDept": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "surgeryType": "Insertion of Ventricular Assist Devices (VAD)",
+      "surgeryDate": "2026-02-05",
+      "surgeryTime": "11:39",
+      "bookedAt": "29/01/2026, 11:35:42",
+      "status": "Completed"
+    },
+    {
+      "id": "2a27",
+      "patientId": "b50d",
+      "patientName": "Rushita Patel",
+      "patientAge": "22",
+      "patientDept": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "surgeryType": "Pacemaker Insertion",
+      "surgeryDate": "2026-01-31",
+      "surgeryTime": "10:00",
+      "bookedAt": "30/01/2026, 11:02:51",
+      "status": "Completed"
+    },
+    {
+      "id": "ff83",
+      "patientId": "2094",
+      "patientName": "Aiko Hester",
+      "patientAge": "59",
+      "patientDept": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "surgeryType": "Pericardiectomy",
+      "surgeryDate": "2026-02-25",
+      "surgeryTime": "10:00",
+      "bookedAt": "03/02/2026, 11:59:22",
+      "status": "Completed"
+    },
+    {
+      "id": "54c4",
+      "patientId": "cb1e",
+      "patientName": "Ivan Henson",
+      "patientAge": "15",
+      "patientDept": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "surgeryType": "Aortic Aneurysm Repair",
+      "surgeryDate": "2026-02-19",
+      "surgeryTime": "01:43",
+      "bookedAt": "16/02/2026, 10:43:14",
+      "status": "Completed"
+    },
+    {
+      "id": "73c6",
+      "patientId": "94a4",
+      "patientName": "Ciaran Bryan",
+      "patientAge": "18",
+      "patientDept": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "surgeryType": "Repair of Congenital Heart Defects",
+      "surgeryDate": "2026-02-18",
+      "surgeryTime": "10:00",
+      "bookedAt": "17/02/2026, 11:58:02",
       "status": "Completed"
     }
   ],
@@ -2029,7 +2116,9 @@
           "reportFees": "10000"
         }
       ],
-      "status": "Pending"
+      "status": "Completed",
+      "resultNote": "ygjkuyvjhvicvjh",
+      "completedAt": "16/02/2026, 11:39:22"
     },
     {
       "id": "4f6a",
@@ -2214,52 +2303,991 @@
       "status": "Completed",
       "resultNote": "compleated all reports\nall good\n",
       "completedAt": "29/01/2026, 02:13:45"
+    },
+    {
+      "id": "7150",
+      "patientId": "383d",
+      "patientName": "Jana Wise",
+      "doctorName": "Dr. John Smith",
+      "date": "29/01/2026",
+      "assignedReports": [
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400",
+          "status": false
+        },
+        {
+          "id": "ba74",
+          "reportName": "WBC",
+          "reportFees": "4500",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "ok",
+      "completedAt": "29/01/2026, 10:04:40"
+    },
+    {
+      "id": "c9d5",
+      "patientId": "c3e7",
+      "patientName": "Noelani Mckee",
+      "doctorName": "Dr. Sarah Williams",
+      "date": "29/01/2026",
+      "assignedReports": [
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400",
+          "status": false
+        },
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000",
+          "status": false
+        }
+      ],
+      "status": "Pending",
+      "resultNote": ""
+    },
+    {
+      "id": "1f0a",
+      "patientId": "b50d",
+      "patientName": "Rushita Patel",
+      "doctorName": "Dr. Sarah Williams",
+      "date": "29/01/2026",
+      "assignedReports": [
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400",
+          "status": false
+        },
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "report done ",
+      "completedAt": "29/01/2026, 10:25:25"
+    },
+    {
+      "id": "a6e8",
+      "patientId": "b50d",
+      "patientName": "Rushita Patel",
+      "doctorName": "Dr. Sarah Williams",
+      "date": "29/01/2026",
+      "assignedReports": [
+        {
+          "id": "3cfc",
+          "reportName": "ECG",
+          "reportFees": "5000",
+          "status": false
+        },
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400",
+          "status": false
+        },
+        {
+          "id": "5621",
+          "reportName": "MRI",
+          "reportFees": "8000",
+          "status": false
+        },
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000",
+          "status": false
+        },
+        {
+          "id": "20b6",
+          "reportName": "X-Ray",
+          "reportFees": "6000",
+          "status": false
+        },
+        {
+          "id": "afdd",
+          "reportName": "RBC",
+          "reportFees": "4500",
+          "status": false
+        },
+        {
+          "id": "ba74",
+          "reportName": "WBC",
+          "reportFees": "4500",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "all done",
+      "completedAt": "29/01/2026, 10:30:31"
+    },
+    {
+      "id": "31a1",
+      "patientId": "94a4",
+      "patientName": "Ciaran Bryan",
+      "doctorName": "Dr. John Smith",
+      "date": "03/02/2026",
+      "assignedReports": [
+        {
+          "id": "5621",
+          "reportName": "MRI",
+          "reportFees": "8000",
+          "status": false
+        },
+        {
+          "id": "20b6",
+          "reportName": "X-Ray",
+          "reportFees": "6000",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "all good",
+      "completedAt": "03/02/2026, 10:25:45"
+    },
+    {
+      "id": "49a2",
+      "patientId": "2094",
+      "patientName": "Aiko Hester",
+      "doctorName": "Dr. John Smith",
+      "date": "03/02/2026",
+      "assignedReports": [
+        {
+          "id": "3cfc",
+          "reportName": "ECG",
+          "reportFees": "5000",
+          "status": false
+        },
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000",
+          "status": false
+        },
+        {
+          "id": "afdd",
+          "reportName": "RBC",
+          "reportFees": "4500",
+          "status": false
+        },
+        {
+          "id": "ba74",
+          "reportName": "WBC",
+          "reportFees": "4500",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "all goos\n",
+      "completedAt": "03/02/2026, 11:57:44"
+    },
+    {
+      "id": "fdd1",
+      "patientId": "cb1e",
+      "patientName": "Ivan Henson",
+      "doctorName": "Dr. John Smith",
+      "date": "16/02/2026",
+      "assignedReports": [
+        {
+          "id": "3cfc",
+          "reportName": "ECG",
+          "reportFees": "5000",
+          "status": false
+        },
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400",
+          "status": false
+        }
+      ],
+      "status": "Pending",
+      "resultNote": ""
+    },
+    {
+      "id": "cf62",
+      "patientId": "94a4",
+      "patientName": "Ciaran Bryan",
+      "doctorName": "Dr. John Smith",
+      "date": "17/02/2026",
+      "assignedReports": [
+        {
+          "id": "b8db",
+          "reportName": "Bool Sugar",
+          "reportFees": "400",
+          "status": false
+        },
+        {
+          "id": "f83f",
+          "reportName": "Full Body",
+          "reportFees": "10000",
+          "status": false
+        }
+      ],
+      "status": "Completed",
+      "resultNote": "ok",
+      "completedAt": "17/02/2026, 11:59:11"
     }
   ],
-  "pendingBills": [
+  "pendingBills": [],
+  "oldpatients": [
     {
-      "Bill-id": "none",
-      "patientId": "none",
-      "patientName": "none",
-      "age": "0",
-      "department": "none",
-      "doctorName": "none",
-      "date": "none",
-      "consultancyFees": "0",
+      "id": "ac23",
+      "patientId": "2094",
+      "fullName": "Aiko Hester",
+      "contact": "93",
+      "email": "dyfejuru@mailinator.com",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "consultancyFees": "2500",
       "services": [
         {
           "room": [
             {
-              "id": "none",
-              "roomType": "none",
-              "daysStayed": "0",
-              "ratePerDay": "0",
-              "amount": "0"
+              "roomType": "ICU",
+              "daysStayed": 1,
+              "ratePerDay": "10000",
+              "amount": 10000
             }
           ],
           "Lab Tests": [
             {
-              "id": "none",
-              "testName": "none",
-              "testFees": "0"
+              "testName": "ECG",
+              "testFees": 5000
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "RBC",
+              "testFees": 4500
+            },
+            {
+              "testName": "WBC",
+              "testFees": 4500
             }
           ],
           "Surgery": [
             {
-              "id": "none",
-              "surgeryType": "none",
-              "surgeryFees": "0"
+              "surgeryType": "Pericardiectomy",
+              "surgeryFees": 200000
             }
           ]
         }
       ],
-      "totalAmount": "0",
+      "totalAmount": 236500,
       "gst": "5%",
-      "gstAmount": "0",
-      "grandTotal": "0",
-      "status": "unpaid"
+      "gstAmount": 11825,
+      "grandTotal": 248325,
+      "status": "Paid",
+      "dischargeDate": "03/02/2026",
+      "paymentMode": "Cash",
+      "archivedAt": "03/02/2026, 19:30:25"
+    },
+    {
+      "id": "de33",
+      "patientId": "2094",
+      "fullName": "Aiko Hester",
+      "contact": "93",
+      "email": "dyfejuru@mailinator.com",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "consultancyFees": "2500",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "ICU",
+              "daysStayed": 27,
+              "ratePerDay": "10000",
+              "amount": 270000
+            }
+          ],
+          "Lab Tests": [
+            {
+              "testName": "ECG",
+              "testFees": 5000
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "RBC",
+              "testFees": 4500
+            },
+            {
+              "testName": "WBC",
+              "testFees": 4500
+            }
+          ],
+          "Surgery": [
+            {
+              "surgeryType": "Pericardiectomy",
+              "surgeryFees": 0
+            }
+          ]
+        }
+      ],
+      "totalAmount": 296500,
+      "gst": "5%",
+      "gstAmount": 14825,
+      "grandTotal": 311325,
+      "status": "Paid",
+      "dischargeDate": "12/02/2026",
+      "paymentMode": "Card",
+      "archivedAt": "12/02/2026, 11:28:23"
+    },
+    {
+      "id": "de33",
+      "patientId": "2094",
+      "fullName": "Aiko Hester",
+      "contact": "93",
+      "email": "dyfejuru@mailinator.com",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "consultancyFees": "2500",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "ICU",
+              "daysStayed": 27,
+              "ratePerDay": "10000",
+              "amount": 270000
+            }
+          ],
+          "Lab Tests": [
+            {
+              "testName": "ECG",
+              "testFees": 5000
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "RBC",
+              "testFees": 4500
+            },
+            {
+              "testName": "WBC",
+              "testFees": 4500
+            }
+          ],
+          "Surgery": [
+            {
+              "surgeryType": "Pericardiectomy",
+              "surgeryFees": 0
+            }
+          ]
+        }
+      ],
+      "totalAmount": 296500,
+      "gst": "5%",
+      "gstAmount": 14825,
+      "grandTotal": 311325,
+      "status": "Paid",
+      "dischargeDate": "12/02/2026",
+      "paymentMode": "Card",
+      "archivedAt": "12/02/2026, 11:28:34"
+    },
+    {
+      "id": "ee65",
+      "patientId": "fd66",
+      "fullName": "Rose Kelley",
+      "contact": "20",
+      "email": "bezahajix@mailinator.com",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admissionTimestamp": "03/02/2026, 19:42:06",
+      "consultancyFees": "2500",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "ICU",
+              "daysStayed": 9,
+              "ratePerDay": "10000",
+              "amount": 90000
+            }
+          ],
+          "Lab Tests": [
+            {
+              "testName": "ECG",
+              "testFees": 5000
+            },
+            {
+              "testName": "Bool Sugar",
+              "testFees": 400
+            },
+            {
+              "testName": "MRI",
+              "testFees": 8000
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "X-Ray",
+              "testFees": 6000
+            },
+            {
+              "testName": "RBC",
+              "testFees": 4500
+            }
+          ],
+          "Surgery": []
+        }
+      ],
+      "totalAmount": 126400,
+      "gst": "5%",
+      "gstAmount": 6320,
+      "grandTotal": 132720,
+      "status": "Paid",
+      "dischargeDate": "12/02/2026",
+      "paymentMode": "Card",
+      "archivedAt": "12/02/2026, 11:32:02"
+    },
+    {
+      "id": "de33",
+      "patientId": "2094",
+      "fullName": "Aiko Hester",
+      "contact": "93",
+      "email": "dyfejuru@mailinator.com",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "consultancyFees": "2500",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "ICU",
+              "daysStayed": 27,
+              "ratePerDay": "10000",
+              "amount": 270000
+            }
+          ],
+          "Lab Tests": [
+            {
+              "testName": "ECG",
+              "testFees": 5000
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "RBC",
+              "testFees": 4500
+            },
+            {
+              "testName": "WBC",
+              "testFees": 4500
+            }
+          ],
+          "Surgery": [
+            {
+              "surgeryType": "Pericardiectomy",
+              "surgeryFees": 0
+            }
+          ]
+        }
+      ],
+      "totalAmount": 296500,
+      "gst": "5%",
+      "gstAmount": 14825,
+      "grandTotal": 311325,
+      "status": "Paid",
+      "dischargeDate": "12/02/2026",
+      "paymentMode": "Cash",
+      "archivedAt": "12/02/2026, 11:32:13"
+    },
+    {
+      "id": "de33",
+      "patientId": "2094",
+      "fullName": "Aiko Hester",
+      "contact": "93",
+      "email": "dyfejuru@mailinator.com",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "consultancyFees": "2500",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "ICU",
+              "daysStayed": 27,
+              "ratePerDay": "10000",
+              "amount": 270000
+            }
+          ],
+          "Lab Tests": [
+            {
+              "testName": "ECG",
+              "testFees": 5000
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "RBC",
+              "testFees": 4500
+            },
+            {
+              "testName": "WBC",
+              "testFees": 4500
+            }
+          ],
+          "Surgery": [
+            {
+              "surgeryType": "Pericardiectomy",
+              "surgeryFees": 0
+            }
+          ]
+        }
+      ],
+      "totalAmount": 296500,
+      "gst": "5%",
+      "gstAmount": 14825,
+      "grandTotal": 311325,
+      "status": "Paid",
+      "dischargeDate": "12/02/2026",
+      "paymentMode": "Cash",
+      "archivedAt": "12/02/2026, 11:40:23"
+    },
+    {
+      "id": "7956",
+      "patientId": "cb1e",
+      "fullName": "Ivan Henson",
+      "contact": "36",
+      "email": "bajelyzu@mailinator.com",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admissionTimestamp": "16/02/2026, 10:42:16",
+      "consultancyFees": "2500",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "Private Room",
+              "daysStayed": 1,
+              "ratePerDay": 0,
+              "amount": 0
+            }
+          ],
+          "Lab Tests": [],
+          "Surgery": [
+            {
+              "surgeryType": "Aortic Aneurysm Repair",
+              "surgeryFees": 400000
+            }
+          ]
+        }
+      ],
+      "totalAmount": 402500,
+      "gst": "5%",
+      "gstAmount": 20125,
+      "grandTotal": 422625,
+      "status": "Paid",
+      "dischargeDate": "16/02/2026",
+      "paymentMode": "Cash",
+      "archivedAt": "16/02/2026, 11:51:18"
+    },
+    {
+      "id": "ccdc",
+      "patientId": "b370",
+      "fullName": "Meet Kacha",
+      "contact": "9512588231",
+      "email": "meet12@gmail.com",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admissionTimestamp": "16/02/2026, 12:12:02",
+      "consultancyFees": "2500",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "ICU",
+              "daysStayed": 1,
+              "ratePerDay": "10000",
+              "amount": 10000
+            }
+          ],
+          "Lab Tests": [
+            {
+              "testName": "MRI",
+              "testFees": 8000
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "RBC",
+              "testFees": 4500
+            }
+          ],
+          "Surgery": []
+        }
+      ],
+      "totalAmount": 35000,
+      "gst": "5%",
+      "gstAmount": 1750,
+      "grandTotal": 36750,
+      "status": "Paid",
+      "dischargeDate": "16/02/2026",
+      "paymentMode": "Cash",
+      "archivedAt": "16/02/2026, 12:21:49"
+    },
+    {
+      "id": "bec3",
+      "patientId": "cee0",
+      "fullName": "Lucian Sloan",
+      "contact": "15",
+      "email": "xyzy@mailinator.com",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "admissionTimestamp": "29/01/2026, 10:28:40",
+      "consultancyFees": "1800",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "Private Room",
+              "daysStayed": 19,
+              "ratePerDay": 0,
+              "amount": 0
+            }
+          ],
+          "Lab Tests": [
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "X-Ray",
+              "testFees": 6000
+            }
+          ],
+          "Surgery": []
+        }
+      ],
+      "totalAmount": 17800,
+      "gst": "5%",
+      "gstAmount": 890,
+      "grandTotal": 18690,
+      "status": "Paid",
+      "dischargeDate": "17/02/2026",
+      "paymentMode": "Cash",
+      "archivedAt": "17/02/2026, 10:20:11"
+    },
+    {
+      "id": "78bd",
+      "patientId": "b50d",
+      "fullName": "Rushita Patel",
+      "contact": "1234567890",
+      "email": "rushita12@gmail.com",
+      "department": "Orthopedic",
+      "doctorName": "Dr. Sarah Williams",
+      "admissionTimestamp": "29/01/2026, 11:35:30",
+      "consultancyFees": "1800",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "ICU",
+              "daysStayed": 19,
+              "ratePerDay": "10000",
+              "amount": 190000
+            }
+          ],
+          "Lab Tests": [
+            {
+              "testName": "Bool Sugar",
+              "testFees": 400
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "ECG",
+              "testFees": 5000
+            },
+            {
+              "testName": "Bool Sugar",
+              "testFees": 400
+            },
+            {
+              "testName": "MRI",
+              "testFees": 8000
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            },
+            {
+              "testName": "X-Ray",
+              "testFees": 6000
+            },
+            {
+              "testName": "RBC",
+              "testFees": 4500
+            },
+            {
+              "testName": "WBC",
+              "testFees": 4500
+            }
+          ],
+          "Surgery": [
+            {
+              "surgeryType": "Insertion of Ventricular Assist Devices (VAD)",
+              "surgeryFees": 2200000
+            },
+            {
+              "surgeryType": "Pacemaker Insertion",
+              "surgeryFees": 200000
+            }
+          ]
+        }
+      ],
+      "totalAmount": 2640600,
+      "gst": "5%",
+      "gstAmount": 132030,
+      "grandTotal": 2772630,
+      "status": "Paid",
+      "dischargeDate": "17/02/2026",
+      "paymentMode": "Cash",
+      "archivedAt": "17/02/2026, 10:22:10"
+    },
+    {
+      "id": "355a",
+      "patientId": "94a4",
+      "fullName": "Ciaran Bryan",
+      "contact": "6",
+      "email": "kafev@mailinator.com",
+      "department": "Cardiology",
+      "doctorName": "Dr. John Smith",
+      "admissionTimestamp": "17/02/2026, 11:57:19",
+      "consultancyFees": "2500",
+      "services": [
+        {
+          "room": [
+            {
+              "roomType": "ICU",
+              "daysStayed": 1,
+              "ratePerDay": "10000",
+              "amount": 10000
+            }
+          ],
+          "Lab Tests": [
+            {
+              "testName": "MRI",
+              "testFees": 8000
+            },
+            {
+              "testName": "X-Ray",
+              "testFees": 6000
+            },
+            {
+              "testName": "Bool Sugar",
+              "testFees": 400
+            },
+            {
+              "testName": "Full Body",
+              "testFees": 10000
+            }
+          ],
+          "Surgery": [
+            {
+              "surgeryType": "Repair of Congenital Heart Defects",
+              "surgeryFees": 150000
+            }
+          ]
+        }
+      ],
+      "totalAmount": 186900,
+      "gst": "5%",
+      "gstAmount": 9345,
+      "grandTotal": 196245,
+      "status": "Paid",
+      "dischargeDate": "17/02/2026",
+      "paymentMode": "UPI",
+      "archivedAt": "17/02/2026, 12:02:30"
     }
   ],
-  "oldpatients": [],
-  "admitRequests": []
+  "admitRequests": [],
+  "consultancyFees": [
+    {
+      "id": "1",
+      "department": "Cardiology",
+      "fees": "2500"
+    },
+    {
+      "id": "2",
+      "department": "Orthopedic",
+      "fees": "1800"
+    },
+    {
+      "id": "3",
+      "department": "Neurology",
+      "fees": "4500"
+    },
+    {
+      "id": "4",
+      "department": "Pediatrics",
+      "fees": "2000"
+    },
+    {
+      "id": "5",
+      "department": "Dermatology",
+      "fees": "1800"
+    },
+    {
+      "id": "6",
+      "department": "Oncology",
+      "fees": "1500"
+    },
+    {
+      "id": "7",
+      "department": "ENT",
+      "fees": "2000"
+    },
+    {
+      "id": "8",
+      "department": "Gastroenterology",
+      "fees": "2500"
+    },
+    {
+      "id": "9",
+      "department": "Urology",
+      "fees": "2300"
+    }
+  ],
+  "RoomFees": [
+    {
+      "id": "1",
+      "roomType": "General Ward",
+      "ratePerDay": "1000"
+    },
+    {
+      "id": "2",
+      "roomType": "General-Room",
+      "ratePerDay": "3000"
+    },
+    {
+      "id": "3",
+      "roomType": "Private-Room",
+      "ratePerDay": "5000"
+    },
+    {
+      "id": "4",
+      "roomType": "ICU",
+      "ratePerDay": "10000"
+    }
+  ],
+  "SurgeryFees": [
+    {
+      "id": "1",
+      "surgeryType": "Coronary Artery Bypass Grafting (CABG)",
+      "surgeryFees": "250000"
+    },
+    {
+      "id": "2",
+      "surgeryType": "Coronary Angioplasty and Stenting",
+      "surgeryFees": "180000"
+    },
+    {
+      "id": "3",
+      "surgeryType": "Atherectomy",
+      "surgeryFees": "220000"
+    },
+    {
+      "id": "4",
+      "surgeryType": "Aortic Valve Replacement and Repair",
+      "surgeryFees": "350000"
+    },
+    {
+      "id": "5",
+      "surgeryType": "Mitral Valve Repair and Replacement",
+      "surgeryFees": "300000"
+    },
+    {
+      "id": "6",
+      "surgeryType": "Tricuspid Valve Replacement and Repair",
+      "surgeryFees": "280000"
+    },
+    {
+      "id": "7",
+      "surgeryType": "Pulmonary Valve Replacement and Repair",
+      "surgeryFees": "260000"
+    },
+    {
+      "id": "8",
+      "surgeryType": "Transcatheter Aortic Valve Replacement (TAVR)",
+      "surgeryFees": "1800000"
+    },
+    {
+      "id": "9",
+      "surgeryType": "Implantable Cardioverter-Defibrillator (ICD) Insertion",
+      "surgeryFees": "450000"
+    },
+    {
+      "id": "10",
+      "surgeryType": "Pacemaker Insertion",
+      "surgeryFees": "200000"
+    },
+    {
+      "id": "11",
+      "surgeryType": "Catheter Ablation",
+      "surgeryFees": "150000"
+    },
+    {
+      "id": "12",
+      "surgeryType": "Heart Transplant",
+      "surgeryFees": "2500000"
+    },
+    {
+      "id": "13",
+      "surgeryType": "Insertion of Ventricular Assist Devices (VAD)",
+      "surgeryFees": "2200000"
+    },
+    {
+      "id": "14",
+      "surgeryType": "Repair of Congenital Heart Defects",
+      "surgeryFees": "150000"
+    },
+    {
+      "id": "15",
+      "surgeryType": "Aortic Aneurysm Repair",
+      "surgeryFees": "400000"
+    },
+    {
+      "id": "16",
+      "surgeryType": "Pericardiectomy",
+      "surgeryFees": "200000"
+    },
+    {
+      "id": "17",
+      "surgeryType": "Patent Foramen Ovale (PFO) / ASD Repair",
+      "surgeryFees": "180000"
+    },
+    {
+      "id": "18",
+      "surgeryType": "Robotic Heart Surgery",
+      "surgeryFees": "600000"
+    }
+  ]
 }
